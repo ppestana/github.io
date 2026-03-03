@@ -44,6 +44,16 @@
     pointer-events: none;
     z-index: 0;
   }
+  
+  /* Safari print fix - completely remove background grid */
+  @media print {
+    body::before {
+      content: none !important;
+      display: none !important;
+      background: none !important;
+      background-image: none !important;
+    }
+  }
 
   .page {
     position: relative;
@@ -540,82 +550,118 @@
 
   /* ═══════════════════════════════════════════════════════════
      MEDIA QUERIES PARA IMPRESSÃO / PDF EXPORT
+     SAFARI MACOS SPECIFIC FIXES
      ═══════════════════════════════════════════════════════════ */
   
   @media print {
-    /* Remove background grid and fixed elements */
-    body::before {
+    /* CRITICAL: Remove ALL pseudo-elements that might render */
+    *::before,
+    *::after {
+      content: none !important;
       display: none !important;
+      background: none !important;
+      background-image: none !important;
+      background-color: transparent !important;
     }
     
-    /* Force white background for print */
+    /* Force white background EVERYWHERE */
+    html {
+      background: white !important;
+      background-color: white !important;
+      background-image: none !important;
+    }
+    
     body {
       background: white !important;
+      background-color: white !important;
+      background-image: none !important;
       color: #1e293b !important;
     }
     
+    body::before,
+    body::after {
+      content: none !important;
+      display: none !important;
+      visibility: hidden !important;
+    }
+    
+    /* Force white background on page container */
     .page {
       background: white !important;
+      background-color: white !important;
+      background-image: none !important;
       box-shadow: none !important;
       margin: 0 !important;
-      padding: 1.5cm 1.5cm !important;
+      padding: 1.5cm !important;
       width: 100% !important;
       max-width: none !important;
     }
     
-    /* Remove decorative elements */
-    .section::before {
-      display: none !important;
+    /* Remove ALL decorative backgrounds and borders */
+    .header,
+    .section,
+    .timeline,
+    .two-col,
+    .skills-grid,
+    .education-grid {
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      border: none !important;
+    }
+    
+    /* Keep only essential borders for structure */
+    .timeline-line {
+      background: #e2e8f0 !important;
     }
     
     /* Ensure proper page breaks */
     .experience-item,
-    .section {
+    .section,
+    .skill-category {
       page-break-inside: avoid;
+      break-inside: avoid;
     }
     
-    /* Hide interactive elements */
-    a[href^="http"]::after {
-      content: none !important;
-    }
-    
-    /* Preserve colors for important elements */
+    /* Preserve colors ONLY for functional elements */
     .header-subtitle,
     .section-title,
-    .badge {
-      color-adjust: exact !important;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
-    }
-    
-    /* Ensure skill dots show correctly */
+    .badge,
     .skill-bar,
     .skill-dot,
-    .lang-dot {
+    .lang-dot,
+    .timeline-dot {
       color-adjust: exact !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
     
-    /* Remove shadows */
+    /* Remove ALL shadows */
     * {
       box-shadow: none !important;
       text-shadow: none !important;
     }
     
-    /* Optimize spacing for print */
+    /* Optimize spacing */
     .section {
       margin-bottom: 1.5rem !important;
     }
     
-    .timeline-item,
-    .experience-item {
-      margin-bottom: 1rem !important;
+    /* Ensure black text everywhere else */
+    p, span, div, li, td, th {
+      color: #1e293b !important;
+    }
+    
+    /* Links should be normal text color in print */
+    a {
+      color: #2563eb !important;
+      text-decoration: none !important;
     }
   }
   
+  /* Page setup for A4 */
   @page {
-    size: A4;
+    size: A4 portrait;
     margin: 1.5cm;
   }
 
@@ -925,7 +971,7 @@
   <div class="footer">
     <span>© 2025 PEDRO M PESTANA — TORRES VEDRAS, PORTUGAL</span>
     <span>40+ ANOS EXPERIÊNCIA · GEOSPATIAL SYSTEMS ARCHITECT</span>
-    <span>www.terradigital.net</span>
+    <span>www.pedropestana.com</span>
   </div>
 
 </div>
