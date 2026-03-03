@@ -78,60 +78,37 @@
                 
                 <div class="location-map">
                     <h3>Based in Portugal</h3>
-                    <div class="map-container">
-                        <svg viewBox="0 0 200 280" class="portugal-map" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Portugal mainland outline (simplified) -->
-                            <path class="map-outline" d="M 65,30 
-                                L 75,35 L 80,45 L 85,50 L 90,60 L 95,75 
-                                L 98,90 L 100,110 L 102,130 L 105,150 
-                                L 108,170 L 110,190 L 112,210 L 115,230 
-                                L 118,250 L 120,265 
-                                L 110,268 L 100,270 L 90,268 L 80,265 
-                                L 70,260 L 62,250 L 55,235 L 50,215 
-                                L 48,195 L 46,175 L 45,155 L 44,135 
-                                L 43,115 L 42,95 L 43,75 L 45,60 
-                                L 50,45 L 58,35 Z" 
-                                fill="#e0f2fe" 
-                                stroke="#2563eb" 
-                                stroke-width="2"/>
-                            
-                            <!-- Lisboa pin -->
-                            <g class="location-pin lisboa" data-city="Lisboa">
-                                <circle cx="70" cy="150" r="4" fill="#dc2626" stroke="white" stroke-width="1.5"/>
-                                <circle cx="70" cy="150" r="8" fill="none" stroke="#dc2626" stroke-width="1.5" opacity="0.4">
-                                    <animate attributeName="r" from="8" to="12" dur="1.5s" repeatCount="indefinite"/>
-                                    <animate attributeName="opacity" from="0.4" to="0" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <line x1="70" y1="154" x2="70" y2="165" stroke="#dc2626" stroke-width="2"/>
-                                <circle cx="70" cy="167" r="2" fill="#dc2626"/>
-                            </g>
-                            
-                            <!-- Torres Vedras pin -->
-                            <g class="location-pin torres-vedras" data-city="Torres Vedras">
-                                <circle cx="68" cy="135" r="5" fill="#2563eb" stroke="white" stroke-width="1.5"/>
-                                <circle cx="68" cy="135" r="9" fill="none" stroke="#2563eb" stroke-width="1.5" opacity="0.4">
-                                    <animate attributeName="r" from="9" to="13" dur="1.5s" repeatCount="indefinite"/>
-                                    <animate attributeName="opacity" from="0.4" to="0" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <line x1="68" y1="140" x2="68" y2="151" stroke="#2563eb" stroke-width="2"/>
-                                <circle cx="68" cy="153" r="2" fill="#2563eb"/>
-                            </g>
-                        </svg>
+                    <div class="map-container-real">
+                        <!-- Google Maps iframe showing Torres Vedras, Portugal -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98544.95273486171!2d-9.338461935425803!3d39.09086808203125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd18e779a55e9ff7%3A0x2000956a0001!2sTorres%20Vedras%2C%20Portugal!5e0!3m2!1sen!2spt!4v1709481234567!5m2!1sen!2spt"
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius:12px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                         
-                        <div class="map-legend">
-                            <div class="legend-item">
-                                <span class="legend-pin torres-vedras-pin"></span>
-                                <span class="legend-text">
+                        <div class="map-info">
+                            <div class="map-location-item">
+                                <div class="location-pin-marker torres-vedras-marker">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="location-details">
                                     <strong>Torres Vedras</strong>
                                     <small>Home Base</small>
-                                </span>
+                                </div>
                             </div>
-                            <div class="legend-item">
-                                <span class="legend-pin lisboa-pin"></span>
-                                <span class="legend-text">
+                            
+                            <div class="map-location-item">
+                                <div class="location-pin-marker lisboa-marker">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="location-details">
                                     <strong>Lisboa</strong>
                                     <small>Metro Area</small>
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
