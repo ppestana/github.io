@@ -79,19 +79,23 @@
                 <div class="location-map">
                     <h3>Based in Portugal</h3>
                     <div class="map-container-real">
-                        <!-- Google Maps iframe showing Torres Vedras, Portugal -->
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98544.95273486171!2d-9.338461935425803!3d39.09086808203125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd18e779a55e9ff7%3A0x2000956a0001!2sTorres%20Vedras%2C%20Portugal!5e0!3m2!1sen!2spt!4v1709481234567!5m2!1sen!2spt"
-                            width="100%" 
-                            height="400" 
-                            style="border:0; border-radius:12px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <!-- OpenStreetMap iframe container -->
+                        <div id="map-frame-container" style="width: 100%; height: 400px; border-radius: 12px; overflow: hidden;">
+                            <iframe 
+                                id="osm-map"
+                                width="100%" 
+                                height="100%" 
+                                frameborder="0" 
+                                scrolling="no"
+                                marginheight="0"
+                                marginwidth="0"
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=-9.3,39.0,-9.2,39.15&layer=mapnik&marker=39.09469,-9.26111"
+                                style="border:0; border-radius:12px;">
+                            </iframe>
+                        </div>
                         
                         <div class="map-info">
-                            <div class="map-location-item">
+                            <button class="map-location-item" onclick="zoomToTorresVedras()" aria-label="Zoom to Torres Vedras">
                                 <div class="location-pin-marker torres-vedras-marker">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
@@ -99,9 +103,9 @@
                                     <strong>Torres Vedras</strong>
                                     <small>Home Base</small>
                                 </div>
-                            </div>
+                            </button>
                             
-                            <div class="map-location-item">
+                            <button class="map-location-item" onclick="zoomToLisboa()" aria-label="Zoom to Lisboa">
                                 <div class="location-pin-marker lisboa-marker">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
@@ -109,10 +113,73 @@
                                     <strong>Lisboa</strong>
                                     <small>Metro Area</small>
                                 </div>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+
+    <!-- Map Interaction Script -->
+    <script>
+        // Coordenadas exactas
+        const TORRES_VEDRAS = {
+            lat: 39.09469,  // 39°05'40.9" N
+            lon: -9.26111,  // 09°15'40.0" W
+            zoom: 14
+        };
+        
+        const LISBOA = {
+            lat: 38.71422,  // 38°42'51.19" N
+            lon: -9.13934,  // 9°8'22.35" W
+            zoom: 13
+        };
+
+        function zoomToTorresVedras() {
+            const mapFrame = document.getElementById('osm-map');
+            const { lat, lon, zoom } = TORRES_VEDRAS;
+            
+            // Calcular bounding box para o zoom
+            const delta = 0.02; // Ajusta o nível de zoom
+            const bbox = `${lon - delta},${lat - delta},${lon + delta},${lat + delta}`;
+            
+            // Actualizar iframe src com nova localização
+            mapFrame.src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
+            
+            // Feedback visual
+            highlightButton(event.currentTarget);
+        }
+
+        function zoomToLisboa() {
+            const mapFrame = document.getElementById('osm-map');
+            const { lat, lon, zoom } = LISBOA;
+            
+            // Calcular bounding box para o zoom
+            const delta = 0.03; // Lisboa tem área maior
+            const bbox = `${lon - delta},${lat - delta},${lon + delta},${lat + delta}`;
+            
+            // Actualizar iframe src com nova localização
+            mapFrame.src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
+            
+            // Feedback visual
+            highlightButton(event.currentTarget);
+        }
+
+        function highlightButton(button) {
+            // Remove destaque de todos os botões
+            document.querySelectorAll('.map-location-item').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Adiciona destaque ao botão clicado
+            button.classList.add('active');
+            
+            // Remove destaque após 2 segundos
+            setTimeout(() => {
+                button.classList.remove('active');
+            }, 2000);
+        }
+    </script>
+
             </div>
 
             <div class="contact-form-container">
