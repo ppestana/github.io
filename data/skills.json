@@ -7,32 +7,68 @@
         {
           "name": "QGIS",
           "proficiency": "expert",
-          "experience": "8+ years"
+          "experience": "8+ years",
+          "description": "Análise espacial avançada, cartografia profissional, automação de workflows"
         },
         {
-          "name": "ArcGIS Pro",
-          "proficiency": "advanced",
-          "experience": "6+ years"
-        },
-        {
-          "name": "Google Earth Engine",
+          "name": "PostGIS",
           "proficiency": "expert",
-          "experience": "5+ years"
-        },
-        {
-          "name": "Remote Sensing",
-          "proficiency": "advanced",
-          "experience": "7+ years"
+          "experience": "8+ years",
+          "description": "Spatial databases, queries complexas, optimização, spatial indexing"
         },
         {
           "name": "Spatial Analysis",
           "proficiency": "expert",
-          "experience": "8+ years"
+          "experience": "8+ years",
+          "description": "Modelação geoespacial, análise territorial, overlay analysis"
+        },
+        {
+          "name": "Remote Sensing",
+          "proficiency": "advanced",
+          "experience": "7+ years",
+          "description": "Classificação de imagens, change detection, análise temporal"
         },
         {
           "name": "Cartography",
           "proficiency": "advanced",
-          "experience": "6+ years"
+          "experience": "6+ years",
+          "description": "Design de mapas profissionais, visualização de dados"
+        },
+        {
+          "name": "ArcGIS Pro",
+          "proficiency": "advanced",
+          "experience": "6+ years",
+          "description": "Workflows enterprise, geoprocessing, ModelBuilder"
+        },
+        {
+          "name": "GDAL/OGR",
+          "proficiency": "advanced",
+          "experience": "6+ years",
+          "description": "Conversão de formatos, ETL espacial, batch processing"
+        },
+        {
+          "name": "GeoServer",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "WMS/WFS/WCS services, styling, layer publishing"
+        },
+        {
+          "name": "Google Earth Engine",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "Cloud processing, análise temporal de imagens"
+        },
+        {
+          "name": "GeoPandas",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "Spatial data manipulation em Python, análise vectorial"
+        },
+        {
+          "name": "STAC",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "SpatioTemporal Asset Catalogs, metadata standards"
         }
       ]
     },
@@ -43,27 +79,32 @@
         {
           "name": "Python",
           "proficiency": "expert",
-          "experience": "8+ years"
+          "experience": "8+ years",
+          "description": "Data pipelines, spatial automation, ETL, API development"
         },
         {
-          "name": "R",
-          "proficiency": "advanced",
-          "experience": "5+ years"
+          "name": "SQL / Spatial SQL",
+          "proficiency": "expert",
+          "experience": "8+ years",
+          "description": "Complex queries, optimization, PostGIS, performance tuning"
         },
         {
           "name": "JavaScript/TypeScript",
           "proficiency": "advanced",
-          "experience": "6+ years"
+          "experience": "6+ years",
+          "description": "Web applications, Leaflet/Mapbox, React, Node.js"
         },
         {
-          "name": "SQL",
-          "proficiency": "expert",
-          "experience": "8+ years"
+          "name": "R / RStudio",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "Statistical analysis, spatial statistics, ggplot2"
         },
         {
           "name": "Bash/Shell",
           "proficiency": "intermediate",
-          "experience": "4+ years"
+          "experience": "4+ years",
+          "description": "System automation, scripting, cron jobs"
         }
       ]
     },
@@ -74,32 +115,44 @@
         {
           "name": "PostgreSQL/PostGIS",
           "proficiency": "expert",
-          "experience": "7+ years"
+          "experience": "8+ years",
+          "description": "Spatial database design, optimization, replication"
         },
         {
           "name": "Spatial SQL",
           "proficiency": "expert",
-          "experience": "7+ years"
+          "experience": "8+ years",
+          "description": "Geospatial queries, spatial joins, topology operations"
         },
         {
-          "name": "GeoPandas",
-          "proficiency": "expert",
-          "experience": "5+ years"
+          "name": "Data Pipeline Design",
+          "proficiency": "advanced",
+          "experience": "6+ years",
+          "description": "ETL architecture, workflow design, monitoring"
         },
         {
           "name": "GDAL/OGR",
           "proficiency": "advanced",
-          "experience": "6+ years"
+          "experience": "6+ years",
+          "description": "Format conversion, coordinate transformations"
+        },
+        {
+          "name": "GeoPandas",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "Spatial dataframes, GeoJSON/GeoPackage I/O"
         },
         {
           "name": "GeoServer",
           "proficiency": "intermediate",
-          "experience": "3+ years"
+          "experience": "3+ years",
+          "description": "Data publishing, styling, caching"
         },
         {
           "name": "STAC",
           "proficiency": "intermediate",
-          "experience": "2+ years"
+          "experience": "2+ years",
+          "description": "Asset cataloging, metadata management"
         }
       ]
     },
@@ -110,32 +163,38 @@
         {
           "name": "SaaS Architecture",
           "proficiency": "advanced",
-          "experience": "5+ years"
-        },
-        {
-          "name": "Cloud Platforms (AWS/GCP)",
-          "proficiency": "advanced",
-          "experience": "4+ years"
-        },
-        {
-          "name": "Docker & Containerization",
-          "proficiency": "advanced",
-          "experience": "4+ years"
+          "experience": "5+ years",
+          "description": "Multi-tenant design, microservices, scalability"
         },
         {
           "name": "REST/GraphQL APIs",
           "proficiency": "advanced",
-          "experience": "5+ years"
+          "experience": "5+ years",
+          "description": "API design, authentication, documentation"
         },
         {
           "name": "Data Pipeline Design",
-          "proficiency": "expert",
-          "experience": "6+ years"
+          "proficiency": "advanced",
+          "experience": "6+ years",
+          "description": "ETL/ELT workflows, orchestration, data quality"
         },
         {
           "name": "System Integration",
           "proficiency": "advanced",
-          "experience": "5+ years"
+          "experience": "5+ years",
+          "description": "API integration, webhooks, event-driven architecture"
+        },
+        {
+          "name": "Cloud Platforms (AWS/GCP)",
+          "proficiency": "intermediate",
+          "experience": "4+ years",
+          "description": "EC2, S3, Lambda, deployment, scaling"
+        },
+        {
+          "name": "Docker & Containerization",
+          "proficiency": "intermediate",
+          "experience": "4+ years",
+          "description": "Dockerfile creation, docker-compose, orchestration"
         }
       ]
     },
@@ -146,32 +205,38 @@
         {
           "name": "Git & GitHub/GitLab",
           "proficiency": "expert",
-          "experience": "8+ years"
+          "experience": "8+ years",
+          "description": "Version control, branching, CI/CD integration"
         },
         {
           "name": "Linux/Unix",
           "proficiency": "advanced",
-          "experience": "7+ years"
+          "experience": "7+ years",
+          "description": "Server administration, bash scripting, networking"
         },
         {
           "name": "Jupyter Notebooks",
-          "proficiency": "expert",
-          "experience": "6+ years"
-        },
-        {
-          "name": "Apache Airflow",
-          "proficiency": "intermediate",
-          "experience": "3+ years"
-        },
-        {
-          "name": "CI/CD Pipelines",
           "proficiency": "advanced",
-          "experience": "4+ years"
+          "experience": "6+ years",
+          "description": "Data analysis, prototyping, documentation"
         },
         {
           "name": "Agile/Scrum Methodologies",
           "proficiency": "advanced",
-          "experience": "5+ years"
+          "experience": "5+ years",
+          "description": "Sprint planning, user stories, retrospectives"
+        },
+        {
+          "name": "CI/CD Pipelines",
+          "proficiency": "intermediate",
+          "experience": "4+ years",
+          "description": "GitHub Actions, automated testing, deployment"
+        },
+        {
+          "name": "Apache Airflow",
+          "proficiency": "intermediate",
+          "experience": "3+ years",
+          "description": "Workflow orchestration, DAG creation, scheduling"
         }
       ]
     }
