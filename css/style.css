@@ -1256,16 +1256,17 @@ section {
     
  
     
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-    
     .about-content {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 768px) {
+    /* Contact page - stack columns on mobile */
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
     .nav-menu {
         position: fixed;
         top: 70px;
