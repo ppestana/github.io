@@ -35,12 +35,6 @@
           "description": "Design de mapas profissionais, visualização de dados"
         },
         {
-          "name": "ArcGIS Pro",
-          "proficiency": "advanced",
-          "experience": "6+ years",
-          "description": "Workflows enterprise, geoprocessing, ModelBuilder"
-        },
-        {
           "name": "GDAL/OGR",
           "proficiency": "advanced",
           "experience": "6+ years",
