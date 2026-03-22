@@ -22,6 +22,7 @@
     --dot-expert:         #2563eb;
     --dot-advanced:       #10b981;
     --dot-intermediate:   #fbbf24;
+    --dot-learning:       #8b5cf6;
   }
 
   html { font-size: 14px; }
@@ -430,6 +431,7 @@
 
   .skill-bar.adv { background: var(--dot-advanced); }
   .skill-bar.int { background: var(--dot-intermediate); }
+  .skill-bar.lrn { background: var(--dot-learning); opacity: 0.85; }
   .skill-bar.sec { background: var(--color-secondary); }
   .skill-bar.acc { background: var(--color-accent); }
 
@@ -854,6 +856,7 @@
         <div class="legend-item"><div class="l-dot" style="background:var(--dot-expert)"></div> Expert</div>
         <div class="legend-item"><div class="l-dot" style="background:var(--dot-advanced)"></div> Advanced</div>
         <div class="legend-item"><div class="l-dot" style="background:var(--dot-intermediate)"></div> Intermediate</div>
+        <div class="legend-item"><div class="l-dot" style="background:var(--dot-learning)"></div> Learning</div>
         <div class="legend-item"><div class="l-dot" style="background:var(--color-secondary)"></div> Secondary</div>
         <div class="legend-item"><div class="l-dot" style="background:var(--color-accent)"></div> Accent</div>
       </div>
@@ -951,6 +954,22 @@
           <div class="skill-bar-bg"><div class="skill-bar int" style="width:60%"></div></div>
           <span class="skill-level">Intermediate</span>
         </div>
+        <div class="skill-group-label">Application Development</div>
+        <div class="skill-row">
+          <span class="skill-name">Django + GeoDjango</span>
+          <div class="skill-bar-bg"><div class="skill-bar lrn" style="width:35%"></div></div>
+          <span class="skill-level">Learning</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">HTMX</span>
+          <div class="skill-bar-bg"><div class="skill-bar lrn" style="width:32%"></div></div>
+          <span class="skill-level">Learning</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Alpine.js</span>
+          <div class="skill-bar-bg"><div class="skill-bar lrn" style="width:28%"></div></div>
+          <span class="skill-level">Learning</span>
+        </div>
       </div>
 
       <!-- Expertise Badges -->
@@ -965,6 +984,7 @@
         <span class="exp-badge sec2">Systems Integration</span>
         <span class="exp-badge acc2">Project Leadership</span>
         <span class="exp-badge acc2">Requirements Eng.</span>
+        <span class="exp-badge acc2">App Development</span>
       </div>
 
       <!-- Education (stays in right column) -->

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-Pedro Pestana—Geospatial Systems & Data Engineering</title>
+    <title>Pedro Pestana — Business Applications &amp; Geospatial Systems</title>
     <!-- CRITICAL: Load this BEFORE any analytics or tracking -->
     <link rel="stylesheet" href="css/cookie-consent.css">
     <!-- Your other stylesheets -->
@@ -521,13 +521,12 @@
         <main class="main-content">
             <div class="hero">
                 <h1 class="hero-title">
-                    <span class="highlight">Geospatial Systems</span><br>
-                    & <span class="highlight">Data Engineering</span>
+                    <span class="highlight">Business Applications</span><br>
+                    with a <span class="highlight">Geospatial Core</span>
                 </h1>
                 
                 <p class="hero-subtitle">
-                    Transforming complex geographic information into actionable insights through 
-                    sophisticated spatial data systems, automation, and cloud architecture.
+                    Four decades of software engineering — from mainframe business systems to open-source spatial platforms. I build data-driven applications where territorial intelligence is the differentiator.
                 </p>
                 
                 <!-- Countdown Timer -->
@@ -535,19 +534,19 @@
                     <div class="countdown-title">Launching Soon</div>
                     <div class="countdown-container">
                         <div class="countdown-item">
-                            <div class="countdown-number" id="days">45</div>
+                            <div class="countdown-number" id="days">--</div>
                             <div class="countdown-label">Days</div>
                         </div>
                         <div class="countdown-item">
-                            <div class="countdown-number" id="hours">06</div>
+                            <div class="countdown-number" id="hours">--</div>
                             <div class="countdown-label">Hours</div>
                         </div>
                         <div class="countdown-item">
-                            <div class="countdown-number" id="minutes">23</div>
+                            <div class="countdown-number" id="minutes">--</div>
                             <div class="countdown-label">Minutes</div>
                         </div>
                         <div class="countdown-item">
-                            <div class="countdown-number" id="seconds">45</div>
+                            <div class="countdown-number" id="seconds">--</div>
                             <div class="countdown-label">Seconds</div>
                         </div>
                     </div>
@@ -571,7 +570,7 @@
                         </div>
                         <h3 class="feature-title">GIS & Spatial Analysis</h3>
                         <p class="feature-description">
-                            Advanced geospatial analysis, cartography, and remote sensing expertise.
+                            Advanced spatial analysis and cartography — exclusively open-source: QGIS, PostGIS, GDAL, and GeoServer.
                         </p>
                     </div>
                     
@@ -581,17 +580,17 @@
                         </div>
                         <h3 class="feature-title">Data Engineering</h3>
                         <p class="feature-description">
-                            Scalable spatial data pipelines and PostgreSQL/PostGIS systems.
+                            Spatial data pipelines, ETL automation, and PostgreSQL/PostGIS database design for territorial data.
                         </p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-cloud"></i>
+                            <i class="fas fa-layer-group"></i>
                         </div>
-                        <h3 class="feature-title">Cloud Architecture</h3>
+                        <h3 class="feature-title">Business Application Development</h3>
                         <p class="feature-description">
-                            Modern SaaS platforms and geospatial application deployment.
+                            Open-source Django + GeoDjango applications with territorial workflows and map-enabled interfaces.
                         </p>
                     </div>
                 </div>
@@ -611,8 +610,8 @@
                 <!-- Contact Information -->
                 <div class="contact-info">
                     <h4 class="contact-title">For immediate inquiries:</h4>
-                    <a href="mailto:info@pedropestana.com" class="contact-email">
-                        info@pedropestana.com
+                    <a href="/cdn-cgi/l/email-protection#cea7a0a8a18ebeabaabca1beabbdbaafa0afe0ada1a3" class="contact-email">
+                        <span class="__cf_email__" data-cfemail="563f383039162633322439263325223738377835393b">[email&#160;protected]</span>
                     </a>
                 </div>
             </div>
@@ -621,28 +620,32 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="social-links">
-                <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+                <a href="https://linkedin.com/in/pmpestana" target="_blank" class="social-icon" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub">
+                <a href="https://github.com/ppestana" target="_blank" class="social-icon" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                 </a>
-                <a href="https://bsky.app" target="_blank" class="social-icon" aria-label="Bluesky">
+                <a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank" class="social-icon" aria-label="Bluesky">
                             <i class="fa-brands fa-bluesky"></i>
                 </a>
+                <a href="https://x.com/pmpestana" target="_blank" class="social-icon" aria-label="X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                </a>
             </div>
-            <p>&copy; 2024 Pedro Pestana. Geospatial Systems & Data Engineering.</p>
+            <p>&copy; <span id="footer-year"></span> Pedro Pestana. Open-Source Business Applications · Geospatial Systems.</p>
             <p>Website under development. Full portfolio launching soon.</p>
         </footer>
     </div>
     
-    <script>
-        // Countdown Timer
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Footer year
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        // Countdown Timer — target launch date
         function updateCountdown() {
             // Set launch date (2 weeks from now)
-            const launchDate = new Date();
-            launchDate.setDate(launchDate.getDate() + 45);
-            launchDate.setHours(10, 0, 0, 0); // 10:00 AM
+            const launchDate = new Date('2026-06-30T10:00:00Z');
             
             const now = new Date().getTime();
             const distance = launchDate - now;
@@ -720,14 +723,4 @@
     <!-- At the very end, BEFORE closing </body> tag -->
     <script src="js/cookie-consent.js"></script>
     <script>
-        const cookieConsent = new CookieConsentManager({
-            analyticsScripts: [
-                {
-                    type: 'gtag',
-                    id: 'G-XXXXXXXXXX' // Replace with your GA4 tracking ID
-                }
-            ]
-        });
-    </script>
-</body>
-</html>
+        const cookieConsent = new CookieCon
