@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projectos — Pedro Pestana — Aplicações de Negócio Open-Source · Sistemas Geoespaciais</title>
+    
+    <!-- SEO & Language Tags -->
+    <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/projects.html">
+    <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/projectos.html">
+    <link rel="canonical" href="https://pedropestana.com/pt/projectos.html">
+    
+    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    
+    <!-- Your other stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">PP</span>
+                <span>Pedro Pestana</span>
+            </a>
+            <button class="menu-toggle" aria-label="Alternar navegação">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="competencias.html">Competências</a></li>
+                <li><a href="projectos.html" class="active">Projectos</a></li>
+                <li><a href="artigos.html">Artigos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <a href="../en/projects.html" class="lang-link" title="English">EN</a>
+                <span class="lang-separator">|</span>
+                <a href="projectos.html" class="lang-link active" title="Português">PT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1 class="page-title">Portfólio de Projectos</h1>
+            <p class="page-subtitle">Uma selecção de sistemas geoespaciais, projectos de engenharia de dados e soluções técnicas que desenhei e implementei.</p>
+            
+            <div class="project-filters">
+                <div class="filter-group">
+                    <label for="technology-filter">Filtrar por Tecnologia:</label>
+                    <select id="technology-filter" class="filter-select">
+                        <option value="all">Todas as Tecnologias</option>
+                        <option value="python">Python</option>
+                        <option value="postgis">PostGIS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="qgis">QGIS</option>
+                        <option value="gdal">GDAL</option>
+                        <option value="docker">Docker</option>
+                        <option value="streamlit">Streamlit</option>
+                        <option value="leaflet">Leaflet</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Filtrar por Categoria:</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Todas as Categorias</option>
+                        <option value="Automação & Ferramentas">Automação &amp; Ferramentas</option>
+                        <option value="Mapeamento Web">Mapeamento Web</option>
+                        <option value="Análise Espacial">Análise Espacial</option>
+                        <option value="Pipeline de Dados">Pipeline de Dados</option>
+                        <option value="Desenvolvimento Web">Desenvolvimento Web</option>
+                        <option value="Aplicação de Negócio">Aplicação de Negócio</option>
+                    </select>
+                </div>
+                <button id="clear-filters" class="btn-text">Limpar Filtros</button>
+            </div>
+        </header>
+
+        <div id="projects-container" class="projects-grid detailed">
+            <!-- Projects will be loaded dynamically from projects_pt.json -->
+            <div class="loading">A carregar projectos...</div>
+        </div>
+
+        <section class="project-methodology">
+            <h2>Metodologia de Desenvolvimento de Projectos</h2>
+            <div class="methodology-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Descoberta & Análise</h3>
+                    <p>Análise profunda dos requisitos, restrições técnicas e objectivos de negócio para definir o âmbito e arquitectura do projecto.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Design da Arquitectura</h3>
+                    <p>Desenho de arquitectura de sistema escalável usando princípios open-source, considerando padrões de dados, integração de serviços e manutenibilidade a longo prazo.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Desenvolvimento Iterativo</h3>
+                    <p>Implementação ágil com entregas frequentes, testes rigorosos e integração contínua para garantir qualidade e alinhamento com requisitos.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Documentação & Entrega</h3>
+                    <p>Documentação técnica abrangente, transferência de conhecimento e suporte pós-implementação para garantir adopção bem-sucedida.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Tem um Projecto em Mente?</h2>
+                <p>Quer esteja a planear uma nova solução geoespacial, a modernizar sistemas existentes, ou a explorar automação de dados, adoraria discutir como posso ajudar a concretizar a sua visão.</p>
+                <a href="contacto.html" class="cta-button">
+                    <i class="fas fa-paper-plane"></i> Vamos Conversar
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">PP</span>
+                        <span>Pedro Pestana</span>
+                    </a>
+                    <p class="footer-tagline">Aplicações de Negócio Open-Source · Sistemas Geoespaciais</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explorar</h4>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="competencias.html">Competências</a></li>
+                            <li><a href="projectos.html">Projectos</a></li>
+                            <li><a href="artigos.html">Artigos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Conectar</h4>
+                        <ul>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="https://linkedin.com/in/pmpestana" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ppestana" target="_blank">GitHub</a></li>
+                            <li><a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank">Bluesky</a></li>
+                            <li><a href="https://x.com/pmpestana" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacidade.html">Política de Privacidade</a></li>
+                            <li><a href="#" data-cookie-settings>Definições de Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Pedro Pestana. Todos os direitos reservados.</p>
+                <p>Este website foi construído com HTML, CSS e JavaScript vanilla.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="../js/main.js"></script>
+    
+    <!-- CRITICAL: Load cookie consent at the END, BEFORE closing </body> tag -->
+    <script src="../js/cookie-consent.js"></script>
+    <script>
+        // Initialize cookie consent manager
+        const cookieConsent = new CookieConsentManager({
+            analyticsScripts: [
+                {
+                    type: 'gtag',
+                    id: 'G-XXXXXXXXXX' // Replace with your actual Google Analytics ID
+                }
+            ],
+            onConsentChange: function(preferences) {
+                console.log('Preferências de cookies actualizadas:', preferences);
+            }
+        });
+        
+        // Update current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

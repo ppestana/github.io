@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início — Pedro Pestana — Aplicações de Negócio Open-Source · Sistemas Geoespaciais</title>
+
+    <!-- SEO & Language Tags -->
+    <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/index.html">
+    <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/index.html">
+    <link rel="canonical" href="https://pedropestana.com/pt/index.html">
+
+    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">PP</span>
+                <span>Pedro Pestana</span>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="competencias.html">Competências</a></li>
+                <li><a href="projectos.html">Projectos</a></li>
+                <li><a href="artigos.html">Artigos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <a href="../en/index.html" class="lang-link" title="English">EN</a>
+                <span class="lang-separator">|</span>
+                <a href="index.html" class="lang-link active" title="Português">PT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero right-photo">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Aplicações de Negócio</span><br>
+                    com um <span class="highlight">Núcleo Geoespacial</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Quatro décadas de engenharia de software — desde sistemas de negócio em mainframe até plataformas de dados espaciais. Construo aplicações open-source orientadas a dados, onde a inteligência territorial é o diferenciador: back-ends Django + PostGIS, pipelines GIS automatizados e workflows com mapas desenhados para quem realmente os utiliza.
+                </p>
+                <div class="hero-actions">
+                    <a href="projectos.html" class="btn btn-primary">Ver Projectos</a>
+                    <a href="competencias.html" class="btn btn-secondary">Explorar Competências</a>
+                    <a href="contacto.html" class="btn btn-outline">Contactar</a>
+                </div>
+            </div>
+            <div class="hero-photo-side">
+                <div class="profile-photo-frame">
+                    <img src="/assets/profile.jpg" alt="Pedro Pestana" class="profile-photo">
+                </div>
+            </div>
+        </section>
+
+        <section class="expertise">
+            <h2 class="section-title">Áreas de Especialização</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>SIG & Análise Espacial</h3>
+                    <p>Análise geoespacial avançada, cartografia e detecção remota — exclusivamente open-source: QGIS, PostGIS, GDAL e Google Earth Engine.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Engenharia de Dados Geoespaciais</h3>
+                    <p>Desenho e implementação de pipelines de dados espaciais, processos ETL e bases de dados PostgreSQL/PostGIS.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Programação Espacial</h3>
+                    <p>Desenvolvimento de ferramentas geoespaciais, scripts de automação e aplicações de mapeamento web em Python, JavaScript e HTMX — exclusivamente open-source.</p>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Desenvolvimento de Aplicações de Negócio</h3>
+                    <p>Desenho e desenvolvimento de aplicações de negócio orientadas a dados com componentes territoriais, construídas com Django, GeoDjango e PostGIS.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-projects">
+            <div class="section-header">
+                <h2 class="section-title">Projectos em Destaque</h2>
+                <a href="projectos.html" class="btn-text">Ver todos os projectos <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div id="featured-projects-container" class="projects-grid">
+                <div class="loading">A carregar projectos...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">PP</span>
+                        <span>Pedro Pestana</span>
+                    </a>
+                    <p class="footer-tagline">Aplicações de Negócio Open-Source · Sistemas Geoespaciais</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explorar</h4>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="competencias.html">Competências</a></li>
+                            <li><a href="projectos.html">Projectos</a></li>
+                            <li><a href="artigos.html">Artigos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Conectar</h4>
+                        <ul>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="https://linkedin.com/in/pmpestana" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ppestana" target="_blank">GitHub</a></li>
+                            <li><a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank">Bluesky</a></li>
+                            <li><a href="https://x.com/pmpestana" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacidade.html">Política de Privacidade</a></li>
+                            <li><a href="#" data-cookie-settings>Definições de Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Pedro Pestana. Todos os direitos reservados.</p>
+                <p>Este website foi construído com HTML, CSS e JavaScript vanilla.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+    
+    <!-- CRITICAL: Load cookie consent at the END, BEFORE closing </body> tag -->
+    <script src="/js/cookie-consent.js"></script>
+    <script>
+        // Initialize cookie consent manager
+        const cookieConsent = new CookieConsentManager({
+            analyticsScripts: [
+                {
+                    type: 'gtag',
+                    id: 'G-XXXXXXXXXX' // Replace with your actual Google Analytics ID
+                }
+            ],
+            onConsentChange: function(preferences) {
+                console.log('Cookie preferences updated:', preferences);
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeaturedProjects();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+{
+  "categories": [
+    {
+      "id": "gis",
+      "name": "SIG & Geoespacial",
+      "skills": [
+        {
+          "name": "PostGIS",
+          "proficiency": "expert",
+          "experience": "10+ anos",
+          "description": "Design de base de dados espacial, optimização, replicação"
+        },
+        {
+          "name": "SQL Espacial",
+          "proficiency": "expert",
+          "experience": "8+ anos",
+          "description": "Queries geoespaciais, joins espaciais, operações topológicas"
+        },
+        {
+          "name": "QGIS",
+          "proficiency": "expert",
+          "experience": "8+ anos",
+          "description": "SIG desktop, caixa de ferramentas de processamento, automação PyQGIS"
+        },
+        {
+          "name": "GeoServer",
+          "proficiency": "intermediate",
+          "experience": "3+ anos",
+          "description": "Publicação de dados, WMS/WFS, estilização SLD, caching de tiles"
+        },
+        {
+          "name": "GDAL/OGR",
+          "proficiency": "advanced",
+          "experience": "6+ anos",
+          "description": "Conversão de formatos, transformações de coordenadas"
+        },
+        {
+          "name": "GeoPandas",
+          "proficiency": "advanced",
+          "experience": "5+ anos",
+          "description": "DataFrames espaciais, I/O GeoJSON/GeoPackage"
+        },
+        {
+          "name": "Leaflet.js",
+          "proficiency": "advanced",
+          "experience": "4+ anos",
+          "description": "Mapas web interactivos, plugins customizados, renderização GeoJSON"
+        },
+        {
+          "name": "STAC",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "Catalogação de activos espaço-temporais, gestão de metadados"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Engenharia & Análise de Dados",
+      "skills": [
+        {
+          "name": "Python",
+          "proficiency": "expert",
+          "experience": "10+ anos",
+          "description": "Pipelines de dados, processamento espacial, automação, scripting"
+        },
+        {
+          "name": "PostgreSQL",
+          "proficiency": "expert",
+          "experience": "10+ anos",
+          "description": "Design de schema, optimização de queries, estratégias de indexação"
+        },
+        {
+          "name": "Design de Pipelines de Dados",
+          "proficiency": "advanced",
+          "experience": "6+ anos",
+          "description": "Arquitectura ETL, design de workflows, monitorização"
+        },
+        {
+          "name": "Apache Airflow",
+          "proficiency": "intermediate",
+          "experience": "3+ anos",
+          "description": "Orquestração de workflows, criação de DAGs, agendamento"
+        },
+        {
+          "name": "Redis",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "Cache, broker de mensagens para filas de tarefas assíncronas (Celery)"
+        },
+        {
+          "name": "Celery",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "Fila de tarefas assíncronas, jobs agendados, envio de emails"
+        }
+      ]
+    },
+    {
+      "id": "systems",
+      "name": "Desenvolvimento de Aplicações & Arquitectura",
+      "skills": [
+        {
+          "name": "Django + GeoDjango",
+          "proficiency": "advanced",
+          "experience": "2+ anos",
+          "description": "Aplicações de negócio full-stack — MVT, ORM, APIs REST, campos de geometria GeoDjango, multi-tenancy"
+        },
+        {
+          "name": "FastAPI",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "APIs REST assíncronas, tarefas em background, documentação OpenAPI"
+        },
+        {
+          "name": "HTMX",
+          "proficiency": "learning",
+          "experience": "Actual",
+          "description": "Actualizações de UI orientadas ao servidor sem recarregamentos de página"
+        },
+        {
+          "name": "Docker + Docker Compose",
+          "proficiency": "advanced",
+          "experience": "4+ anos",
+          "description": "Stacks multi-serviço em contentores para desenvolvimento e produção"
+        },
+        {
+          "name": "Nginx + Gunicorn",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "Proxy reverso, servidor WSGI de produção, servir ficheiros estáticos"
+        },
+        {
+          "name": "Linux / Administração VPS",
+          "proficiency": "advanced",
+          "experience": "7+ anos",
+          "description": "Configuração de servidor, bash scripting, firewall, SSL, backups automáticos"
+        },
+        {
+          "name": "Let's Encrypt / Certbot",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "Provisionamento de certificados SSL e renovação automática"
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "name": "Desenvolvimento Web",
+      "skills": [
+        {
+          "name": "HTML5 / CSS3 / JavaScript",
+          "proficiency": "advanced",
+          "experience": "8+ anos",
+          "description": "Markup semântico, variáveis CSS, grid/flexbox, JS vanilla — sem dependências de framework"
+        },
+        {
+          "name": "Sveltia CMS",
+          "proficiency": "advanced",
+          "experience": "1+ ano",
+          "description": "CMS headless baseado em Git para sites estáticos — design config.yml, colecções bilingues, integração de proxy OAuth"
+        },
+        {
+          "name": "GitHub Pages + GitHub Actions",
+          "proficiency": "advanced",
+          "experience": "3+ anos",
+          "description": "Hosting de sites estáticos, pipelines CI/CD, build e deploy automatizados"
+        },
+        {
+          "name": "Cloudflare Workers",
+          "proficiency": "intermediate",
+          "experience": "1+ ano",
+          "description": "Funções serverless na edge — proxy OAuth para autenticação de CMS"
+        },
+        {
+          "name": "FullCalendar",
+          "proficiency": "intermediate",
+          "experience": "1+ ano",
+          "description": "Calendário de consultas interactivo com vistas semana/dia/mês, tipos de eventos e tracking de estado"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "Ferramentas & Práticas",
+      "skills": [
+        {
+          "name": "Git & GitHub",
+          "proficiency": "expert",
+          "experience": "8+ anos",
+          "description": "Controlo de versões, estratégias de branching, integração CI/CD"
+        },
+        {
+          "name": "Conformidade RGPD",
+          "proficiency": "intermediate",
+          "experience": "2+ anos",
+          "description": "Gestão de consentimento de cookies, controlos de acesso a dados de pacientes, UK GDPR + EU GDPR"
+        },
+        {
+          "name": "Desenvolvimento Iterativo / Ágil",
+          "proficiency": "advanced",
+          "experience": "5+ anos",
+          "description": "Entrega iterativa, software funcional em cada marco, testar antes de avançar"
+        }
+      ]
+    }
+  ]
+}

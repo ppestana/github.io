@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects—Pedro Pestana-Open-Source Business Applications · Geospatial Systems</title>
+    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
+    <link rel="stylesheet" href="../css/cookie-consent.css">
+    
+    <!-- Your other stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- SEO & Language Tags -->
+    <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/projects.html">
+    <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/projectos.html">
+    <link rel="canonical" href="https://pedropestana.com/en/projects.html">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">PP</span>
+                <span>Pedro Pestana</span>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <a href="projects.html" class="lang-link active" title="English">EN</a>
+                <span class="lang-separator">|</span>
+                <a href="../pt/projectos.html" class="lang-link" title="Português">PT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1 class="page-title">Project Portfolio</h1>
+            <p class="page-subtitle">A selection of geospatial systems, data engineering projects, and technical solutions I've designed and implemented.</p>
+            
+            <div class="project-filters">
+                <div class="filter-group">
+                    <label for="technology-filter">Filter by Technology:</label>
+                    <select id="technology-filter" class="filter-select">
+                        <option value="all">All Technologies</option>
+                        <option value="python">Python</option>
+                        <option value="postgis">PostGIS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="qgis">QGIS</option>
+                        <option value="gdal">GDAL</option>
+                        <option value="docker">Docker</option>
+                        <option value="streamlit">Streamlit</option>
+                        <option value="leaflet">Leaflet</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Filter by Category:</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="Automation & Tooling">Automation &amp; Tooling</option>
+                        <option value="Web Mapping">Web Mapping</option>
+                        <option value="Spatial Analysis">Spatial Analysis</option>
+                        <option value="Data Pipeline">Data Pipeline</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Business Application">Business Application</option>
+                    </select>
+                </div>
+                <button id="clear-filters" class="btn-text">Clear Filters</button>
+            </div>
+        </header>
+
+        <div id="projects-container" class="projects-grid detailed">
+            <!-- Projects will be loaded dynamically from JSON -->
+            <div class="loading">Loading projects...</div>
+        </div>
+
+        <section class="project-methodology">
+            <h2>Project Development Methodology</h2>
+            <div class="methodology-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Problem Definition</h3>
+                    <p>Clearly understanding the spatial challenge, user requirements, and success metrics before any technical work begins.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Data Assessment</h3>
+                    <p>Evaluating available data sources, quality, formats, and identifying gaps that need to be addressed.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Architecture Design</h3>
+                    <p>Designing system architecture, data models, processing workflows, and visualization strategies.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Iterative Development</h3>
+                    <p>Building, testing, and refining components with regular stakeholder feedback and validation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Deployment & Documentation</h3>
+                    <p>Deploying the solution and creating comprehensive documentation for users and maintainers.</p>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">PP</span>
+                        <span>Pedro Pestana</span>
+                    </a>
+                    <p class="footer-tagline">Open-Source Business Applications · Geospatial Systems</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="skills.html">Skills</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="articles.html">Articles</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="https://linkedin.com/in/pmpestana" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ppestana" target="_blank">GitHub</a></li>
+                            <li><a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank">Bluesky</a></li>
+                            <li><a href="https://x.com/pmpestana" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="#" data-cookie-settings>Cookie Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Pedro Pestana. All rights reserved.</p>
+                <p>This website is built with vanilla HTML, CSS, and JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    
+    <!-- CRITICAL: Load cookie consent at the END, BEFORE closing </body> tag -->
+    <script src="../js/cookie-consent.js"></script>
+    <script>
+        // Initialize cookie consent manager
+        const cookieConsent = new CookieConsentManager({
+            analyticsScripts: [
+                {
+                    type: 'gtag',
+                    id: 'G-XXXXXXXXXX' // Replace with your actual Google Analytics ID
+                }
+            ],
+            onConsentChange: function(preferences) {
+                console.log('Cookie preferences updated:', preferences);
+            }
+        });
+        
+        // Load projects on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProjects();
+            setupProjectFilters();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Projecto — Pedro Pestana — Aplicações de Negócio Open-Source · Sistemas Geoespaciais</title>
+    
+    <!-- SEO & Language Tags -->
+    <link rel="alternate" hreflang="en" href="https://pedropestana.com/project-details.html">
+    <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/projecto-detalhes.html">
+    <link rel="canonical" href="https://pedropestana.com/pt/projecto-detalhes.html">
+    
+    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    
+    <!-- Your other stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">PP</span>
+                <span>Pedro Pestana</span>
+            </a>
+            <button class="menu-toggle" aria-label="Alternar navegação">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="competencias.html">Competências</a></li>
+                <li><a href="projectos.html">Projectos</a></li>
+                <li><a href="artigos.html">Artigos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <a href="../en/project-details.html" class="lang-link" title="English">EN</a>
+                <span class="lang-separator">|</span>
+                <a href="projecto-detalhes.html" class="lang-link active" title="Português">PT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="project-details-container">
+            <!-- Back button -->
+            <a href="projectos.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Voltar aos Projectos
+            </a>
+
+            <!-- Project header -->
+            <header class="project-header-detail">
+                <div class="project-meta-detail">
+                    <span class="project-category-detail" id="project-category">Análise Espacial</span>
+                    <span class="project-year-detail" id="project-year">2023</span>
+                    <span class="project-status-detail" id="project-status">Concluído</span>
+                </div>
+                <h1 class="project-title-detail" id="project-title">A carregar...</h1>
+                <p class="project-subtitle-detail" id="project-description">Uma plataforma baseada em cloud para análise de padrões de expansão urbana usando imagens de satélite e machine learning.</p>
+                
+                <div class="project-links-detail">
+                    <a href="#" id="project-live-link" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Ver Demo
+                    </a>
+                    <a href="#" id="project-github-link" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-github"></i> Ver Código
+                    </a>
+                    <a href="projectos.html" class="btn btn-outline">
+                        <i class="fas fa-th"></i> Todos os Projectos
+                    </a>
+                </div>
+            </header>
+
+            <!-- Project content -->
+            <div class="project-content">
+                <div class="project-main">
+                    <!-- Status banner (shown for in-development / coming-soon) -->
+                    <div id="project-status-banner" class="project-status-banner" style="display:none;"></div>
+
+                    <!-- Project overview — populated by JS -->
+                    <section class="project-section">
+                        <h2><i class="fas fa-info-circle"></i> Visão Geral do Projecto</h2>
+                        <div id="project-overview"></div>
+                    </section>
+
+                    <!-- Technical implementation — populated by JS -->
+                    <section class="project-section">
+                        <h2><i class="fas fa-code"></i> Implementação Técnica</h2>
+                        <div id="project-technical"></div>
+                    </section>
+
+                    <!-- Tech stack — populated by JS -->
+                    <section class="project-section">
+                        <h2><i class="fas fa-layer-group"></i> Stack Tecnológica</h2>
+                        <div id="project-tech-stack"></div>
+                    </section>
+
+                    <!-- Results & metrics — populated by JS -->
+                    <section class="project-section">
+                        <h2><i class="fas fa-chart-line"></i> Resultados & Métricas</h2>
+                        <div id="project-metrics"></div>
+                    </section>
+                </div>
+
+                <!-- Related projects sidebar -->
+                <aside class="project-sidebar">
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-folder-open"></i> Projectos Relacionados</h3>
+                        <div id="related-projects-list">
+                            <!-- Related projects will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-envelope"></i> Interessado?</h3>
+                        <p>Se está interessado num projecto semelhante ou tem questões sobre esta implementação, vamos conversar.</p>
+                        <a href="contacto.html" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-paper-plane"></i> Entre em Contacto
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">PP</span>
+                        <span>Pedro Pestana</span>
+                    </a>
+                    <p class="footer-tagline">Aplicações de Negócio Open-Source · Sistemas Geoespaciais</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explorar</h4>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="competencias.html">Competências</a></li>
+                            <li><a href="projectos.html">Projectos</a></li>
+                            <li><a href="artigos.html">Artigos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Conectar</h4>
+                        <ul>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="https://linkedin.com/in/pmpestana" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ppestana" target="_blank">GitHub</a></li>
+                            <li><a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank">Bluesky</a></li>
+                            <li><a href="https://x.com/pmpestana" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacidade.html">Política de Privacidade</a></li>
+                            <li><a href="#" data-cookie-settings>Definições de Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Pedro Pestana. Todos os direitos reservados.</p>
+                <p>Este website foi construído com HTML, CSS e JavaScript vanilla.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load project-details.js (handles dynamic loading from JSON) -->
+    <script src="/js/project-details.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script src="/js/main.js"></script>
+    
+    <!-- CRITICAL: Load cookie consent at the END -->
+    <script src="/js/cookie-consent.js"></script>
+    <script>
+        const cookieConsent = new CookieConsentManager({
+            analyticsScripts: [{
+                type: 'gtag',
+                id: 'G-XXXXXXXXXX'
+            }],
+            onConsentChange: function(preferences) {
+                console.log('Preferências de cookies actualizadas:', preferences);
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

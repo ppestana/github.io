@@ -1,0 +1,217 @@
+# =============================================================================
+# Sveltia CMS Configuration — pedropestana.com
+# =============================================================================
+# Versão corrigida — usa files: (plural) em vez de file: (singular)
+# EN/PT agrupados por colecção para sidebar mais limpo
+# Última actualização: 2026-04-06
+# =============================================================================
+
+backend:
+  name: github
+  repo: ppestana/github.io
+  branch: main
+  base_url: https://sveltia-cms-auth.eu-cac.workers.dev
+  auth_endpoint: /auth
+
+# ---------------------------------------------------------------------------
+# Media
+# ---------------------------------------------------------------------------
+media_folder: "assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+# ---------------------------------------------------------------------------
+# Slug
+# ---------------------------------------------------------------------------
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# ---------------------------------------------------------------------------
+# COLLECTIONS
+# ---------------------------------------------------------------------------
+
+collections:
+
+  # =========================================================================
+  # PROJECTS (EN + PT)
+  # =========================================================================
+  - name: "projects"
+    label: "Projects / Projectos"
+    files:
+
+      - name: "projects_en"
+        label: "🇬🇧 Projects (EN)"
+        file: "data/projects_en.json"
+        format: "json"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            label_singular: "Project"
+            summary: "{{fields.title}} ({{fields.year}}) — {{fields.status}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "ID",          name: "id",          widget: "number",   value_type: "int", hint: "Unique numeric ID" }
+              - { label: "Title",       name: "title",       widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Category",    name: "category",    widget: "select",
+                  options: ["Automation & Tooling", "Web Mapping", "Spatial Analysis", "Data Pipeline", "Data Engineering", "Web Development"] }
+              - { label: "Year",        name: "year",        widget: "string",   hint: "e.g. 2025" }
+              - { label: "Status",      name: "status",      widget: "select",
+                  options: ["published", "in-development", "coming-soon"] }
+              - { label: "Featured",    name: "featured",    widget: "boolean",  default: false }
+              - { label: "Tags",        name: "tags",        widget: "list",     allow_add: true,
+                  field: { label: "Tag", name: "tag", widget: "string" } }
+              - { label: "Link",        name: "link",        widget: "string",   required: false, hint: "Live demo or product URL" }
+              - { label: "GitHub",      name: "github",      widget: "string",   required: false, hint: "GitHub repository URL" }
+              - { label: "Image",       name: "image",       widget: "string",   required: false, hint: "e.g. assets/projects/my-project.jpg" }
+
+      - name: "projects_pt"
+        label: "🇵🇹 Projectos (PT)"
+        file: "data/projects_pt.json"
+        format: "json"
+        fields:
+          - label: "Projectos"
+            name: "projects"
+            widget: "list"
+            label_singular: "Projecto"
+            summary: "{{fields.title}} ({{fields.year}}) — {{fields.status}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "ID",          name: "id",          widget: "number",   value_type: "int", hint: "ID numérico único, igual ao EN" }
+              - { label: "Título",      name: "title",       widget: "string" }
+              - { label: "Descrição",   name: "description", widget: "text" }
+              - { label: "Categoria",   name: "category",    widget: "select",
+                  options: ["Automação & Ferramentas", "Mapeamento Web", "Análise Espacial", "Pipeline de Dados", "Engenharia de Dados", "Desenvolvimento Web"] }
+              - { label: "Ano",         name: "year",        widget: "string",   hint: "e.g. 2025" }
+              - { label: "Estado",      name: "status",      widget: "select",
+                  options: ["published", "in-development", "coming-soon"] }
+              - { label: "Destaque",    name: "featured",    widget: "boolean",  default: false }
+              - { label: "Tags",        name: "tags",        widget: "list",     allow_add: true,
+                  field: { label: "Tag", name: "tag", widget: "string" } }
+              - { label: "Link",        name: "link",        widget: "string",   required: false, hint: "URL do demo ou produto" }
+              - { label: "GitHub",      name: "github",      widget: "string",   required: false, hint: "URL do repositório" }
+              - { label: "Imagem",      name: "image",       widget: "string",   required: false, hint: "e.g. assets/projects/projecto.jpg" }
+
+  # =========================================================================
+  # ARTICLES (EN + PT)
+  # =========================================================================
+  - name: "articles"
+    label: "Articles / Artigos"
+    files:
+
+      - name: "articles_en"
+        label: "🇬🇧 Articles (EN)"
+        file: "data/articles_en.json"
+        format: "json"
+        fields:
+          - label: "Articles"
+            name: "articles"
+            widget: "list"
+            label_singular: "Article"
+            summary: "{{fields.title}} — {{fields.status}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "ID",          name: "id",          widget: "number",   value_type: "int", hint: "Unique numeric ID" }
+              - { label: "Title",       name: "title",       widget: "string" }
+              - { label: "Subtitle",    name: "subtitle",    widget: "string",   required: false }
+              - { label: "Category",    name: "category",    widget: "select",
+                  options: ["Statistical Analysis", "GIS Architecture", "Data Engineering", "Web Development", "Tutorial", "Opinion"] }
+              - { label: "Date",        name: "date",        widget: "string",   hint: "Free-form, e.g. March 2026 or 2026" }
+              - { label: "Read Time",   name: "readtime",    widget: "string",   required: false, hint: "e.g. 25 min read" }
+              - { label: "Tags",        name: "tags",        widget: "list",     allow_add: true,
+                  field: { label: "Tag", name: "tag", widget: "string" } }
+              - { label: "Featured",    name: "featured",    widget: "boolean",  default: false }
+              - { label: "Status",      name: "status",      widget: "select",
+                  options: ["published", "in-preparation", "draft"] }
+              - { label: "Note",        name: "note",        widget: "string",   required: false, hint: "Optional note, e.g. translation status" }
+              - { label: "Excerpt",     name: "excerpt",     widget: "text" }
+              - { label: "GitHub",      name: "github",      widget: "string",   required: false, hint: "Related GitHub URL" }
+
+      - name: "articles_pt"
+        label: "🇵🇹 Artigos (PT)"
+        file: "data/articles_pt.json"
+        format: "json"
+        fields:
+          - label: "Artigos"
+            name: "articles"
+            widget: "list"
+            label_singular: "Artigo"
+            summary: "{{fields.title}} — {{fields.status}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "ID",          name: "id",          widget: "number",   value_type: "int", hint: "ID numérico único, igual ao EN" }
+              - { label: "Título",      name: "title",       widget: "string" }
+              - { label: "Subtítulo",   name: "subtitle",    widget: "string",   required: false }
+              - { label: "Categoria",   name: "category",    widget: "select",
+                  options: ["Análise Estatística", "Arquitectura SIG", "Engenharia de Dados", "Desenvolvimento Web", "Tutorial", "Opinião"] }
+              - { label: "Data",        name: "date",        widget: "string",   hint: "Formato livre, e.g. Março 2026 ou 2026" }
+              - { label: "Tempo Leitura", name: "readtime",  widget: "string",   required: false, hint: "e.g. 25 min de leitura" }
+              - { label: "Tags",        name: "tags",        widget: "list",     allow_add: true,
+                  field: { label: "Tag", name: "tag", widget: "string" } }
+              - { label: "Destaque",    name: "featured",    widget: "boolean",  default: false }
+              - { label: "Estado",      name: "status",      widget: "select",
+                  options: ["published", "in-preparation", "draft"] }
+              - { label: "Nota",        name: "note",        widget: "string",   required: false, hint: "Nota opcional, e.g. estado da tradução" }
+              - { label: "Excerto",     name: "excerpt",     widget: "text" }
+              - { label: "GitHub",      name: "github",      widget: "string",   required: false, hint: "URL GitHub relacionado" }
+
+  # =========================================================================
+  # SKILLS (EN + PT)
+  # =========================================================================
+  - name: "skills"
+    label: "Skills / Competências"
+    files:
+
+      - name: "skills_en"
+        label: "🇬🇧 Skills (EN)"
+        file: "data/skills_en.json"
+        format: "json"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            label_singular: "Category"
+            summary: "{{fields.name}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "ID",   name: "id",   widget: "string", hint: "Slug, e.g. gis, programming, data" }
+              - { label: "Name", name: "name", widget: "string", hint: "Display name, e.g. GIS & Geospatial" }
+              - label: "Skills"
+                name: "skills"
+                widget: "list"
+                label_singular: "Skill"
+                summary: "{{fields.name}} — {{fields.proficiency}}"
+                fields:
+                  - { label: "Name",        name: "name",        widget: "string" }
+                  - { label: "Proficiency", name: "proficiency", widget: "select",
+                      options: ["expert", "advanced", "intermediate", "learning"] }
+                  - { label: "Experience",  name: "experience",  widget: "string", hint: "e.g. 8+ years or Current" }
+                  - { label: "Description", name: "description", widget: "string" }
+
+      - name: "skills_pt"
+        label: "🇵🇹 Competências (PT)"
+        file: "data/skills_pt.json"
+        format: "json"
+        fields:
+          - label: "Categorias"
+            name: "categories"
+            widget: "list"
+            label_singular: "Categoria"
+            summary: "{{fields.name}}"
+            minimize_collapsed: true
+            fields:
+              - { label: "ID",   name: "id",   widget: "string", hint: "Slug, e.g. gis, programming, data" }
+              - { label: "Nome", name: "name", widget: "string", hint: "Nome de apresentação" }
+              - label: "Competências"
+                name: "skills"
+                widget: "list"
+                label_singular: "Competência"
+                summary: "{{fields.name}} — {{fields.proficiency}}"
+                fields:
+                  - { label: "Nome",        name: "name",        widget: "string" }
+                  - { label: "Proficiência", name: "proficiency", widget: "select",
+                      options: ["expert", "advanced", "intermediate", "learning"] }
+                  - { label: "Experiência", name: "experience",  widget: "string", hint: "e.g. 8+ anos ou Actual" }
+                  - { label: "Descrição",   name: "description", widget: "string" }

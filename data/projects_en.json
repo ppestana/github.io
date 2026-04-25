@@ -1,0 +1,131 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Property Map Generator",
+      "description": "A Python tool that converts GPS field data into professional, print-ready property maps with automatic coordinate transformation, boundary detection, and customizable cartographic styling.",
+      "details": "Built with Python, GDAL and ReportLab/Matplotlib. Reads GPS waypoints from CSV or GPX, reprojects to the national coordinate system (PT-TM06/ETRS89), detects parcel boundaries and generates a georeferenced PDF map ready for submission to land registry or municipal services.",
+      "category": "Automation & Tooling",
+      "year": "2024",
+      "status": "published",
+      "featured": true,
+      "technologies": [
+        "Python",
+        "QGIS",
+        "GDAL",
+        "Cartography",
+        "PDF"
+      ],
+      "link": "https://pestanaeu.gumroad.com/l/mapa-propriedade",
+      "github": "https://github.com/ppestana/mapa_propriedade",
+      "image": "assets/projects/property-map.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Ecoturismo Portugal Portal",
+      "description": "A comprehensive web mapping portal showcasing hiking and ecotourism routes across Portugal, built with Django, PostGIS, and Leaflet for interactive route exploration.",
+      "details": "Django/GeoDjango backend with a PostGIS spatial database for route storage and querying. Integrates a GPX upload pipeline with automatic SRTM elevation enrichment via the Open-Elevation API, a PDF-to-GPX converter powered by FastAPI, and an interactive Leaflet map with route filtering by difficulty, region and activity type.",
+      "category": "Web Mapping",
+      "year": "2025",
+      "status": "in-development",
+      "featured": true,
+      "technologies": [
+        "Django",
+        "PostGIS",
+        "Leaflet",
+        "Python",
+        "GeoServer"
+      ],
+      "link": null,
+      "github": null,
+      "image": "assets/projects/ecoturismo.png"
+    },
+    {
+      "id": 3,
+      "title": "Municipal GIS Architecture — Consultancy Case Study",
+      "description": "Full open-source GIS platform proposal for a Portuguese municipality of 120,000 inhabitants, covering Sentinel-2 automation, agricultural cadastre, and public transparency portal.",
+      "details": "A structured consultancy deliverable covering geospatial infrastructure design, technology selection and implementation roadmap. Modules include automated Sentinel-2 imagery ingestion with Apache Airflow, an agricultural cadastre management layer in PostGIS/GeoServer, a public-facing transparency portal built with Leaflet, and a Docker-based deployment architecture sized for municipal IT capacity.",
+      "category": "Spatial Analysis",
+      "year": "2025",
+      "status": "coming-soon",
+      "featured": false,
+      "technologies": [
+        "PostGIS",
+        "GeoServer",
+        "QGIS",
+        "Docker",
+        "Apache Airflow"
+      ],
+      "link": null,
+      "github": null,
+      "image": "assets/projects/municipal-gis.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Referee Bias Detection System (CAL)",
+      "description": "Statistical anomaly detection system for referee decision-making in Portuguese football, using binomial z-scores, Benjamini-Hochberg FDR correction, and Poisson regression across 2,673 matches.",
+      "details": "A full-stack analytical platform running on Docker/PostgreSQL/Streamlit. For each referee decision type (yellow cards, penalties, injury time), the system computes binomial z-scores against league-wide baselines, applies Benjamini-Hochberg FDR correction to control for multiple testing, and fits Poisson regression models to isolate home/away effects. Covers 9 seasons (2017/18–2025/26) of the Portuguese Primeira Liga.",
+      "category": "Data Pipeline",
+      "year": "2025",
+      "status": "coming-soon",
+      "featured": false,
+      "technologies": [
+        "Python",
+        "PostgreSQL",
+        "Statistics",
+        "Streamlit",
+        "Docker"
+      ],
+      "link": null,
+      "github": null,
+      "image": "assets/projects/cal-system.jpg"
+    },
+    {
+      "id": 5,
+      "title": "NaturalMed Website",
+      "description": "Bilingual static website (EN/PT) for a Traditional Chinese Medicine clinic in Wales, UK. Built with vanilla HTML, CSS and JavaScript — no framework dependencies — with zero hosting cost.",
+      "details": "Fully static site hosted on GitHub Pages with a CI/CD pipeline built on GitHub Actions. Content is managed through Sveltia CMS (a Git-based headless CMS) authenticated via a Cloudflare Workers OAuth proxy. A Python build script (build_articles.py) converts Markdown articles to HTML, updates the article listing and automatically generates an HTML newsletter. Includes GDPR-compliant cookie consent (UK GDPR + EU GDPR) and a jsPDF browser-side flyer generator.",
+      "category": "Web Development",
+      "year": "2025",
+      "status": "published",
+      "featured": true,
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Sveltia CMS",
+        "GitHub Pages",
+        "Cloudflare Workers",
+        "GitHub Actions",
+        "Python"
+      ],
+      "link": "https://www.naturalmed-wellness.com",
+      "github": "https://github.com/naturalmed/naturalmed-wellness",
+      "image": "assets/projects/naturalmed-website.png"
+    },
+    {
+      "id": 6,
+      "title": "NaturalMed Clinic Manager",
+      "description": "Full-featured clinic management system for a Traditional Chinese Medicine practitioner. Covers patient intake, treatment notes, herbal prescriptions, invoicing and stock control. Deployed on a cloud VPS with HTTPS and multi-factor authentication.",
+      "details": "Built iteratively over 3 months as a solo developer. Django 5.1 backend with 19 database models across 9 apps (tenants, accounts, patients, appointments, treatment, billing, stock, expenses, prescriptions). Clinical features include structured SOAP notes, TCM tongue/pulse diagnosis with photography upload, a herbal formula library, and a Stems & Branches (Ganzhi 干支) astrological calculator. Administrative features cover invoicing with VAT and PDF export, a service catalogue with Quick Select billing, expense tracking with financial summary charts, stock management with purchase orders, and multi-tenancy for multiple clinic instances. Deployed on Hetzner Cloud with Docker Compose, Nginx, Gunicorn, Redis, Celery, Let's Encrypt SSL and automated daily backups.",
+      "category": "Business Application",
+      "year": "2025",
+      "status": "published",
+      "featured": true,
+      "technologies": [
+        "Python",
+        "Django",
+        "PostgreSQL",
+        "Redis",
+        "Celery",
+        "Docker",
+        "Nginx",
+        "Hetzner Cloud",
+        "FullCalendar"
+      ],
+      "link": "https://clinic.naturalmed-wellness.com",
+      "github": "https://github.com/ppestana/clinicmanager",
+      "image": "assets/projects/naturalmed-clinic.png"
+    }
+  ]
+}

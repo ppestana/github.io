@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Project Suggestions — Pedro Pestana</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-secondary: #0f766e;
+    --color-accent: #8b5cf6;
+    --color-dark: #1e293b;
+    --color-gray: #64748b;
+    --color-gray-light: #e2e8f0;
+    --color-light: #f8fafc;
+    --color-white: #ffffff;
+    --color-expert: #2563eb;
+    --color-advanced: #10b981;
+    --color-intermediate: #fbbf24;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--color-dark);
+    background: var(--color-light);
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    font-size: 1.125rem;
+    opacity: 0.95;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    opacity: 0.9;
+  }
+
+  nav {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--color-gray-light);
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray);
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  main {
+    padding: 2rem;
+  }
+
+  .skill-section {
+    margin-bottom: 3rem;
+  }
+
+  .skill-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-gray-light);
+  }
+
+  .skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .skill-badge.expert {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--color-expert);
+  }
+
+  .skill-badge.advanced {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-advanced);
+  }
+
+  .skill-badge.intermediate {
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--color-intermediate);
+  }
+
+  .skill-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-dark);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    border: 2px solid var(--color-gray-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .project-number {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--color-gray);
+  }
+
+  .meta-tag i {
+    color: var(--color-primary);
+  }
+
+  .paper-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-gray-light);
+  }
+
+  .paper-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-abstract {
+    font-size: 0.875rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .paper-index {
+    background: var(--color-light);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .paper-index-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .paper-index ol {
+    margin-left: 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--color-gray);
+  }
+
+  .paper-index li {
+    margin-bottom: 0.5rem;
+  }
+
+  .paper-index li ol {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+  }
+
+  .expand-btn {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+
+  .expand-btn:hover {
+    text-decoration: underline;
+  }
+
+  .paper-index.collapsed {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    .stats {
+      gap: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+    }
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--color-accent);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>💼 Portfolio Project Suggestions</h1>
+    <p>Projectos práticos para demonstrar expertise técnica e construir portfolio profissional</p>
+    
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-number">28</span>
+        <span class="stat-label">Total Projectos</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">14</span>
+        <span class="stat-label">Skills Cobertas</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">28</span>
+        <span class="stat-label">Papers Teóricos</span>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <button class="filter-btn active" data-filter="all">Todos (28)</button>
+    <button class="filter-btn" data-filter="expert">Expert (14)</button>
+    <button class="filter-btn" data-filter="advanced">Advanced (14)</button>
+    <button class="filter-btn" data-filter="gis">GIS & Geospatial</button>
+    <button class="filter-btn" data-filter="programming">Programming</button>
+    <button class="filter-btn" data-filter="data">Data & Databases</button>
+    <button class="filter-btn" data-filter="systems">Systems & Architecture</button>
+    <button class="filter-btn" data-filter="tools">Tools & Platforms</button>
+  </nav>
+
+  <main>
+    <!-- GIS & GEOSPATIAL - EXPERT -->
+    <section class="skill-section" data-category="gis" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">QGIS</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">1</div>
+          <h3 class="project-title">Sistema Automatizado de Classificação de Uso do Solo Multi-Temporal</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-layer-group"></i> Spatial Analysis</span>
+            <span class="meta-tag"><i class="fas fa-robot"></i> Automation</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Automated Land Use Classification Using QGIS Processing Framework"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Este paper explora a automação de workflows de classificação de uso do solo utilizando o QGIS Processing Framework e Python. Aborda técnicas de pre-processamento, classificação supervisionada, validação de accuracy, e integração com PostGIS para armazenamento temporal.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Automated Land Use Classification
+                  <ol>
+                    <li>Challenges in Multi-Temporal Analysis</li>
+                    <li>QGIS Processing Framework Overview</li>
+                  </ol>
+                </li>
+                <li>Methodology
+                  <ol>
+                    <li>Data Acquisition and Preprocessing</li>
+                    <li>Supervised Classification Algorithms (Random Forest, SVM)</li>
+                    <li>Temporal Change Detection</li>
+                    <li>Accuracy Assessment</li>
+                  </ol>
+                </li>
+                <li>Implementation in QGIS
+                  <ol>
+                    <li>Python Plugin Development</li>
+                    <li>Batch Processing Scripts</li>
+                    <li>Integration with PostGIS</li>
+                  </ol>
+                </li>
+                <li>Results and Validation</li>
+                <li>Conclusions and Future Work</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">2</div>
+          <h3 class="project-title">Plugin QGIS para Análise de Acessibilidade a Serviços Públicos</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-route"></i> Network Analysis</span>
+            <span class="meta-tag"><i class="fas fa-code"></i> Plugin Development</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 3-5 semanas</span>
+          </div>
+          <span class="category-badge">Web Mapping</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Developing Custom QGIS Plugins for Public Service Accessibility Analysis"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Desenvolvimento de um plugin QGIS para análise de isócronas e cálculo de métricas de acessibilidade a serviços públicos (saúde, educação, transportes). Explora network analysis, integração com APIs de routing, e visualização interactiva de resultados.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Accessibility Analysis
+                  <ol>
+                    <li>Theoretical Framework</li>
+                    <li>Isochrone Methods</li>
+                  </ol>
+                </li>
+                <li>QGIS Plugin Architecture
+                  <ol>
+                    <li>PyQt5 Interface Design</li>
+                    <li>QGIS API Integration</li>
+                    <li>Processing Algorithms</li>
+                  </ol>
+                </li>
+                <li>Network Analysis Implementation
+                  <ol>
+                    <li>Graph Theory Fundamentals</li>
+                    <li>Dijkstra Algorithm for Isochrones</li>
+                    <li>Integration with OSM Data</li>
+                  </ol>
+                </li>
+                <li>Visualization and Reporting</li>
+                <li>Case Study: Healthcare Access in Urban Areas</li>
+                <li>Conclusions</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSTGIS - EXPERT -->
+    <section class="skill-section" data-category="gis data" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">PostGIS</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">3</div>
+          <h3 class="project-title">Sistema de Monitorização de Mudanças Territoriais em Tempo-Real</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-database"></i> Spatial Database</span>
+            <span class="meta-tag"><i class="fas fa-chart-line"></i> Real-time</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Real-Time Territorial Change Detection Using PostGIS Triggers and Temporal Tables"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Arquitectura de base de dados espacial para monitorização contínua de alterações territoriais usando PostGIS triggers, temporal tables, e spatial indexing avançado. Inclui técnicas de optimização de queries complexas e integration com notification systems.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Temporal GIS
+                  <ol>
+                    <li>Change Detection Methods</li>
+                    <li>Real-time vs Batch Processing</li>
+                  </ol>
+                </li>
+                <li>PostGIS Advanced Features
+                  <ol>
+                    <li>Temporal Tables (Bitemporal modeling)</li>
+                    <li>Triggers and Stored Procedures</li>
+                    <li>Spatial Indexing (GiST, SP-GiST)</li>
+                  </ol>
+                </li>
+                <li>System Architecture
+                  <ol>
+                    <li>Database Schema Design</li>
+                    <li>Change Detection Algorithms</li>
+                    <li>Notification System (LISTEN/NOTIFY)</li>
+                  </ol>
+                </li>
+                <li>Performance Optimization
+                  <ol>
+                    <li>Query Optimization Strategies</li>
+                    <li>Partitioning Large Datasets</li>
+                  </ol>
+                </li>
+                <li>Case Study and Results</li>
+                <li>Conclusions</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">4</div>
+          <h3 class="project-title">API RESTful para Consultas Espaciais Complexas</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-server"></i> REST API</span>
+            <span class="meta-tag"><i class="fas fa-project-diagram"></i> Microservices</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">SaaS Platform</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Building High-Performance Spatial APIs with PostGIS and FastAPI"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Design e implementação de uma REST API escalável para consultas espaciais complexas. Cobre query optimization, caching strategies, GeoJSON serialization, e integração com authentication/authorization systems.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Spatial APIs</li>
+                <li>API Design Principles
+                  <ol>
+                    <li>RESTful Architecture</li>
+                    <li>Endpoint Structure</li>
+                    <li>GeoJSON Standard</li>
+                  </ol>
+                </li>
+                <li>FastAPI Implementation
+                  <ol>
+                    <li>Async Database Connections</li>
+                    <li>Pydantic Models for Validation</li>
+                    <li>SQLAlchemy with GeoAlchemy2</li>
+                  </ol>
+                </li>
+                <li>Performance Optimization
+                  <ol>
+                    <li>Connection Pooling</li>
+                    <li>Redis Caching Layer</li>
+                    <li>Query Result Pagination</li>
+                  </ol>
+                </li>
+                <li>Security and Authentication</li>
+                <li>Deployment and Monitoring</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PYTHON - EXPERT -->
+    <section class="skill-section" data-category="programming" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">Python</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">5</div>
+          <h3 class="project-title">Framework ETL para Dados Geoespaciais Multi-Fonte</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-sync"></i> ETL Pipeline</span>
+            <span class="meta-tag"><i class="fas fa-cubes"></i> Data Integration</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-8 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Building Scalable Geospatial ETL Pipelines with Python and Apache Airflow"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Arquitectura de um framework ETL modular para ingestão, transformação e validação de dados geoespaciais de múltiplas fontes (APIs, FTP, databases). Utiliza Pandas, GeoPandas, GDAL, e Apache Airflow para orchestração.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Geospatial ETL</li>
+                <li>Framework Architecture
+                  <ol>
+                    <li>Modular Design Patterns</li>
+                    <li>Data Connectors (API, FTP, DB)</li>
+                    <li>Transformation Pipeline</li>
+                  </ol>
+                </li>
+                <li>Implementation with Python
+                  <ol>
+                    <li>GeoPandas for Spatial Operations</li>
+                    <li>GDAL/OGR for Format Conversion</li>
+                    <li>Data Validation Strategies</li>
+                  </ol>
+                </li>
+                <li>Orchestration with Apache Airflow
+                  <ol>
+                    <li>DAG Design</li>
+                    <li>Task Dependencies</li>
+                    <li>Error Handling and Retries</li>
+                  </ol>
+                </li>
+                <li>Monitoring and Logging</li>
+                <li>Case Study: National Cadastre Integration</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">6</div>
+          <h3 class="project-title">Biblioteca Python para Análise de Redes Espaciais</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-code-branch"></i> Library Development</span>
+            <span class="meta-tag"><i class="fas fa-network-wired"></i> Graph Theory</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 6-8 semanas</span>
+          </div>
+          <span class="category-badge">Automation</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Python Library for Advanced Spatial Network Analysis"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Desenvolvimento de uma biblioteca Python open-source para análise de redes espaciais (transportes, utilities, social networks). Inclui algoritmos de graph theory, shortest path, network centrality, e community detection com contexto geográfico.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Spatial Networks</li>
+                <li>Theoretical Foundations
+                  <ol>
+                    <li>Graph Theory Basics</li>
+                    <li>Spatial Graph Properties</li>
+                    <li>Network Metrics</li>
+                  </ol>
+                </li>
+                <li>Library Architecture
+                  <ol>
+                    <li>Core Classes and Methods</li>
+                    <li>NetworkX Integration</li>
+                    <li>GeoPandas Integration</li>
+                  </ol>
+                </li>
+                <li>Algorithms Implementation
+                  <ol>
+                    <li>Shortest Path (Dijkstra, A*)</li>
+                    <li>Centrality Measures</li>
+                    <li>Community Detection</li>
+                  </ol>
+                </li>
+                <li>Visualization Module</li>
+                <li>Performance Benchmarks</li>
+                <li>Use Cases and Examples</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPATIAL ANALYSIS - EXPERT -->
+    <section class="skill-section" data-category="gis" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">Spatial Analysis</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">7</div>
+          <h3 class="project-title">Modelo de Susceptibilidade a Incêndios Florestais Multi-Critério</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-fire"></i> Risk Analysis</span>
+            <span class="meta-tag"><i class="fas fa-brain"></i> Multi-Criteria</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 6-9 semanas</span>
+          </div>
+          <span class="category-badge">Spatial Analysis</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Multi-Criteria Spatial Analysis for Wildfire Susceptibility Modeling"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Metodologia de análise espacial multi-critério para modelação de susceptibilidade a incêndios florestais. Integra factores topográficos, climáticos, uso do solo, e proximidade a infra-estruturas usando AHP, Fuzzy Logic, e Machine Learning.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Wildfire Risk Assessment</li>
+                <li>Multi-Criteria Decision Analysis
+                  <ol>
+                    <li>Analytical Hierarchy Process (AHP)</li>
+                    <li>Fuzzy Logic Integration</li>
+                    <li>Weight of Evidence</li>
+                  </ol>
+                </li>
+                <li>Spatial Data Preparation
+                  <ol>
+                    <li>DEM Analysis (Slope, Aspect, Elevation)</li>
+                    <li>Land Cover Classification</li>
+                    <li>Climate Variables</li>
+                    <li>Proximity Analysis</li>
+                  </ol>
+                </li>
+                <li>Model Implementation
+                  <ol>
+                    <li>Criteria Weighting</li>
+                    <li>Raster Algebra Operations</li>
+                    <li>Susceptibility Index Calculation</li>
+                  </ol>
+                </li>
+                <li>Validation
+                  <ol>
+                    <li>Historical Fire Data</li>
+                    <li>ROC Curve Analysis</li>
+                  </ol>
+                </li>
+                <li>Results and Discussion</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">8</div>
+          <h3 class="project-title">Sistema de Análise de Hot Spots Criminais Urbanos</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-map-marked-alt"></i> Point Pattern</span>
+            <span class="meta-tag"><i class="fas fa-chart-area"></i> Statistical</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Spatial Analysis</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Spatio-Temporal Crime Hot Spot Analysis Using Kernel Density and Getis-Ord Statistics"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Aplicação de técnicas de point pattern analysis para identificação de hot spots criminais em áreas urbanas. Explora Kernel Density Estimation, Getis-Ord Gi*, análise temporal, e predictive policing usando machine learning spatial.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Crime Hot Spot Analysis</li>
+                <li>Point Pattern Analysis Theory
+                  <ol>
+                    <li>Kernel Density Estimation</li>
+                    <li>Nearest Neighbor Analysis</li>
+                    <li>Ripley's K Function</li>
+                  </ol>
+                </li>
+                <li>Hot Spot Detection Methods
+                  <ol>
+                    <li>Getis-Ord Gi* Statistics</li>
+                    <li>Local Moran's I</li>
+                    <li>Bandwidth Selection</li>
+                  </ol>
+                </li>
+                <li>Temporal Analysis
+                  <ol>
+                    <li>Time Series Decomposition</li>
+                    <li>Space-Time Cube</li>
+                  </ol>
+                </li>
+                <li>Implementation
+                  <ol>
+                    <li>Python (PySAL, scikit-learn)</li>
+                    <li>QGIS Processing</li>
+                  </ol>
+                </li>
+                <li>Case Study: Urban Crime Data</li>
+                <li>Conclusions</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSTGRESQL - EXPERT -->
+    <section class="skill-section" data-category="data" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">PostgreSQL</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">9</div>
+          <h3 class="project-title">Sistema Multi-Tenant SaaS para Gestão de Dados Geoespaciais</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-users"></i> Multi-Tenant</span>
+            <span class="meta-tag"><i class="fas fa-shield-alt"></i> Security</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 7-10 semanas</span>
+          </div>
+          <span class="category-badge">SaaS Platform</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Multi-Tenant Database Architecture for Geospatial SaaS Platforms"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Design de arquitectura multi-tenant para SaaS geoespacial usando PostgreSQL schemas, Row-Level Security (RLS), e data isolation strategies. Inclui performance optimization, backup/recovery, e compliance (GDPR).
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Multi-Tenancy</li>
+                <li>Architecture Patterns
+                  <ol>
+                    <li>Shared Database, Shared Schema</li>
+                    <li>Shared Database, Separate Schemas</li>
+                    <li>Separate Databases</li>
+                  </ol>
+                </li>
+                <li>PostgreSQL Implementation
+                  <ol>
+                    <li>Schema-Based Isolation</li>
+                    <li>Row-Level Security (RLS)</li>
+                    <li>Connection Pooling (PgBouncer)</li>
+                  </ol>
+                </li>
+                <li>Security and Compliance
+                  <ol>
+                    <li>Data Encryption</li>
+                    <li>Audit Logging</li>
+                    <li>GDPR Compliance</li>
+                  </ol>
+                </li>
+                <li>Performance Optimization
+                  <ol>
+                    <li>Query Optimization</li>
+                    <li>Indexing Strategies</li>
+                    <li>Partitioning</li>
+                  </ol>
+                </li>
+                <li>Backup and Disaster Recovery</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">10</div>
+          <h3 class="project-title">Pipeline de Replicação e Sincronização Geográfica Distribuída</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-sync-alt"></i> Replication</span>
+            <span class="meta-tag"><i class="fas fa-globe"></i> Distributed</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Geo-Distributed PostgreSQL Replication for Global Geospatial Applications"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Implementação de replicação multi-master e sincronização de dados geoespaciais entre data centers distribuídos geograficamente. Explora PostgreSQL logical replication, conflict resolution, e latency optimization.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Distributed Databases</li>
+                <li>PostgreSQL Replication Methods
+                  <ol>
+                    <li>Streaming Replication</li>
+                    <li>Logical Replication</li>
+                    <li>Third-Party Solutions (BDR, Citus)</li>
+                  </ol>
+                </li>
+                <li>Multi-Master Setup
+                  <ol>
+                    <li>Configuration and Setup</li>
+                    <li>Conflict Detection</li>
+                    <li>Conflict Resolution Strategies</li>
+                  </ol>
+                </li>
+                <li>Geospatial Data Considerations
+                  <ol>
+                    <li>PostGIS Extension Replication</li>
+                    <li>Spatial Index Synchronization</li>
+                  </ol>
+                </li>
+                <li>Performance and Monitoring
+                  <ol>
+                    <li>Replication Lag Monitoring</li>
+                    <li>Network Optimization</li>
+                  </ol>
+                </li>
+                <li>Case Study and Results</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SQL - EXPERT -->
+    <section class="skill-section" data-category="programming data" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">SQL / Spatial SQL</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">11</div>
+          <h3 class="project-title">Motor de Queries Espaciais de Alta Performance</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-bolt"></i> Performance</span>
+            <span class="meta-tag"><i class="fas fa-search"></i> Query Optimization</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Advanced Spatial SQL Optimization Techniques for Large-Scale Geospatial Databases"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Técnicas avançadas de optimização de spatial SQL queries em bases de dados PostGIS de larga escala. Cobre query planning, spatial indexing strategies, materialized views, e partitioning para performance sub-segundo em milhões de features.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Spatial Query Performance</li>
+                <li>Query Planning and Execution
+                  <ol>
+                    <li>EXPLAIN ANALYZE Deep Dive</li>
+                    <li>Cost-Based Optimization</li>
+                    <li>Statistics Collection</li>
+                  </ol>
+                </li>
+                <li>Spatial Indexing
+                  <ol>
+                    <li>GiST vs SP-GiST vs BRIN</li>
+                    <li>Index Selection Strategies</li>
+                    <li>Covering Indexes</li>
+                  </ol>
+                </li>
+                <li>Advanced Optimization Techniques
+                  <ol>
+                    <li>Spatial Join Optimization</li>
+                    <li>Bounding Box Filters</li>
+                    <li>Materialized Views</li>
+                    <li>Table Partitioning</li>
+                  </ol>
+                </li>
+                <li>Common Query Patterns
+                  <ol>
+                    <li>Point-in-Polygon</li>
+                    <li>Buffer Analysis</li>
+                    <li>Nearest Neighbor</li>
+                  </ol>
+                </li>
+                <li>Benchmarks and Results</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">12</div>
+          <h3 class="project-title">Sistema de Versionamento de Features Geoespaciais com SQL</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-code-branch"></i> Versioning</span>
+            <span class="meta-tag"><i class="fas fa-history"></i> Temporal</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Implementing Feature Versioning in Spatial Databases Using SQL Temporal Tables"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Implementação de sistema de versionamento de features geoespaciais usando SQL temporal tables e triggers. Permite tracking de alterações, rollback, branch/merge workflows, e queries temporais complexas.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Spatial Versioning</li>
+                <li>Temporal Database Theory
+                  <ol>
+                    <li>Valid Time vs Transaction Time</li>
+                    <li>Bitemporal Modeling</li>
+                  </ol>
+                </li>
+                <li>Implementation Strategy
+                  <ol>
+                    <li>Schema Design</li>
+                    <li>Trigger-Based Versioning</li>
+                    <li>History Tables</li>
+                  </ol>
+                </li>
+                <li>Version Control Operations
+                  <ol>
+                    <li>Commit and Tag</li>
+                    <li>Branching</li>
+                    <li>Merging and Conflict Resolution</li>
+                    <li>Rollback</li>
+                  </ol>
+                </li>
+                <li>Temporal Queries
+                  <ol>
+                    <li>Point-in-Time Queries</li>
+                    <li>Time Range Queries</li>
+                    <li>Change Detection Queries</li>
+                  </ol>
+                </li>
+                <li>Performance Considerations</li>
+                <li>Use Cases</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIT - EXPERT -->
+    <section class="skill-section" data-category="tools" data-level="expert">
+      <div class="skill-header">
+        <span class="skill-badge expert">⭐ Expert • 8+ years</span>
+        <h2 class="skill-title">Git & GitHub/GitLab</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">13</div>
+          <h3 class="project-title">Sistema de CI/CD para Projetos Geoespaciais com GitLab</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-infinity"></i> CI/CD</span>
+            <span class="meta-tag"><i class="fas fa-rocket"></i> DevOps</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Automation</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "CI/CD Pipeline Design for Geospatial Applications Using GitLab and Docker"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Arquitectura completa de CI/CD para aplicações geoespaciais incluindo automated testing de spatial data, validation de geometries, deployment de GeoServer layers, e database migrations automatizadas.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to CI/CD for GIS</li>
+                <li>GitLab CI/CD Fundamentals
+                  <ol>
+                    <li>Pipeline Configuration (.gitlab-ci.yml)</li>
+                    <li>Stages and Jobs</li>
+                    <li>Runners and Executors</li>
+                  </ol>
+                </li>
+                <li>Geospatial Testing Strategies
+                  <ol>
+                    <li>Geometry Validation (ST_IsValid)</li>
+                    <li>Topology Testing</li>
+                    <li>Data Quality Checks</li>
+                  </ol>
+                </li>
+                <li>Automated Deployment
+                  <ol>
+                    <li>Docker Image Building</li>
+                    <li>GeoServer Layer Publishing</li>
+                    <li>Database Migration (Flyway/Liquibase)</li>
+                  </ol>
+                </li>
+                <li>Monitoring and Rollback</li>
+                <li>Case Study: WebGIS Platform</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">14</div>
+          <h3 class="project-title">Template de Projetos Geoespaciais Open-Source com Best Practices</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-folder-open"></i> Project Template</span>
+            <span class="meta-tag"><i class="fas fa-book"></i> Documentation</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 3-4 semanas</span>
+          </div>
+          <span class="category-badge">Automation</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Best Practices for Open-Source Geospatial Project Structure and Version Control"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Template completo para projectos geoespaciais open-source incluindo folder structure, branching strategies, commit conventions, documentation templates, issue/PR templates, e contribution guidelines.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Open-Source GIS Projects</li>
+                <li>Project Structure Best Practices
+                  <ol>
+                    <li>Folder Organization</li>
+                    <li>Configuration Files</li>
+                    <li>Data Directory Structure</li>
+                  </ol>
+                </li>
+                <li>Git Workflow Strategies
+                  <ol>
+                    <li>Git Flow</li>
+                    <li>GitHub Flow</li>
+                    <li>Trunk-Based Development</li>
+                  </ol>
+                </li>
+                <li>Documentation Templates
+                  <ol>
+                    <li>README.md Structure</li>
+                    <li>CONTRIBUTING.md</li>
+                    <li>API Documentation</li>
+                    <li>Data Dictionary</li>
+                  </ol>
+                </li>
+                <li>Community Management
+                  <ol>
+                    <li>Issue Templates</li>
+                    <li>Pull Request Templates</li>
+                    <li>Code of Conduct</li>
+                  </ol>
+                </li>
+                <li>Licensing and Legal</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REMOTE SENSING - ADVANCED -->
+    <section class="skill-section" data-category="gis" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 7+ years</span>
+        <h2 class="skill-title">Remote Sensing</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">15</div>
+          <h3 class="project-title">Pipeline de Processamento de Imagens Sentinel-2 para Monitorização Agrícola</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-satellite"></i> Satellite Imagery</span>
+            <span class="meta-tag"><i class="fas fa-leaf"></i> Agriculture</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 6-8 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Automated Sentinel-2 Processing Pipeline for Agricultural Monitoring"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Pipeline automática para download, atmospheric correction, cloud masking, e cálculo de indices espectrais (NDVI, EVI, LAI) de imagens Sentinel-2. Inclui time-series analysis e anomaly detection para monitorização de culturas.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Satellite-Based Agriculture Monitoring</li>
+                <li>Sentinel-2 Mission Overview
+                  <ol>
+                    <li>Sensor Characteristics</li>
+                    <li>Data Products (L1C, L2A)</li>
+                    <li>Access Methods (Copernicus Hub, Google Earth Engine)</li>
+                  </ol>
+                </li>
+                <li>Pre-Processing Pipeline
+                  <ol>
+                    <li>Atmospheric Correction (Sen2Cor)</li>
+                    <li>Cloud and Shadow Masking</li>
+                    <li>Radiometric Normalization</li>
+                  </ol>
+                </li>
+                <li>Spectral Indices Calculation
+                  <ol>
+                    <li>NDVI, EVI, SAVI</li>
+                    <li>LAI and fAPAR</li>
+                    <li>Water Indices</li>
+                  </ol>
+                </li>
+                <li>Time-Series Analysis
+                  <ol>
+                    <li>Temporal Smoothing</li>
+                    <li>Phenology Extraction</li>
+                    <li>Anomaly Detection</li>
+                  </ol>
+                </li>
+                <li>Implementation (Python, GEE)</li>
+                <li>Case Study: Crop Health Monitoring</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">16</div>
+          <h3 class="project-title">Sistema de Detecção de Mudanças Urbanas com Deep Learning</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-brain"></i> Machine Learning</span>
+            <span class="meta-tag"><i class="fas fa-city"></i> Urban Analysis</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 7-10 semanas</span>
+          </div>
+          <span class="category-badge">Spatial Analysis</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Deep Learning Approaches for Urban Change Detection Using Multi-Temporal Satellite Imagery"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Aplicação de redes neurais convolucionais (U-Net, DeepLabV3+) para detecção automática de mudanças urbanas em imagens multi-temporais. Cobre data augmentation, transfer learning, e post-processing de resultados.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Urban Change Detection</li>
+                <li>Deep Learning for Remote Sensing
+                  <ol>
+                    <li>CNN Fundamentals</li>
+                    <li>Semantic Segmentation</li>
+                    <li>Change Detection Architectures</li>
+                  </ol>
+                </li>
+                <li>Data Preparation
+                  <ol>
+                    <li>Image Co-Registration</li>
+                    <li>Patch Generation</li>
+                    <li>Data Augmentation Techniques</li>
+                  </ol>
+                </li>
+                <li>Model Implementation
+                  <ol>
+                    <li>U-Net Architecture</li>
+                    <li>Siamese Networks</li>
+                    <li>Transfer Learning from ImageNet</li>
+                  </ol>
+                </li>
+                <li>Training and Evaluation
+                  <ol>
+                    <li>Loss Functions</li>
+                    <li>Metrics (IoU, F1-Score)</li>
+                    <li>Cross-Validation</li>
+                  </ol>
+                </li>
+                <li>Post-Processing
+                  <ol>
+                    <li>Morphological Operations</li>
+                    <li>Object-Based Filtering</li>
+                  </ol>
+                </li>
+                <li>Results and Discussion</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JAVASCRIPT/TYPESCRIPT - ADVANCED -->
+    <section class="skill-section" data-category="programming" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 6+ years</span>
+        <h2 class="skill-title">JavaScript / TypeScript</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">17</div>
+          <h3 class="project-title">WebGIS Interativo com Leaflet e React para Gestão Municipal</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-map"></i> Web Mapping</span>
+            <span class="meta-tag"><i class="fas fa-react"></i> React</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 6-9 semanas</span>
+          </div>
+          <span class="category-badge">Web Mapping</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Building Modern WebGIS Applications with React and Leaflet"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Arquitectura de aplicação WebGIS usando React, TypeScript, e Leaflet para gestão territorial municipal. Inclui state management (Redux), real-time updates (WebSockets), e integração com backend PostGIS/GeoServer.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Modern WebGIS</li>
+                <li>Technology Stack
+                  <ol>
+                    <li>React Ecosystem</li>
+                    <li>TypeScript Benefits</li>
+                    <li>Leaflet vs Mapbox vs OpenLayers</li>
+                  </ol>
+                </li>
+                <li>Application Architecture
+                  <ol>
+                    <li>Component Structure</li>
+                    <li>State Management (Redux Toolkit)</li>
+                    <li>Routing (React Router)</li>
+                  </ol>
+                </li>
+                <li>Map Implementation
+                  <ol>
+                    <li>React-Leaflet Integration</li>
+                    <li>Custom Controls and Plugins</li>
+                    <li>Vector Tiles (Mapbox GL)</li>
+                  </ol>
+                </li>
+                <li>Backend Integration
+                  <ol>
+                    <li>REST API Consumption</li>
+                    <li>GeoJSON Processing</li>
+                    <li>Real-Time Updates (WebSockets)</li>
+                  </ol>
+                </li>
+                <li>Performance Optimization
+                  <ol>
+                    <li>Layer Clustering</li>
+                    <li>Lazy Loading</li>
+                    <li>Memoization</li>
+                  </ol>
+                </li>
+                <li>Deployment and Testing</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">18</div>
+          <h3 class="project-title">Editor de Features Geoespaciais Colaborativo em Tempo-Real</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-users"></i> Collaborative</span>
+            <span class="meta-tag"><i class="fas fa-edit"></i> Editing</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 7-10 semanas</span>
+          </div>
+          <span class="category-badge">Web Mapping</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Real-Time Collaborative Geospatial Feature Editing Using WebSockets and Operational Transformation"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Sistema de edição colaborativa de features geoespaciais permitindo múltiplos utilizadores editarem simultaneamente. Implementa Operational Transformation para conflict resolution e WebSocket para comunicação real-time.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Collaborative GIS</li>
+                <li>Theoretical Foundations
+                  <ol>
+                    <li>Operational Transformation (OT)</li>
+                    <li>Conflict-Free Replicated Data Types (CRDTs)</li>
+                    <li>Version Vectors</li>
+                  </ol>
+                </li>
+                <li>System Architecture
+                  <ol>
+                    <li>Client-Server Model</li>
+                    <li>WebSocket Communication</li>
+                    <li>State Synchronization</li>
+                  </ol>
+                </li>
+                <li>Frontend Implementation
+                  <ol>
+                    <li>Leaflet Draw Integration</li>
+                    <li>Local State Management</li>
+                    <li>Optimistic UI Updates</li>
+                  </ol>
+                </li>
+                <li>Backend Implementation
+                  <ol>
+                    <li>Node.js WebSocket Server</li>
+                    <li>OT Algorithm Implementation</li>
+                    <li>PostGIS Persistence</li>
+                  </ol>
+                </li>
+                <li>Conflict Resolution Strategies</li>
+                <li>Performance and Scalability</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- R/RSTUDIO - ADVANCED -->
+    <section class="skill-section" data-category="programming" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 5+ years</span>
+        <h2 class="skill-title">R / RStudio</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">19</div>
+          <h3 class="project-title">Análise Estatística Espacial de Padrões de Mortalidade</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-chart-bar"></i> Statistical Analysis</span>
+            <span class="meta-tag"><i class="fas fa-heartbeat"></i> Health</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">Spatial Analysis</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Spatial Statistical Analysis of Mortality Patterns Using R and Spatial Econometrics"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Análise espacial de dados de mortalidade usando R (sf, spdep, spatialreg) para detectar clusters, spatial autocorrelation (Moran's I), e spatial regression models (SAR, CAR). Inclui visualização com ggplot2 e tmap.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Spatial Epidemiology</li>
+                <li>Spatial Data in R
+                  <ol>
+                    <li>sf Package Overview</li>
+                    <li>Spatial Data Structures</li>
+                    <li>Coordinate Reference Systems</li>
+                  </ol>
+                </li>
+                <li>Exploratory Spatial Data Analysis
+                  <ol>
+                    <li>Spatial Autocorrelation (Moran's I, Geary's C)</li>
+                    <li>Local Indicators (LISA)</li>
+                    <li>Spatial Weight Matrices</li>
+                  </ol>
+                </li>
+                <li>Spatial Regression Models
+                  <ol>
+                    <li>Spatial Lag Model (SAR)</li>
+                    <li>Spatial Error Model (CAR)</li>
+                    <li>Model Selection and Diagnostics</li>
+                  </ol>
+                </li>
+                <li>Visualization
+                  <ol>
+                    <li>ggplot2 for Spatial Data</li>
+                    <li>tmap for Interactive Maps</li>
+                    <li>Choropleth Maps</li>
+                  </ol>
+                </li>
+                <li>Case Study: COVID-19 Mortality Analysis</li>
+                <li>Conclusions</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">20</div>
+          <h3 class="project-title">Dashboard Interativo Shiny para Visualização de Dados Ambientais</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-chart-line"></i> Dashboard</span>
+            <span class="meta-tag"><i class="fas fa-tree"></i> Environment</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Web Mapping</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Interactive Environmental Data Dashboards with R Shiny and Leaflet"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Desenvolvimento de dashboard interactivo com Shiny para exploração de dados ambientais multi-temporais. Integra leaflet para mapas, plotly para gráficos interactivos, e DT para tabelas dinâmicas com data sourced from PostgreSQL.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to R Shiny Applications</li>
+                <li>Shiny Architecture
+                  <ol>
+                    <li>UI vs Server Logic</li>
+                    <li>Reactive Programming</li>
+                    <li>Modules for Code Organization</li>
+                  </ol>
+                </li>
+                <li>Data Integration
+                  <ol>
+                    <li>PostgreSQL Connection (RPostgreSQL)</li>
+                    <li>Data Caching Strategies</li>
+                    <li>Asynchronous Updates</li>
+                  </ol>
+                </li>
+                <li>Visualization Components
+                  <ol>
+                    <li>Leaflet Maps Integration</li>
+                    <li>Plotly Interactive Charts</li>
+                    <li>DT DataTables</li>
+                  </ol>
+                </li>
+                <li>User Interaction
+                  <ol>
+                    <li>Input Controls</li>
+                    <li>Dynamic Filtering</li>
+                    <li>Download Handlers</li>
+                  </ol>
+                </li>
+                <li>Deployment
+                  <ol>
+                    <li>Shiny Server Setup</li>
+                    <li>shinyapps.io Deployment</li>
+                    <li>Docker Containerization</li>
+                  </ol>
+                </li>
+                <li>Case Study: Air Quality Monitoring</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GEOSERVER - ADVANCED -->
+    <section class="skill-section" data-category="gis data" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 5+ years</span>
+        <h2 class="skill-title">GeoServer</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">21</div>
+          <h3 class="project-title">Plataforma de Publicação Automática de Layers Geoespaciais</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-layer-group"></i> Layer Publishing</span>
+            <span class="meta-tag"><i class="fas fa-robot"></i> Automation</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Automation</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Automated GeoServer Layer Publishing Using REST API and Python"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Sistema automático para publicação de layers no GeoServer via REST API. Inclui workspace management, style generation automática (SLD), tile caching configuration (GeoWebCache), e monitoring de serviços WMS/WFS.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to GeoServer Automation</li>
+                <li>GeoServer Architecture
+                  <ol>
+                    <li>Data Stores and Workspaces</li>
+                    <li>Layers and Layer Groups</li>
+                    <li>Styles (SLD)</li>
+                  </ol>
+                </li>
+                <li>REST API Deep Dive
+                  <ol>
+                    <li>Authentication Methods</li>
+                    <li>CRUD Operations</li>
+                    <li>Batch Operations</li>
+                  </ol>
+                </li>
+                <li>Automation Workflow
+                  <ol>
+                    <li>Data Ingestion from PostGIS</li>
+                    <li>Automatic Style Generation</li>
+                    <li>Layer Publishing Pipeline</li>
+                    <li>GeoWebCache Configuration</li>
+                  </ol>
+                </li>
+                <li>Python Implementation
+                  <ol>
+                    <li>geoserver-restconfig Library</li>
+                    <li>Custom Scripts</li>
+                    <li>Error Handling</li>
+                  </ol>
+                </li>
+                <li>Monitoring and Health Checks</li>
+                <li>Use Cases</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">22</div>
+          <h3 class="project-title">Sistema de Optimização de Performance para Serviços OGC</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-tachometer-alt"></i> Performance</span>
+            <span class="meta-tag"><i class="fas fa-server"></i> OGC Services</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">SaaS Platform</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Performance Optimization Strategies for GeoServer WMS/WFS Services"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Técnicas avançadas de optimização de performance para serviços GeoServer incluindo tile caching (GeoWebCache), rendering optimization, database connection pooling, e load balancing com Nginx.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to GeoServer Performance</li>
+                <li>Rendering Optimization
+                  <ol>
+                    <li>SLD Simplification</li>
+                    <li>Generalization Rules</li>
+                    <li>Feature Type Caching</li>
+                  </ol>
+                </li>
+                <li>GeoWebCache Configuration
+                  <ol>
+                    <li>Gridset Definition</li>
+                    <li>Seeding Strategies</li>
+                    <li>Disk vs Memory Storage</li>
+                  </ol>
+                </li>
+                <li>Database Optimization
+                  <ol>
+                    <li>Connection Pooling (DBCP)</li>
+                    <li>Spatial Indexing</li>
+                    <li>Query Simplification</li>
+                  </ol>
+                </li>
+                <li>Load Balancing and Clustering
+                  <ol>
+                    <li>Multiple GeoServer Instances</li>
+                    <li>Nginx Reverse Proxy</li>
+                    <li>Session Affinity</li>
+                  </ol>
+                </li>
+                <li>Monitoring and Profiling
+                  <ol>
+                    <li>JMX Metrics</li>
+                    <li>Request Logging</li>
+                    <li>Performance Analysis</li>
+                  </ol>
+                </li>
+                <li>Benchmarks and Results</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOOGLE EARTH ENGINE - ADVANCED -->
+    <section class="skill-section" data-category="gis" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 5+ years</span>
+        <h2 class="skill-title">Google Earth Engine</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">23</div>
+          <h3 class="project-title">Sistema de Monitorização de Desflorestação em Tempo-Real</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-tree"></i> Deforestation</span>
+            <span class="meta-tag"><i class="fas fa-satellite"></i> Sentinel-1/2</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 6-9 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Real-Time Deforestation Monitoring Using Google Earth Engine and Machine Learning"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Sistema automatizado de detecção de desflorestação usando GEE com imagens Sentinel-1 (SAR) e Sentinel-2 (optical) em time-series. Implementa Random Forest classification, alert generation, e integration com notification systems.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Deforestation Monitoring</li>
+                <li>Google Earth Engine Platform
+                  <ol>
+                    <li>Data Catalog Overview</li>
+                    <li>Image Collections</li>
+                    <li>Processing Capabilities</li>
+                  </ol>
+                </li>
+                <li>Data Preparation
+                  <ol>
+                    <li>Sentinel-2 Optical Preprocessing</li>
+                    <li>Sentinel-1 SAR Processing</li>
+                    <li>Cloud Masking and Compositing</li>
+                  </ol>
+                </li>
+                <li>Change Detection Algorithm
+                  <ol>
+                    <li>NDVI Time Series Analysis</li>
+                    <li>Break Detection (BFAST)</li>
+                    <li>Random Forest Classification</li>
+                  </ol>
+                </li>
+                <li>Alert System
+                  <ol>
+                    <li>Automated Thresholding</li>
+                    <li>Export to Asset/Drive</li>
+                    <li>Email Notifications</li>
+                  </ol>
+                </li>
+                <li>Validation and Accuracy Assessment</li>
+                <li>Case Study: Amazon Rainforest</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">24</div>
+          <h3 class="project-title">Atlas Climático Interativo com 30 Anos de Dados</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-cloud-sun"></i> Climate</span>
+            <span class="meta-tag"><i class="fas fa-history"></i> Historical Data</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-8 semanas</span>
+          </div>
+          <span class="category-badge">Web Mapping</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Interactive Climate Atlas Using Google Earth Engine and Web Technologies"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Desenvolvimento de atlas climático interactivo usando 30+ anos de dados CHIRPS (precipitation), MODIS LST (temperature), e ERA5 (reanalysis). Interface web com GEE Code Editor export para análise temporal e spatial de tendências climáticas.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Climate Data Analysis</li>
+                <li>Data Sources
+                  <ol>
+                    <li>CHIRPS Precipitation</li>
+                    <li>MODIS Land Surface Temperature</li>
+                    <li>ERA5 Reanalysis</li>
+                  </ol>
+                </li>
+                <li>GEE Implementation
+                  <ol>
+                    <li>Long Time Series Processing</li>
+                    <li>Reducing Over Regions</li>
+                    <li>Trend Analysis (Mann-Kendall)</li>
+                  </ol>
+                </li>
+                <li>Web Application Development
+                  <ol>
+                    <li>GEE Python API</li>
+                    <li>Flask Backend</li>
+                    <li>Leaflet Frontend</li>
+                  </ol>
+                </li>
+                <li>Interactive Features
+                  <ol>
+                    <li>Time Slider</li>
+                    <li>Region Selection</li>
+                    <li>Chart Generation</li>
+                    <li>Data Export</li>
+                  </ol>
+                </li>
+                <li>Deployment (Google Cloud Run)</li>
+                <li>Use Cases and Results</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINUX/UNIX - ADVANCED -->
+    <section class="skill-section" data-category="tools" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 7+ years</span>
+        <h2 class="skill-title">Linux / Unix</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">25</div>
+          <h3 class="project-title">Infraestrutura Automatizada para Deployment de Serviços GIS</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-server"></i> Infrastructure</span>
+            <span class="meta-tag"><i class="fas fa-infinity"></i> DevOps</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">Automation</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Infrastructure as Code for GIS Service Deployment Using Ansible and Docker"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Framework de Infrastructure as Code para deployment automatizado de stack GIS completo (PostgreSQL/PostGIS, GeoServer, QGIS Server) em servidores Linux usando Ansible playbooks, Docker containers, e Nginx reverse proxy.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Infrastructure as Code</li>
+                <li>Technology Stack
+                  <ol>
+                    <li>Ansible Overview</li>
+                    <li>Docker Containerization</li>
+                    <li>Docker Compose</li>
+                  </ol>
+                </li>
+                <li>GIS Stack Components
+                  <ol>
+                    <li>PostgreSQL/PostGIS Container</li>
+                    <li>GeoServer Container</li>
+                    <li>QGIS Server Container</li>
+                  </ol>
+                </li>
+                <li>Ansible Implementation
+                  <ol>
+                    <li>Playbook Structure</li>
+                    <li>Role Organization</li>
+                    <li>Variable Management</li>
+                  </ol>
+                </li>
+                <li>Networking and Security
+                  <ol>
+                    <li>Nginx Reverse Proxy</li>
+                    <li>SSL/TLS with Let's Encrypt</li>
+                    <li>Firewall Configuration (UFW)</li>
+                  </ol>
+                </li>
+                <li>Monitoring and Logging
+                  <ol>
+                    <li>Prometheus Metrics</li>
+                    <li>Centralized Logging (ELK)</li>
+                  </ol>
+                </li>
+                <li>Disaster Recovery</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">26</div>
+          <h3 class="project-title">Sistema de Backup Automático e Sincronização Distribuída</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-hdd"></i> Backup</span>
+            <span class="meta-tag"><i class="fas fa-sync"></i> Synchronization</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 4-6 semanas</span>
+          </div>
+          <span class="category-badge">Automation</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Automated Backup and Distributed Synchronization for Geospatial Databases"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Sistema de backup automático para bases de dados PostGIS usando pg_dump, rsync para sincronização off-site, cron jobs para scheduling, e scripts bash para monitorização e alerting. Inclui disaster recovery testing.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Database Backup Strategies</li>
+                <li>Backup Methods
+                  <ol>
+                    <li>pg_dump for Logical Backups</li>
+                    <li>pg_basebackup for Physical Backups</li>
+                    <li>Continuous Archiving (WAL)</li>
+                  </ol>
+                </li>
+                <li>Automation with Bash Scripts
+                  <ol>
+                    <li>Backup Script Design</li>
+                    <li>Compression and Encryption</li>
+                    <li>Retention Policies</li>
+                  </ol>
+                </li>
+                <li>Off-Site Synchronization
+                  <ol>
+                    <li>rsync Over SSH</li>
+                    <li>Bandwidth Throttling</li>
+                    <li>Delta Transfers</li>
+                  </ol>
+                </li>
+                <li>Scheduling and Monitoring
+                  <ol>
+                    <li>Cron Job Configuration</li>
+                    <li>Health Checks</li>
+                    <li>Email Alerts</li>
+                  </ol>
+                </li>
+                <li>Disaster Recovery Testing
+                  <ol>
+                    <li>Restore Procedures</li>
+                    <li>Point-in-Time Recovery</li>
+                    <li>Validation</li>
+                  </ol>
+                </li>
+                <li>Best Practices</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA PIPELINE DESIGN - ADVANCED -->
+    <section class="skill-section" data-category="data systems" data-level="advanced">
+      <div class="skill-header">
+        <span class="skill-badge advanced">🚀 Advanced • 6+ years</span>
+        <h2 class="skill-title">Data Pipeline Design</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-number">27</div>
+          <h3 class="project-title">Pipeline de Ingestão Massiva de Dados OpenStreetMap</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-database"></i> Big Data</span>
+            <span class="meta-tag"><i class="fas fa-map"></i> OpenStreetMap</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 6-9 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Scalable ETL Pipeline for OpenStreetMap Data Ingestion and Processing"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Pipeline escalável para ingestão de dados OpenStreetMap planet file (50+ GB) em PostgreSQL/PostGIS. Usa osm2pgsql, Apache Airflow orchestration, data partitioning, e incremental updates com osmosis.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to OpenStreetMap Data</li>
+                <li>OSM Data Model
+                  <ol>
+                    <li>Nodes, Ways, Relations</li>
+                    <li>Tags and Attributes</li>
+                    <li>PBF Format</li>
+                  </ol>
+                </li>
+                <li>Initial Load Pipeline
+                  <ol>
+                    <li>osm2pgsql Configuration</li>
+                    <li>Custom Style Files</li>
+                    <li>Multi-threading</li>
+                  </ol>
+                </li>
+                <li>Database Optimization
+                  <ol>
+                    <li>Table Partitioning</li>
+                    <li>Spatial Indexing</li>
+                    <li>VACUUM and ANALYZE</li>
+                  </ol>
+                </li>
+                <li>Incremental Updates
+                  <ol>
+                    <li>Osmosis Replication</li>
+                    <li>Minutely Diffs</li>
+                    <li>Change Detection</li>
+                  </ol>
+                </li>
+                <li>Orchestration with Airflow
+                  <ol>
+                    <li>DAG Design</li>
+                    <li>Task Dependencies</li>
+                    <li>Monitoring</li>
+                  </ol>
+                </li>
+                <li>Performance Benchmarks</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-number">28</div>
+          <h3 class="project-title">Framework de Data Quality para Dados Geoespaciais</h3>
+          <div class="project-meta">
+            <span class="meta-tag"><i class="fas fa-check-circle"></i> Data Quality</span>
+            <span class="meta-tag"><i class="fas fa-shield-alt"></i> Validation</span>
+            <span class="meta-tag"><i class="fas fa-clock"></i> 5-7 semanas</span>
+          </div>
+          <span class="category-badge">Data Pipeline</span>
+          
+          <div class="paper-section">
+            <div class="paper-title">📄 Paper: "Comprehensive Data Quality Framework for Geospatial Data Pipelines"</div>
+            <div class="paper-abstract">
+              <strong>Abstract:</strong> Framework de data quality para validação automatizada de dados geoespaciais em pipelines ETL. Implementa ISO 19157 quality measures, topology checks, attribute validation, e automated reporting com Great Expectations.
+            </div>
+            <button class="expand-btn" onclick="toggleIndex(this)">
+              Ver Índice <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="paper-index collapsed">
+              <div class="paper-index-title">Índice do Paper:</div>
+              <ol>
+                <li>Introduction to Geospatial Data Quality</li>
+                <li>ISO 19157 Quality Model
+                  <ol>
+                    <li>Completeness</li>
+                    <li>Logical Consistency</li>
+                    <li>Positional Accuracy</li>
+                    <li>Temporal Quality</li>
+                    <li>Thematic Accuracy</li>
+                  </ol>
+                </li>
+                <li>Validation Framework Design
+                  <ol>
+                    <li>Rule Engine Architecture</li>
+                    <li>Quality Metrics</li>
+                    <li>Threshold Configuration</li>
+                  </ol>
+                </li>
+                <li>Geometry Validation
+                  <ol>
+                    <li>Topology Checks (ST_IsValid)</li>
+                    <li>Self-Intersection Detection</li>
+                    <li>Sliver Polygon Detection</li>
+                  </ol>
+                </li>
+                <li>Attribute Validation
+                  <ol>
+                    <li>Schema Conformance</li>
+                    <li>Domain Validation</li>
+                    <li>Referential Integrity</li>
+                  </ol>
+                </li>
+                <li>Implementation
+                  <ol>
+                    <li>Great Expectations Integration</li>
+                    <li>Custom Expectations</li>
+                    <li>Automated Reports</li>
+                  </ol>
+                </li>
+                <li>Case Study and Results</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function toggleIndex(button) {
+  const indexDiv = button.nextElementSibling;
+  const icon = button.querySelector('i');
+  
+  if (indexDiv.classList.contains('collapsed')) {
+    indexDiv.classList.remove('collapsed');
+    button.innerHTML = 'Ocultar Índice <i class="fas fa-chevron-up"></i>';
+  } else {
+    indexDiv.classList.add('collapsed');
+    button.innerHTML = 'Ver Índice <i class="fas fa-chevron-down"></i>';
+  }
+}
+
+// Filter functionality
+const filterButtons = document.querySelectorAll('.filter-btn');
+const sections = document.querySelectorAll('.skill-section');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const filter = button.dataset.filter;
+    
+    // Update active button
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    
+    // Filter sections
+    sections.forEach(section => {
+      const category = section.dataset.category;
+      const level = section.dataset.level;
+      
+      if (filter === 'all') {
+        section.style.display = 'block';
+      } else if (filter === 'expert' || filter === 'advanced') {
+        section.style.display = level === filter ? 'block' : 'none';
+      } else {
+        section.style.display = category.includes(filter) ? 'block' : 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

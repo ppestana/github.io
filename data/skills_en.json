@@ -1,0 +1,208 @@
+{
+  "categories": [
+    {
+      "id": "gis",
+      "name": "GIS & Geospatial",
+      "skills": [
+        {
+          "name": "PostGIS",
+          "proficiency": "expert",
+          "experience": "10+ years",
+          "description": "Spatial database design, optimization, replication"
+        },
+        {
+          "name": "Spatial SQL",
+          "proficiency": "expert",
+          "experience": "8+ years",
+          "description": "Geospatial queries, spatial joins, topology operations"
+        },
+        {
+          "name": "QGIS",
+          "proficiency": "expert",
+          "experience": "8+ years",
+          "description": "Desktop GIS, processing toolbox, PyQGIS automation"
+        },
+        {
+          "name": "GeoServer",
+          "proficiency": "intermediate",
+          "experience": "3+ years",
+          "description": "Data publishing, WMS/WFS, SLD styling, tile caching"
+        },
+        {
+          "name": "GDAL/OGR",
+          "proficiency": "advanced",
+          "experience": "6+ years",
+          "description": "Format conversion, coordinate transformations"
+        },
+        {
+          "name": "GeoPandas",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "Spatial dataframes, GeoJSON/GeoPackage I/O"
+        },
+        {
+          "name": "Leaflet.js",
+          "proficiency": "advanced",
+          "experience": "4+ years",
+          "description": "Interactive web maps, custom plugins, GeoJSON rendering"
+        },
+        {
+          "name": "STAC",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "Spatio-temporal asset cataloging, metadata management"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Data Engineering & Analysis",
+      "skills": [
+        {
+          "name": "Python",
+          "proficiency": "expert",
+          "experience": "10+ years",
+          "description": "Data pipelines, spatial processing, automation, scripting"
+        },
+        {
+          "name": "PostgreSQL",
+          "proficiency": "expert",
+          "experience": "10+ years",
+          "description": "Schema design, query optimisation, indexing strategies"
+        },
+        {
+          "name": "Data Pipeline Design",
+          "proficiency": "advanced",
+          "experience": "6+ years",
+          "description": "ETL architecture, workflow design, monitoring"
+        },
+        {
+          "name": "Apache Airflow",
+          "proficiency": "intermediate",
+          "experience": "3+ years",
+          "description": "Workflow orchestration, DAG creation, scheduling"
+        },
+        {
+          "name": "Redis",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "Caching, message broker for async task queues (Celery)"
+        },
+        {
+          "name": "Celery",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "Asynchronous task queue, scheduled jobs, email dispatch"
+        }
+      ]
+    },
+    {
+      "id": "systems",
+      "name": "Application Development & Architecture",
+      "skills": [
+        {
+          "name": "Django + GeoDjango",
+          "proficiency": "advanced",
+          "experience": "2+ years",
+          "description": "Full-stack business applications — MVT, ORM, REST APIs, GeoDjango geometry fields, multi-tenancy"
+        },
+        {
+          "name": "FastAPI",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "Async REST APIs, background tasks, OpenAPI documentation"
+        },
+        {
+          "name": "HTMX",
+          "proficiency": "learning",
+          "experience": "Current",
+          "description": "Server-driven UI updates without full-page reloads"
+        },
+        {
+          "name": "Docker + Docker Compose",
+          "proficiency": "advanced",
+          "experience": "4+ years",
+          "description": "Containerised development and production multi-service stacks"
+        },
+        {
+          "name": "Nginx + Gunicorn",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "Reverse proxy, WSGI production server, static file serving"
+        },
+        {
+          "name": "Linux / VPS Administration",
+          "proficiency": "advanced",
+          "experience": "7+ years",
+          "description": "Server setup, bash scripting, firewall, SSL, automated backups"
+        },
+        {
+          "name": "Let's Encrypt / Certbot",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "SSL certificate provisioning and automated renewal"
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "name": "Web Development",
+      "skills": [
+        {
+          "name": "HTML5 / CSS3 / JavaScript",
+          "proficiency": "advanced",
+          "experience": "8+ years",
+          "description": "Semantic markup, CSS variables, grid/flexbox, vanilla JS — no framework dependency"
+        },
+        {
+          "name": "Sveltia CMS",
+          "proficiency": "advanced",
+          "experience": "1+ year",
+          "description": "Git-based headless CMS for static sites — config.yml design, bilingual collections, OAuth proxy integration"
+        },
+        {
+          "name": "GitHub Pages + GitHub Actions",
+          "proficiency": "advanced",
+          "experience": "3+ years",
+          "description": "Static site hosting, CI/CD pipelines, automated build and deploy"
+        },
+        {
+          "name": "Cloudflare Workers",
+          "proficiency": "intermediate",
+          "experience": "1+ year",
+          "description": "Serverless edge functions — OAuth proxy for CMS authentication"
+        },
+        {
+          "name": "FullCalendar",
+          "proficiency": "intermediate",
+          "experience": "1+ year",
+          "description": "Interactive appointment calendar with week/day/month views, event types, status tracking"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "Tools & Practices",
+      "skills": [
+        {
+          "name": "Git & GitHub",
+          "proficiency": "expert",
+          "experience": "8+ years",
+          "description": "Version control, branching strategies, CI/CD integration"
+        },
+        {
+          "name": "GDPR Compliance",
+          "proficiency": "intermediate",
+          "experience": "2+ years",
+          "description": "Cookie consent management, patient data access controls, UK GDPR + EU GDPR"
+        },
+        {
+          "name": "Agile / Solo Iterative Development",
+          "proficiency": "advanced",
+          "experience": "5+ years",
+          "description": "Iterative delivery, working software at each milestone, test before proceed"
+        }
+      ]
+    }
+  ]
+}

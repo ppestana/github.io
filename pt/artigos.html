@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigos & Investigação — Pedro Pestana — Aplicações de Negócio Open-Source · Sistemas Geoespaciais</title>
+    
+    <!-- SEO & Language Tags -->
+    <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/articles.html">
+    <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/artigos.html">
+    <link rel="canonical" href="https://pedropestana.com/pt/artigos.html">
+    
+    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    
+    <!-- Your other stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">PP</span>
+                <span>Pedro Pestana</span>
+            </a>
+            <button class="menu-toggle" aria-label="Alternar navegação">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="competencias.html">Competências</a></li>
+                <li><a href="projectos.html">Projectos</a></li>
+                <li><a href="artigos.html" class="active">Artigos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <a href="../en/articles.html" class="lang-link" title="English">EN</a>
+                <span class="lang-separator">|</span>
+                <a href="artigos.html" class="lang-link active" title="Português">PT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1 class="page-title">Artigos & Investigação</h1>
+            <p class="page-subtitle">Escritos técnicos, resumos de investigação e insights sobre sistemas geoespaciais, engenharia de dados e metodologias de análise espacial.</p>
+        </header>
+
+        <!-- Articles will be loaded dynamically from articles_pt.json -->
+        <div id="articles-container" class="articles-grid">
+            <div class="loading">A carregar artigos...</div>
+        </div>
+
+        <section class="articles-sidebar-content">
+            <h2>Interesses de Investigação & Fontes de Conhecimento</h2>
+            <div class="research-focus">
+                <div class="focus-area">
+                    <h3><i class="fas fa-bullseye"></i> Interesses de Investigação</h3>
+                    <ul class="research-list">
+                        <li>Qualidade de Dados Espaciais & Incerteza</li>
+                        <li>Processamento Geoespacial em Tempo Real</li>
+                        <li>Machine Learning para Detecção Remota</li>
+                        <li>Edge Computing para SIG de Campo</li>
+                        <li>Visualização Geoespacial 3D/4D</li>
+                        <li>Governança de Dados Espaciais</li>
+                    </ul>
+                </div>
+                
+                <div class="focus-area">
+                    <h3><i class="fas fa-book"></i> Fontes de Conhecimento</h3>
+                    <ul class="venue-list">
+                        <li>
+                            <a href="https://www.tandfonline.com/journals/tgis20" target="_blank" class="venue-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                International Journal of GIS
+                                <span class="venue-domain">(tandfonline.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://onlinelibrary.wiley.com/journal/14679671" target="_blank" class="venue-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Transactions in GIS
+                                <span class="venue-domain">(wiley.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.sciencedirect.com/journal/isprs-journal-of-photogrammetry-and-remote-sensing" target="_blank" class="venue-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                ISPRS Journal of Photogrammetry
+                                <span class="venue-domain">(sciencedirect.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mdpi.com/journal/remotesensing" target="_blank" class="venue-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Remote Sensing (Open Access)
+                                <span class="venue-domain">(mdpi.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.gislounge.com/" target="_blank" class="venue-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                GIS Lounge
+                                <span class="venue-domain">(gislounge.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.geospatialworld.net/" target="_blank" class="venue-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Geospatial World
+                                <span class="venue-domain">(geospatialworld.net)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="focus-area">
+                    <h3><i class="fas fa-code-branch"></i> Projectos Open-Source</h3>
+                    <ul class="venue-list">
+                        <li>
+                            <a href="https://github.com/qgis/QGIS" target="_blank" class="venue-link">
+                                <i class="fab fa-github"></i>
+                                QGIS Project
+                                <span class="venue-domain">(github.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/postgis/postgis" target="_blank" class="venue-link">
+                                <i class="fab fa-github"></i>
+                                PostGIS
+                                <span class="venue-domain">(github.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/geopandas/geopandas" target="_blank" class="venue-link">
+                                <i class="fab fa-github"></i>
+                                GeoPandas
+                                <span class="venue-domain">(github.com)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/geoserver/geoserver" target="_blank" class="venue-link">
+                                <i class="fab fa-github"></i>
+                                GeoServer
+                                <span class="venue-domain">(github.com)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>Interessado em Colaborar em Investigação?</h2>
+                <p>Estou sempre aberto a discutir oportunidades de investigação colaborativa, co-autoria de artigos técnicos, ou partilha de conhecimento sobre sistemas geoespaciais e engenharia de dados.</p>
+                <a href="contacto.html" class="cta-button">
+                    <i class="fas fa-paper-plane"></i> Entre em Contacto
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">PP</span>
+                        <span>Pedro Pestana</span>
+                    </a>
+                    <p class="footer-tagline">Aplicações de Negócio Open-Source · Sistemas Geoespaciais</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explorar</h4>
+                        <ul>
+                            <li><a href="sobre.html">Sobre</a></li>
+                            <li><a href="competencias.html">Competências</a></li>
+                            <li><a href="projectos.html">Projectos</a></li>
+                            <li><a href="artigos.html">Artigos</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Conectar</h4>
+                        <ul>
+                            <li><a href="contacto.html">Contacto</a></li>
+                            <li><a href="https://linkedin.com/in/pmpestana" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ppestana" target="_blank">GitHub</a></li>
+                            <li><a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank">Bluesky</a></li>
+                            <li><a href="https://x.com/pmpestana" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacidade.html">Política de Privacidade</a></li>
+                            <li><a href="#" data-cookie-settings>Definições de Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Pedro Pestana. Todos os direitos reservados.</p>
+                <p>Este website foi construído com HTML, CSS e JavaScript vanilla.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="/js/main.js"></script>
+    
+    <!-- CRITICAL: Load cookie consent at the END, BEFORE closing </body> tag -->
+    <script src="/js/cookie-consent.js"></script>
+    <script>
+        // Initialize cookie consent manager
+        const cookieConsent = new CookieConsentManager({
+            analyticsScripts: [
+                {
+                    type: 'gtag',
+                    id: 'G-XXXXXXXXXX' // Replace with your actual Google Analytics ID
+                }
+            ],
+            onConsentChange: function(preferences) {
+                console.log('Preferências de cookies actualizadas:', preferences);
+            }
+        });
+        
+        // Update current year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>

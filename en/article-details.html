@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article — Pedro Pestana — Open-Source Business Applications · Geospatial Systems</title>
+
+    <!-- SEO & Language Tags -->
+    <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/article-details.html">
+    <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/artigo-detalhes.html">
+    <link rel="canonical" href="https://pedropestana.com/en/article-details.html">
+
+    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">PP</span>
+                <span>Pedro Pestana</span>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="articles.html">Articles</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <a href="article-details.html" class="lang-link active" title="English">EN</a>
+                <span class="lang-separator">|</span>
+                <a href="../pt/artigo-detalhes.html" class="lang-link" title="Português">PT</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="article-details-container">
+            <!-- Back button -->
+            <a href="articles.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Back to Articles
+            </a>
+
+            <!-- Article header -->
+            <header class="article-header-detail">
+                <div class="article-meta-detail">
+                    <span class="article-category-detail" id="article-category"></span>
+                    <span class="article-date-detail" id="article-date"></span>
+                    <span class="article-readtime-detail" id="article-readtime"></span>
+                </div>
+                <h1 class="article-title-detail" id="article-title"></h1>
+                <p class="article-subtitle-detail" id="article-subtitle"></p>
+
+                <div class="article-author">
+                    <div class="author-info">
+                        <img src="/assets/profile.jpg" alt="Pedro Pestana" class="author-photo">
+                        <div class="author-details">
+                            <div class="author-name">Pedro Pestana</div>
+                            <div class="author-title">Geospatial Systems Engineer</div>
+                        </div>
+                    </div>
+                    <div class="article-share">
+                        <span class="share-label">Share:</span>
+                        <div class="share-buttons">
+                            <a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank" class="social-icon" aria-label="Bluesky">
+                                <i class="fa-brands fa-bluesky"></i>
+                            </a>
+                            <a href="#" class="share-btn" aria-label="Share on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="share-btn" aria-label="Share by Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Status banner (shown dynamically for in-preparation articles) -->
+            <div class="article-status-banner" id="article-status-banner" style="display:none;"></div>
+
+            <!-- Article content (loaded dynamically from JSON) -->
+            <article class="article-content-detail" id="article-content"></article>
+
+            <!-- Article footer -->
+            <footer class="article-footer-detail">
+                <div class="article-tags-detail" id="article-tags"></div>
+                <div class="article-actions">
+                    <a href="articles.html" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> All Articles
+                    </a>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Related articles sidebar -->
+        <aside class="related-articles-sidebar">
+            <div class="sidebar-card">
+                <h3><i class="fas fa-newspaper"></i> Related Articles</h3>
+                <div id="related-articles-list"></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">PP</span>
+                        <span>Pedro Pestana</span>
+                    </a>
+                    <p class="footer-tagline">Open-Source Business Applications · Geospatial Systems</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="skills.html">Skills</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="articles.html">Articles</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="https://linkedin.com/in/pmpestana" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com/ppestana" target="_blank">GitHub</a></li>
+                            <li><a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank">Bluesky</a></li>
+                            <li><a href="https://x.com/pmpestana" target="_blank">X</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="#" data-cookie-settings>Cookie Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Pedro Pestana. All rights reserved.</p>
+                <p>This website was built with vanilla HTML, CSS and JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/article-details.js"></script>
+    <script src="/js/cookie-consent.js"></script>
+    <script>
+        const cookieConsent = new CookieConsentManager({
+            analyticsScripts: [{
+                type: 'gtag',
+                id: 'G-XXXXXXXXXX'
+            }],
+            onConsentChange: function(preferences) {
+                console.log('Cookie preferences updated:', preferences);
+            }
+        });
+    </script>
+</body>
+</html>

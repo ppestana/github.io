@@ -1,15 +1,76 @@
 /**
  * Main JavaScript file for Pedro Pestana's professional website
+ * Bilingual Version (EN/PT) based on production code
  * This is vanilla JavaScript with no external dependencies
- * Designed for easy migration to modern frameworks
  */
 
+// ══════════════════════════════════════════════════════════════
+// LANGUAGE DETECTION & i18n
+// ══════════════════════════════════════════════════════════════
+
+function getPageLanguage() {
+    const htmlLang = document.documentElement.lang || 'en';
+    return htmlLang === 'pt' ? 'pt' : 'en';
+}
+
+const LANG = getPageLanguage();
+
+// i18n strings
+const i18n = {
+    en: {
+        viewDetails: 'View Details',
+        buyOnGumroad: 'Buy on Gumroad',
+        viewDemo: 'View Demo',
+        code: 'Code',
+        comingSoon: 'Coming Soon',
+        inDevelopment: 'In Development',
+        detailsComingSoon: 'Details coming soon',
+        readArticle: 'Read Article',
+        inPreparation: 'In preparation',
+        featured: 'Featured',
+        noProjects: 'No projects available.',
+        noSkills: 'No skills data available.',
+        noArticles: 'No articles available.',
+        fillAllFields: 'Please fill in all required fields.',
+        thankYou: 'Thank you for your message! In a production environment, this would be sent to a backend API. For now, you can send it directly via email.'
+    },
+    pt: {
+        viewDetails: 'Ver Detalhes',
+        buyOnGumroad: 'Comprar no Gumroad',
+        viewDemo: 'Ver Demo',
+        code: 'Código',
+        comingSoon: 'Em Breve',
+        inDevelopment: 'Em Desenvolvimento',
+        detailsComingSoon: 'Detalhes em breve',
+        readArticle: 'Ler Artigo',
+        inPreparation: 'Em preparação',
+        featured: 'Destaque',
+        noProjects: 'Nenhum projecto disponível.',
+        noSkills: 'Dados de competências não disponíveis.',
+        noArticles: 'Nenhum artigo disponível.',
+        fillAllFields: 'Por favor preencha todos os campos obrigatórios.',
+        thankYou: 'Obrigado pela sua mensagem! Num ambiente de produção, seria enviada para um servidor. Por agora, pode enviá-la directamente por email.'
+    }
+};
+
+function t(key) {
+    return (i18n[LANG] && i18n[LANG][key]) || i18n.en[key] || key;
+}
+
 // Global state and configuration
+// Resolve the path to /data/ relative to the current page location,
+// so the site works both at the root and inside a subfolder (e.g. /github.io-main/).
+const DATA_BASE = (() => {
+    const depth = window.location.pathname.split('/').filter(Boolean).length;
+    // Pages are always inside /en/ or /pt/ (depth >= 2), so go up one level to reach /data/
+    return '../data/';
+})();
+
 const CONFIG = {
     dataPaths: {
-        projects: 'data/projects.json',
-        skills: 'data/skills.json',
-        articles: 'data/articles.json'
+        projects: `${DATA_BASE}projects_${LANG}.json`,
+        skills: `${DATA_BASE}skills_${LANG}.json`,
+        articles: `${DATA_BASE}articles_${LANG}.json`
     },
     featuredProjectCount: 3,
     featuredArticleCount: 1
@@ -336,19 +397,19 @@ function getCurrentPage() {
     
     if (page === 'index.html' || page === '' || page === '/') {
         return 'index';
-    } else if (page === 'about.html') {
+    } else if (page === 'about.html' || page === 'sobre.html') {
         return 'about';
-    } else if (page === 'skills.html') {
+    } else if (page === 'skills.html' || page === 'competencias.html') {
         return 'skills';
-    } else if (page === 'projects.html') {
+    } else if (page === 'projects.html' || page === 'projectos.html') {
         return 'projects';
-    } else if (page === 'articles.html') {
+    } else if (page === 'articles.html' || page === 'artigos.html') {
         return 'articles';
-    } else if (page === 'contact.html') {
+    } else if (page === 'contact.html' || page === 'contacto.html') {
         return 'contact';
-    } else if (page === 'project-details.html') {
+    } else if (page === 'project-details.html' || page === 'projecto-detalhes.html') {
         return 'project-details';
-    } else if (page === 'article-details.html') {
+    } else if (page === 'article-details.html' || page === 'artigo-detalhes.html') {
         return 'article-details';
     }
     return 'index';
@@ -532,22 +593,47 @@ function displayProjects(projects, container, detailed) {
  */
 function createProjectCard(project, detailed = false) {
     const card = document.createElement('article');
-    card.className = 'project-card';
+    const isComingSoon = project.status === 'coming-soon';
+    const isInDev = project.status === 'in-development';
+    card.className = 'project-card' + (isComingSoon ? ' project-coming-soon' : '');
     card.dataset.technology = project.technologies ? project.technologies.join(' ') : '';
     card.dataset.category = project.category || '';
-    
+
+    // Status badge
+    const statusBadge = isComingSoon
+        ? `<span class="project-status status-coming-soon"><i class="fas fa-clock"></i> ${t('comingSoon')}</span>`
+        : isInDev
+        ? `<span class="project-status status-in-development"><i class="fas fa-code-branch"></i> ${t('inDevelopment')}</span>`
+        : '';
+
     // Format technologies as tags
-    const techTags = project.technologies ? project.technologies.map(tech => 
+    const techTags = project.technologies ? project.technologies.map(tech =>
         `<span class="tech-tag">${tech}</span>`
     ).join('') : '';
-    
+
     // Create project details page URL
-    const detailsUrl = `project-details.html?project=${project.id}`;
-    
+    const detailsPage = LANG === 'pt' ? 'projecto-detalhes.html' : 'project-details.html';
+    const detailsUrl = `${detailsPage}?project=${project.id}`;
+
+    // Footer links
+    const detailsLink = isComingSoon
+        ? `<span class="btn-text btn-disabled"><i class="fas fa-clock"></i> ${t('detailsComingSoon')}</span>`
+        : `<a href="${detailsUrl}" class="btn-text">${t('viewDetails')} <i class="fas fa-arrow-right"></i></a>`;
+    const githubLink = project.github && project.github !== '#'
+        ? `<a href="${project.github}" class="btn-text" target="_blank"><i class="fab fa-github"></i> ${t('code')}</a>`
+        : '';
+    const isGumroad = project.link && project.link.includes('gumroad.com');
+    const buyLink = isGumroad
+        ? `<a href="${project.link}" class="btn-text btn-buy" target="_blank"><i class="fas fa-shopping-cart"></i> ${t('buyOnGumroad')}</a>`
+        : '';
+
     // Create card content
     card.innerHTML = `
         <div class="project-header">
-            <h3 class="project-title">${project.title || 'Untitled Project'}</h3>
+            <div class="project-title-row">
+                <h3 class="project-title">${project.title || 'Untitled Project'}</h3>
+                ${statusBadge}
+            </div>
             <div class="project-meta">
                 ${project.category ? `<span class="project-category">${project.category}</span>` : ''}
                 ${project.year ? `<span class="project-year">${project.year}</span>` : ''}
@@ -559,11 +645,12 @@ function createProjectCard(project, detailed = false) {
             ${techTags ? `<div class="project-tech">${techTags}</div>` : ''}
         </div>
         <div class="project-footer">
-            <a href="${detailsUrl}" class="btn-text">View Details <i class="fas fa-arrow-right"></i></a>
-            ${project.github && project.github !== '#' ? `<a href="${project.github}" class="btn-text" target="_blank"><i class="fab fa-github"></i> Code</a>` : ''}
+            ${detailsLink}
+            ${buyLink}
+            ${githubLink}
         </div>
     `;
-    
+
     return card;
 }
 
@@ -826,36 +913,51 @@ function displayArticles(articles, container) {
  */
 function createArticleCard(article, isFeatured = false) {
     const card = document.createElement('article');
-    card.className = 'article-card';
-    if (isFeatured) {
-        card.classList.add('featured');
-    }
-    
+    const isInPrep = article.status === 'in-preparation';
+    card.className = 'article-card' + (isInPrep ? ' article-in-preparation' : '');
+    if (isFeatured) card.classList.add('featured');
+
     card.dataset.category = article.category || '';
     card.dataset.date = article.date || '';
-    
-    // Create article details page URL
-    const detailsUrl = `article-details.html?article=${article.id}`;
-    
+
+    const detailsPage = LANG === 'pt' ? 'artigo-detalhes.html' : 'article-details.html';
+    const detailsUrl = `${detailsPage}?article=${article.id}`;
+
+    // Status badge
+    const statusBadge = isInPrep
+        ? `<span class="article-status status-in-preparation"><i class="fas fa-pen"></i> ${t('inPreparation')}</span>`
+        : '';
+
+    // Note (e.g. translation notice)
+    const noteHtml = article.note
+        ? `<p class="article-note"><i class="fas fa-info-circle"></i> ${article.note}</p>`
+        : '';
+
+    // Read link — disabled for in-preparation
+    const readLink = isInPrep
+        ? `<span class="btn-text btn-disabled"><i class="fas fa-clock"></i> ${t('comingSoon')}</span>`
+        : `<a href="${detailsUrl}" class="btn-text">${t('readArticle')} <i class="fas fa-arrow-right"></i></a>`;
+
     // Format tags
-    const tags = article.tags ? article.tags.map(tag => 
+    const tags = article.tags ? article.tags.map(tag =>
         `<span class="tag">${tag}</span>`
     ).join('') : '';
-    
+
     if (isFeatured) {
-        // Featured article layout
         card.innerHTML = `
-            ${article.featured ? '<div class="article-badge">Featured</div>' : ''}
+            ${article.featured ? `<div class="article-badge">${t('featured')}</div>` : ''}
             <div class="article-content">
                 <div class="article-meta">
                     <span class="article-category">${article.category || 'General'}</span>
                     <span class="article-date">${article.date || 'N/A'}</span>
                     ${article.readtime ? `<span class="article-readtime">${article.readtime}</span>` : ''}
+                    ${statusBadge}
                 </div>
                 <h2 class="article-title">${article.title || 'Untitled Article'}</h2>
                 <p class="article-excerpt">${article.excerpt || 'No excerpt available.'}</p>
+                ${noteHtml}
                 ${tags ? `<div class="article-tags">${tags}</div>` : ''}
-                <a href="${detailsUrl}" class="btn-text">Read Article <i class="fas fa-arrow-right"></i></a>
+                ${readLink}
             </div>
             <div class="article-visual">
                 <div class="placeholder-visual">
@@ -864,23 +966,24 @@ function createArticleCard(article, isFeatured = false) {
             </div>
         `;
     } else {
-        // Regular article layout
         card.innerHTML = `
             <div class="article-content">
                 <div class="article-meta">
                     <span class="article-category">${article.category || 'General'}</span>
                     <span class="article-date">${article.date || 'N/A'}</span>
                     ${article.readtime ? `<span class="article-readtime">${article.readtime}</span>` : ''}
+                    ${statusBadge}
                 </div>
                 <h2 class="article-title">${article.title || 'Untitled Article'}</h2>
                 <p class="article-subtitle">${article.subtitle || ''}</p>
                 <p class="article-excerpt">${article.excerpt || 'No excerpt available.'}</p>
+                ${noteHtml}
                 ${tags ? `<div class="article-tags">${tags}</div>` : ''}
-                <a href="${detailsUrl}" class="btn-text">Read Article <i class="fas fa-arrow-right"></i></a>
+                ${readLink}
             </div>
         `;
     }
-    
+
     return card;
 }
 
@@ -945,19 +1048,25 @@ function setupContactForm() {
         
         // Validate form
         if (!data.name || !data.email || !data.subject || !data.message) {
-            alert('Please fill in all required fields.');
+            alert(t('fillAllFields'));
             return;
         }
+
+        // Get the full visible text of the selected option (not the value)
+        const subjectSelect = contactForm.querySelector('[name="subject"]');
+        const subjectText = subjectSelect ? subjectSelect.options[subjectSelect.selectedIndex].text : data.subject;
         
-        // In a real implementation, this would send to a backend API
-        // For this static version, we'll use mailto as a fallback
-        const mailtoLink = `mailto:hello@pedropestana.com?subject=${encodeURIComponent(data.subject)} - ${encodeURIComponent(data.name)}&body=${encodeURIComponent(data.message + '\n\nFrom: ' + data.name + ' (' + data.email + ')')}`;
+        const prefix = LANG === 'pt' ? 'Pedido Website' : 'Site Request';
+        const labelName = LANG === 'pt' ? 'Nome Completo' : 'Full name';
+        const labelEmail = 'Email';
+        const labelMessage = LANG === 'pt' ? 'Mensagem' : 'Message';
         
-        // Show success message
-        alert('Thank you for your message! In a production environment, this would be sent to a backend API. For now, you can send it directly via email.');
+        const subject = prefix + ': ' + subjectText;
+        const body = labelName + ': ' + data.name + '\n' + labelEmail + ': ' + data.email + '\n' + labelMessage + ': ' + data.message;
+        const mailtoLink = `mailto:info@pedropestana.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
         window.location.href = mailtoLink;
         
-        // Reset form
         this.reset();
     });
 }
