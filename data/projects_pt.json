@@ -38,7 +38,7 @@
       ],
       "link": null,
       "github": null,
-      "image": "assets/projects/ecoturismo.png"
+      "image": "assets/projects/ecoturismo.jpg"
     },
     {
       "id": 3,
@@ -101,7 +101,7 @@
       ],
       "link": "https://www.naturalmed-wellness.com",
       "github": "https://github.com/naturalmed/naturalmed-wellness",
-      "image": "assets/projects/naturalmed-website.png"
+      "image": "assets/projects/naturalmed-website.jpg"
     },
     {
       "id": 6,
@@ -125,7 +125,7 @@
       ],
       "link": "https://clinic.naturalmed-wellness.com",
       "github": null,
-      "image": "assets/projects/naturalmed-clinic.png"
+      "image": "assets/projects/naturalmed-clinic.jpg"
     }
   ]
 }
