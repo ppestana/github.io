@@ -959,11 +959,6 @@ function createArticleCard(article, isFeatured = false) {
                 ${tags ? `<div class="article-tags">${tags}</div>` : ''}
                 ${readLink}
             </div>
-            <div class="article-visual">
-                <div class="placeholder-visual">
-                    <i class="fas fa-chart-network"></i>
-                </div>
-            </div>
         `;
     } else {
         card.innerHTML = `
