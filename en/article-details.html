@@ -48,7 +48,7 @@
         </div>
     </nav>
 
-    <main class="container" style="display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;padding-top:1.5rem;padding-bottom:3rem;">
+    <main class="container" style="display:grid;grid-template-columns:1fr 300px;gap:2rem;padding-top:1.5rem;padding-bottom:3rem;">
         <div class="article-details-container" style="padding:0;max-width:none;margin:0;">
             <!-- Back button -->
             <a href="articles.html" class="btn-back">
@@ -94,7 +94,7 @@
             <div class="article-status-banner" id="article-status-banner" style="display:none;"></div>
 
             <!-- Article content (loaded dynamically from JSON) -->
-            <article class="article-content-detail" id="article-content"></article>
+            <article class="article-content-detail" id="article-content" style="margin-bottom:1.5rem;"></article>
 
             <!-- Article footer -->
             <footer class="article-footer-detail">
@@ -108,7 +108,7 @@
         </div>
 
         <!-- Related articles sidebar -->
-        <aside class="related-articles-sidebar">
+        <aside class="related-articles-sidebar" style="position:static;align-self:start;margin-top:0;">
             <div class="sidebar-card">
                 <h3><i class="fas fa-newspaper"></i> Related Articles</h3>
                 <div id="related-articles-list"></div>
