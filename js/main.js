@@ -894,11 +894,11 @@ async function loadArticles() {
 function displayArticles(articles, container) {
     container.innerHTML = '';
     
-    // Sort articles by date (newest first)
+    // Sort: featured first, then by id descending (newest first)
     articles.sort((a, b) => {
-        const dateA = new Date(a.date || '1970-01-01');
-        const dateB = new Date(b.date || '1970-01-01');
-        return dateB - dateA;
+        if (a.featured && !b.featured) return -1;
+        if (!a.featured && b.featured) return 1;
+        return (b.id || 0) - (a.id || 0);
     });
     
     articles.forEach((article, index) => {
