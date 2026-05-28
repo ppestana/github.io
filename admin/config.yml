@@ -3,7 +3,7 @@
 # =============================================================================
 # Versão corrigida — usa files: (plural) em vez de file: (singular)
 # EN/PT agrupados por colecção para sidebar mais limpo
-# Última actualização: 2026-04-06
+# Última actualização: 2026-05-28
 # =============================================================================
 
 backend:
@@ -34,10 +34,10 @@ slug:
 collections:
 
   # =========================================================================
-  # PROJECTS (EN + PT)
+  # WORK / PROJECTOS (EN + PT)
   # =========================================================================
-  - name: "projects"
-    label: "Projects / Projectos"
+  - name: "work"
+    label: "Work / Projectos"
     files:
 
       - name: "projects_en"
@@ -68,7 +68,7 @@ collections:
               - { label: "Image",       name: "image",       widget: "string",   required: false, hint: "e.g. assets/projects/my-project.jpg" }
 
       - name: "projects_pt"
-        label: "🇵🇹 Projectos (PT)"
+        label: "🇵🇹 Work / Projectos (PT)"
         file: "data/projects_pt.json"
         format: "json"
         fields:
