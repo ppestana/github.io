@@ -48,14 +48,15 @@
         </div>
     </nav>
 
-    <main class="container" style="display:grid;grid-template-columns:1fr 300px;gap:2rem;padding-top:1.5rem;padding-bottom:3rem;">
+    <main class="container" style="padding-top:1.5rem;padding-bottom:3rem;">
         <div class="article-details-container" style="padding:0;max-width:none;margin:0;">
+
             <!-- Back button -->
             <a href="articles.html" class="btn-back">
                 <i class="fas fa-arrow-left"></i> Back to Articles
             </a>
 
-            <!-- Article header -->
+            <!-- Article header — full width -->
             <header class="article-header-detail">
                 <div class="article-meta-detail">
                     <span class="article-category-detail" id="article-category"></span>
@@ -90,30 +91,36 @@
                 </div>
             </header>
 
-            <!-- Status banner (shown dynamically for in-preparation articles) -->
+            <!-- Status banner -->
             <div class="article-status-banner" id="article-status-banner" style="display:none;"></div>
 
-            <!-- Article content (loaded dynamically from JSON) -->
-            <article class="article-content-detail" id="article-content" style="margin-bottom:1.5rem;"></article>
+            <!-- 2-column layout: article body + sidebar -->
+            <div style="display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start;">
 
-            <!-- Article footer -->
-            <footer class="article-footer-detail">
-                <div class="article-tags-detail" id="article-tags"></div>
-                <div class="article-actions">
-                    <a href="articles.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-left"></i> All Articles
-                    </a>
+                <!-- Left: article content + footer -->
+                <div>
+                    <article class="article-content-detail" id="article-content" style="margin-bottom:1.5rem;"></article>
+                    <footer class="article-footer-detail">
+                        <div class="article-tags-detail" id="article-tags"></div>
+                        <div class="article-actions">
+                            <a href="articles.html" class="btn btn-outline">
+                                <i class="fas fa-arrow-left"></i> All Articles
+                            </a>
+                        </div>
+                    </footer>
                 </div>
-            </footer>
-        </div>
 
-        <!-- Related articles sidebar -->
-        <aside class="related-articles-sidebar" style="position:static;align-self:start;margin-top:0;">
-            <div class="sidebar-card">
-                <h3><i class="fas fa-newspaper"></i> Related Articles</h3>
-                <div id="related-articles-list"></div>
-            </div>
-        </aside>
+                <!-- Right: related articles sidebar -->
+                <aside class="related-articles-sidebar" style="position:sticky;top:100px;">
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-newspaper"></i> Related Articles</h3>
+                        <div id="related-articles-list"></div>
+                    </div>
+                </aside>
+
+            </div><!-- /2-col -->
+
+        </div>
     </main>
 
     <footer class="footer">

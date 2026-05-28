@@ -48,14 +48,15 @@
         </div>
     </nav>
 
-    <main class="container" style="display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;padding-top:1.5rem;padding-bottom:3rem;">
+    <main class="container" style="padding-top:1.5rem;padding-bottom:3rem;">
         <div class="article-details-container" style="padding:0;max-width:none;margin:0;">
+
             <!-- Back button -->
             <a href="artigos.html" class="btn-back">
                 <i class="fas fa-arrow-left"></i> Voltar aos Artigos
             </a>
 
-            <!-- Article header -->
+            <!-- Article header — largura total -->
             <header class="article-header-detail">
                 <div class="article-meta-detail">
                     <span class="article-category-detail" id="article-category">Engenharia de Dados Espaciais</span>
@@ -90,32 +91,38 @@
                 </div>
             </header>
 
-            <!-- Article content -->
-            <article class="article-content-detail" id="article-content" style="margin-bottom:1.5rem;">
-                <p>O conteúdo do artigo será carregado dinamicamente a partir do ficheiro JSON...</p>
-            </article>
+            <!-- Status banner -->
+            <div class="article-status-banner" id="article-status-banner" style="display:none;"></div>
 
-            <!-- Article footer -->
-            <footer class="article-footer-detail">
-                <div class="article-tags-detail" id="article-tags">
-                    <!-- Tags will be loaded dynamically -->
+            <!-- Layout 2 colunas: conteúdo + sidebar -->
+            <div style="display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start;">
+
+                <!-- Esquerda: conteúdo + rodapé -->
+                <div>
+                    <article class="article-content-detail" id="article-content" style="margin-bottom:1.5rem;">
+                        <p>O conteúdo do artigo será carregado dinamicamente a partir do ficheiro JSON...</p>
+                    </article>
+                    <footer class="article-footer-detail">
+                        <div class="article-tags-detail" id="article-tags"></div>
+                        <div class="article-actions">
+                            <a href="artigos.html" class="btn btn-outline">
+                                <i class="fas fa-arrow-left"></i> Ver Todos os Artigos
+                            </a>
+                        </div>
+                    </footer>
                 </div>
 
-                <div class="article-actions">
-                    <a href="artigos.html" class="btn btn-outline">
-                        <i class="fas fa-arrow-left"></i> Ver Todos os Artigos
-                    </a>
-                </div>
-            </footer>
+                <!-- Direita: artigos relacionados -->
+                <aside class="related-articles-sidebar" style="position:sticky;top:100px;">
+                    <div class="sidebar-card">
+                        <h3><i class="fas fa-newspaper"></i> Artigos Relacionados</h3>
+                        <div id="related-articles-list"></div>
+                    </div>
+                </aside>
+
+            </div><!-- /2-col -->
+
         </div>
-
-        <!-- Related articles sidebar -->
-        <aside class="related-articles-sidebar" style="position:static;align-self:start;margin-top:0;">
-            <h3>Artigos Relacionados</h3>
-            <div id="related-articles-list">
-                <!-- Related articles will be loaded dynamically -->
-            </div>
-        </aside>
     </main>
 
     <footer class="footer">
