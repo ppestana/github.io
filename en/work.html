@@ -18,6 +18,67 @@
     <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/work.html">
     <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/trabalho.html">
     <link rel="canonical" href="https://pedropestana.com/en/work.html">
+
+    <style>
+        /* Page-specific overrides — keeps work.html proportions consistent with other pages */
+        .work-section {
+            margin-bottom: 2rem;
+        }
+        .work-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .terradigital-block {
+            background: var(--color-gray-light, #f3f4f6);
+            border-left: 4px solid var(--color-primary, #2563eb);
+            padding: 1.5rem 2rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        .terradigital-block h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .terradigital-block p {
+            margin-bottom: 0.75rem;
+        }
+        .work-grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        .work-sidebar h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-gray, #6b7280);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .work-sidebar h3:first-child {
+            margin-top: 0;
+        }
+        .work-sidebar ul {
+            list-style: none;
+            margin: 0 0 0.5rem 0;
+            padding: 0;
+        }
+        .work-sidebar ul li {
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--color-gray-light, #f3f4f6);
+            font-size: 0.9rem;
+        }
+        .work-sidebar ul li:last-child {
+            border-bottom: none;
+        }
+        @media (max-width: 768px) {
+            .work-grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -53,72 +114,54 @@
         </header>
 
         <!-- TerraDigital brand block -->
-        <section class="about-section" style="margin-bottom: 3rem;">
-            <div class="focus-item" style="background: var(--color-surface, #f8f8f6); border-left: 4px solid var(--color-accent, #2d5a3d); padding: 2rem 2.5rem; border-radius: 4px;">
-                <h2 style="margin-top: 0;">
-                    <i class="fas fa-globe" style="margin-right: 0.6rem;"></i>
-                    TerraDigital
-                </h2>
-                <p style="font-size: 1.05rem; margin-bottom: 1rem;">
-                    TerraDigital is my consulting brand for open-source geospatial and data engineering work. The name reflects the core idea: territorial intelligence expressed through digital systems. Everything I build runs on open-source infrastructure — PostGIS, QGIS, Django, Python, Docker — without vendor lock-in or licence costs for clients.
-                </p>
-                <p style="margin-bottom: 1.5rem;">
-                    The portfolio ranges from custom WebGIS platforms and spatial data pipelines to full-stack business applications where the map is not a decoration but the analytical core of the system.
-                </p>
-                <a href="https://www.terradigital.net" target="_blank" rel="noopener noreferrer" class="cta-button">
-                    <i class="fas fa-external-link-alt"></i> Visit TerraDigital
-                </a>
-            </div>
-        </section>
+        <div class="terradigital-block">
+            <h2><i class="fas fa-globe" style="margin-right: 0.5rem; color: var(--color-primary, #2563eb);"></i>TerraDigital</h2>
+            <p>TerraDigital is my consulting brand for open-source geospatial and data engineering work. The name reflects the core idea: territorial intelligence expressed through digital systems. Everything I build runs on open-source infrastructure — PostGIS, QGIS, Django, Python, Docker — without vendor lock-in or licence costs for clients.</p>
+            <p>The portfolio ranges from custom WebGIS platforms and spatial data pipelines to full-stack business applications where the map is not a decoration but the analytical core of the system.</p>
+            <a href="https://www.terradigital.net" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <i class="fas fa-external-link-alt"></i> Visit TerraDigital
+            </a>
+        </div>
 
         <!-- Areas of work -->
-        <section class="about-section">
+        <section class="work-section">
             <h2>Areas of Work</h2>
             <div class="focus-grid">
-
                 <div class="focus-item">
                     <h3><i class="fas fa-map-marked-alt"></i> WebGIS Platforms</h3>
                     <p>End-to-end geospatial web applications — from PostGIS spatial databases and GeoServer feature services to Leaflet front-ends and Django/GeoDjango backends. Designed for real operational use, not demos.</p>
                 </div>
-
                 <div class="focus-item">
                     <h3><i class="fas fa-database"></i> Spatial Data Engineering</h3>
                     <p>Design and implementation of spatial ETL pipelines, PostGIS schemas, automated data ingestion from public sources (Copernicus, IPMA, NASA FIRMS), and change-data-capture workflows for monitoring environments.</p>
                 </div>
-
                 <div class="focus-item">
                     <h3><i class="fas fa-layer-group"></i> Business Applications with a Territorial Core</h3>
                     <p>Django applications where territorial data — cadastre, georeferenced assets, field collection, route management — is the structural spine of the system, not an afterthought added to a generic CRUD application.</p>
                 </div>
-
                 <div class="focus-item">
-                    <h3><i class="fas fa-chart-bar"></i> Analytical Systems & Statistical Models</h3>
+                    <h3><i class="fas fa-chart-bar"></i> Analytical Systems &amp; Statistical Models</h3>
                     <p>Data pipelines and dashboards for pattern detection and anomaly analysis. Applied statistical methods (Z-scores, Poisson regression, Benjamini-Hochberg FDR correction) on structured event data, delivered as interactive Streamlit or Django applications.</p>
                 </div>
-
                 <div class="focus-item">
-                    <h3><i class="fas fa-code"></i> Static Sites & Content Infrastructure</h3>
+                    <h3><i class="fas fa-code"></i> Static Sites &amp; Content Infrastructure</h3>
                     <p>Vanilla HTML/CSS/JS sites hosted on GitHub Pages with zero running costs. Git-based CMS (Sveltia) via Cloudflare Workers OAuth, automated build pipelines with GitHub Actions, and GDPR-compliant cookie management.</p>
                 </div>
-
                 <div class="focus-item">
-                    <h3><i class="fas fa-server"></i> Infrastructure & Deployment</h3>
+                    <h3><i class="fas fa-server"></i> Infrastructure &amp; Deployment</h3>
                     <p>Docker Compose stacks on Hetzner VPS with Nginx, Gunicorn, PostgreSQL, Let's Encrypt SSL, and automated backups. Self-hosted, auditable, and free of third-party runtime dependencies.</p>
                 </div>
-
             </div>
         </section>
 
-        <!-- How I work -->
-        <section class="about-section">
+        <!-- How I work + sidebar -->
+        <section class="work-section">
             <h2>How I Work</h2>
-            <div class="about-content">
-                <div class="about-main">
+            <div class="work-grid-layout">
+                <div class="work-main">
                     <p>Most of my engagements begin with a client who has a spatial problem they can't quite articulate as a technical specification — a cadastre that doesn't match reality, a field inspection process that runs on spreadsheets and phone calls, or an environmental monitoring requirement with no budget for commercial platforms.</p>
-
                     <p>My role is to translate that operational reality into a working system: define the data model, choose the right open-source stack, build iteratively, and hand over something the client can actually maintain. I work alone or in small teams, which means every architectural decision is made by the person who will also write the migration script at 11pm.</p>
-
-                    <ul class="approach-list" style="margin-top: 1.5rem;">
+                    <ul class="approach-list" style="margin-top: 1rem;">
                         <li>
                             <strong>Open-source only</strong><br>
                             No ESRI, no proprietary databases, no SaaS lock-in. The stack is always auditable, portable, and free to run.
@@ -138,44 +181,38 @@
                     </ul>
                 </div>
 
-                <div class="about-sidebar">
-                    <section class="about-section">
-                        <h3>Core Stack</h3>
-                        <ul class="exploring-list">
-                            <li>PostGIS · PostgreSQL 16</li>
-                            <li>Django · GeoDjango</li>
-                            <li>QGIS · GeoServer · GDAL</li>
-                            <li>Python · Pandas · Geopandas</li>
-                            <li>Leaflet.js · Chart.js</li>
-                            <li>Docker · Nginx · Gunicorn</li>
-                            <li>GitHub Pages · Cloudflare Workers</li>
-                            <li>Streamlit · FastAPI</li>
-                        </ul>
-                    </section>
+                <div class="work-sidebar">
+                    <h3>Core Stack</h3>
+                    <ul>
+                        <li>PostGIS · PostgreSQL 16</li>
+                        <li>Django · GeoDjango</li>
+                        <li>QGIS · GeoServer · GDAL</li>
+                        <li>Python · Pandas · Geopandas</li>
+                        <li>Leaflet.js · Chart.js</li>
+                        <li>Docker · Nginx · Gunicorn</li>
+                        <li>GitHub Pages · Cloudflare Workers</li>
+                        <li>Streamlit · FastAPI</li>
+                    </ul>
 
-                    <section class="about-section">
-                        <h3>Active Projects</h3>
-                        <ul class="exploring-list">
-                            <li><strong>EconoStats Portugal</strong> — economic indicators WebGIS for Portugal</li>
-                            <li><strong>Portal de Ecoturismo</strong> — hiking routes WebGIS with GPX pipeline</li>
-                            <li><strong>CAL</strong> — referee bias detection, Primeira Liga</li>
-                            <li><strong>NaturalMed Clinic Manager</strong> — TCM practice management system</li>
-                        </ul>
-                    </section>
+                    <h3>Active Projects</h3>
+                    <ul>
+                        <li><strong>EconoStats Portugal</strong> — economic indicators WebGIS</li>
+                        <li><strong>Portal de Ecoturismo</strong> — hiking routes with GPX pipeline</li>
+                        <li><strong>CAL</strong> — referee bias detection, Primeira Liga</li>
+                        <li><strong>NaturalMed Clinic Manager</strong> — TCM practice management</li>
+                    </ul>
 
-                    <section class="about-section">
-                        <h3>Interested in working together?</h3>
-                        <p>I take on a small number of consulting engagements at any given time. If you have a geospatial or data engineering challenge, get in touch.</p>
-                        <a href="contact.html" class="contact-link" style="display: inline-block; margin-top: 0.5rem;">
-                            <i class="fas fa-paper-plane"></i> Contact
-                        </a>
-                    </section>
+                    <h3>Interested in working together?</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">I take on a small number of consulting engagements at any given time.</p>
+                    <a href="contact.html" class="contact-link">
+                        <i class="fas fa-paper-plane"></i> Contact
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Articles invitation -->
-        <section class="about-section">
+        <!-- Articles CTA -->
+        <section class="work-section">
             <div class="cta-section">
                 <div class="cta-content">
                     <h2>Technical Writing</h2>
@@ -239,10 +276,7 @@
     <script src="/js/cookie-consent.js"></script>
     <script>
         const cookieConsent = new CookieConsentManager({
-            analyticsScripts: [{
-                type: 'gtag',
-                id: 'G-XXXXXXXXXX'
-            }],
+            analyticsScripts: [{ type: 'gtag', id: 'G-XXXXXXXXXX' }],
             onConsentChange: function(preferences) {
                 console.log('Cookie preferences updated:', preferences);
             }
