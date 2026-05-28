@@ -7,133 +7,502 @@
       "category": "Análise Estatística",
       "date": "Março 2026",
       "readtime": "25 min de leitura",
-      "tags": ["Python", "PostgreSQL", "Estatística", "Z-score Binomial", "Benjamini-Hochberg", "Poisson", "Análise Desportiva"],
+      "tags": [
+        "Python",
+        "PostgreSQL",
+        "Estatística",
+        "Z-score Binomial",
+        "Benjamini-Hochberg",
+        "Poisson",
+        "Análise Desportiva"
+      ],
       "featured": true,
       "status": "published",
       "note": "Paper original escrito em português. Tradução em inglês disponível.",
       "excerpt": "A arbitragem desportiva é um domínio reconhecido como susceptível a vieses cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. Este paper descreve os fundamentos teóricos, implementação computacional e resultados empíricos do sistema CAL, desenvolvido para a Primeira Liga Portuguesa.",
       "github": "https://github.com/ppestana",
       "content": [
-        {"type": "authors", "text": "Pedro M. Pestana · CAL — Criticar a Arbitragem Legalmente · Lisboa, Portugal · 2026"},
-        {"type": "heading2", "text": "Resumo"},
-        {"type": "paragraph", "text": "A arbitragem desportiva é um domínio reconhecidamente susceptível a enviesamentos cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. O presente artigo descreve os fundamentos teóricos, a implementação computacional e os resultados empíricos do sistema CAL (Criticar a Arbitragem Legalmente), desenvolvido para a Primeira Liga Portuguesa. Para cada conceito estatístico são apresentadas a formulação matemática e a implementação Python correspondente. O sistema cobre 2673 jogos de 9 épocas (2017/18–2025/26). Após três rondas de revisão crítica independente, foram corrigidos: (1) a fórmula de variância do Z-score binomial [ΣPᵢ(1-Pᵢ) em vez de exp·(1-exp/n)]; (2) a correcção de múltiplos testes passou a aplicar Benjamini-Hochberg sobre todos os 510 p-values numa única família global. O teste formal de overdispersion (Cameron & Trivedi, 1990) confirma que a variância é apenas 1.39% acima do esperado pelo Poisson — magnitude negligenciável apesar de estatisticamente significativa com n=4816. Após FDR global a 5%, identificaram-se 11 padrões de desvio em faltas estatisticamente robustos em 8 árbitros distintos; nenhum padrão de cartões amarelos sobreviveu à correcção. O sistema está ao nível de ferramenta analítica exploratória sólida, não de instrumento de inferência causal forte."},
-        {"type": "keywords", "text": "Palavras-chave: arbitragem desportiva; Z-score binomial; Poisson; Benjamini-Hochberg; FDR; overdispersion; Python; PostgreSQL; Liga Portugal."},
-        {"type": "heading1", "text": "1. Introdução"},
-        {"type": "paragraph", "text": "O futebol profissional é um dos fenómenos económicos e culturais mais relevantes do século XXI. A Primeira Liga Portuguesa movimenta centenas de milhões de euros por época em direitos televisivos, transferências e receitas de bilheteira. A arbitragem desportiva assume uma dimensão que transcende o campo: uma decisão arbitral pode determinar o acesso às competições europeias, com impacto financeiro directo de vários milhões de euros."},
-        {"type": "paragraph", "text": "A literatura científica sobre viés de arbitragem demonstra que árbitros são susceptíveis a influências externas — pressão dos adeptos (Nevill, Balmer & Williams, 2002; Garicano, Palacios-Huerta & Prendergast, 2005), estatuto das equipas (Sutter & Kocher, 2004) e fadiga de decisão (Dohmen, 2008). A maior parte destes estudos analisa ligas de grande dimensão; a realidade portuguesa carece de análise sistemática."},
-        {"type": "paragraph", "text": "O sistema CAL propõe-se colmatar esta lacuna com uma abordagem quantitativa rigorosa, transparente e reprodutível, aplicando modelos estatísticos a 2673 jogos de 9 épocas. Este artigo documenta três rondas de revisão crítica independente e as correcções metodológicas dela resultantes, seguindo o princípio de que a transparência sobre erros corrigidos é uma forma de rigor científico, não uma fraqueza."},
-        {"type": "heading1", "text": "2. Revisão da Literatura"},
-        {"type": "heading2", "text": "2.1. Viés de Arbitragem: Evidência Empírica"},
-        {"type": "paragraph", "text": "Nevill, Balmer e Williams (2002) demonstraram que árbitros experientes tomam decisões diferentes quando expostos ao ruído dos adeptos. Em 40 árbitros que avaliaram os mesmos 47 lances com e sem som de adeptos, a presença de ruído reduzia significativamente as faltas assinaladas contra a equipa da casa."},
-        {"type": "paragraph", "text": "Garicano, Palacios-Huerta e Prendergast (2005) demonstraram que os árbitros concedem mais tempo de compensação quando a equipa da casa está a perder por margem reduzida. Sutter e Kocher (2004) estimaram que ~30% da vantagem de jogar em casa na Bundesliga é explicável por decisões arbitrais enviesadas. Dohmen (2008) mostrou que o viés se manifesta sobretudo em decisões subjectivas (penáltis, cartões), não em factos objectivos (fora-de-jogo)."},
-        {"type": "paragraph", "text": "Scoppa (2021) analisou a Série A italiana durante o período sem adeptos (COVID-19), confirmando que a eliminação do público reduziu significativamente o viés a favor da equipa da casa — evidência causal robusta do mecanismo de pressão social."},
-        {"type": "heading2", "text": "2.2. Analytics Desportivo"},
-        {"type": "paragraph", "text": "A revolução do analytics iniciada com Moneyball (Lewis, 2003) chegou ao futebol com métricas como o expected goals (xG). Estas métricas partilham com o CAL o princípio de comparar observado com esperado segundo um modelo neutro. Para a realidade portuguesa, Leite (2013) encontrou padrões compatíveis com viés arbitral mas sem granularidade suficiente para análise por árbitro."},
-        {"type": "heading2", "text": "2.3. Metodologias de Detecção e Lacunas"},
-        {"type": "paragraph", "text": "Dixon e Robinson (1998) e Karlis e Ntzoufras (2003) propuseram modelos Poisson para futebol, abordagem que o CAL adapta para faltas esperadas. A validação cruzada LOSO é a prática recomendada para dados temporais (James et al., 2013). A correcção de múltiplos testes, frequentemente negligenciada em sports analytics, é obrigatória quando se testam dezenas de árbitros em simultâneo (Benjamini & Hochberg, 1995). Gelman e Hill (2007) recomendam modelos de efeitos mistos para dados hierárquicos como os desta análise — limitação reconhecida do sistema actual."},
-        {"type": "heading1", "text": "3. Modelos Estatísticos e Implementação"},
-        {"type": "heading2", "text": "3.1. Feature Matrix"},
-        {"type": "paragraph", "text": "A feature matrix é construída em cal/features/engineering.py com uma linha por equipa por jogo. O shift(1) nas médias móveis evita look-ahead bias na força das equipas e na tendência do árbitro."},
-        {"type": "code", "text": "# cal/features/engineering.py\ndf['team_strength'] = (df.groupby('team_id')['points']\n    .transform(lambda x: x.shift(1).rolling(10, min_periods=3).mean()))\ndf['referee_yc_tendency'] = (df.groupby('referee_id')['yellow_cards']\n    .transform(lambda x: x.shift(1).rolling(20, min_periods=5).mean()))\ndf['ht_score_diff'] = df['ht_goals_for'] - df['ht_goals_against']"},
-        {"type": "caption", "text": "Listagem 1 — Feature matrix (cal/features/engineering.py)"},
-        {"type": "heading2", "text": "3.2. Modelo de Cartões (xYC e xRC)"},
-        {"type": "formula", "text": "P(Y=1|X) = σ(β₀ + β₁·is_home + β₂·matchday + β₃·team_strength + β₄·opp_strength + β₅·referee_tendency)"},
-        {"type": "code", "text": "# cal/models/train.py — validação LOSO\nfor test_season in df['season'].unique():\n    train = df[df['season'] != test_season]\n    test  = df[df['season'] == test_season].copy()\n    pipe = Pipeline([('scaler', StandardScaler()),\n                     ('model', LogisticRegression(C=1.0, max_iter=500))])\n    pipe.fit(train[FEATURES_YC], train['got_yellow'])\n    test['expected_yellows'] = pipe.predict_proba(test[FEATURES_YC])[:, 1]\n    # Resultados LOSO: Brier Score xYC=0.067 (nulo: 0.078, ganho 14%)"},
-        {"type": "caption", "text": "Listagem 2 — Treino xYC com LOSO"},
-        {"type": "heading3", "text": "Z-score de Viés para Cartões — Fórmula Corrigida (v0.8.0)"},
-        {"type": "formula", "text": "Z_Y = (Σ Y_obs − Σ Pᵢ) / √(Σ Pᵢ · (1 − Pᵢ))"},
-        {"type": "paragraph", "text": "Correcção v0.8.0: a fórmula anterior usava √(exp·(1-exp/n)), matematicamente incorrecta para Bernoullis não i.i.d. A variância correcta é ΣPᵢ(1-Pᵢ) — soma das variâncias individuais de cada jogo (Agresti, 2002, Cap. 1)."},
-        {"type": "code", "text": "# cal/bias_engine.py — fórmula CORRIGIDA (v0.8.0)\n# ANTES (v0.7.x — incorrecto): var_y = exp_y * (1 - exp_y / n)\n# DEPOIS (correcto):\np_i_y = grp['exp_yellows'].clip(0, 1)        # P(cartão) por jogo\nvar_y = float((p_i_y * (1 - p_i_y)).sum())   # Σ Pᵢ(1-Pᵢ)\nz_y   = (obs_y - exp_y) / np.sqrt(var_y) if var_y > 0 else 0.0"},
-        {"type": "caption", "text": "Listagem 3 — Correcção variância binomial"},
-        {"type": "heading2", "text": "3.3. Modelo de Faltas (xF)"},
-        {"type": "formula", "text": "log(E[F|X]) = β₀ + β₁·is_home + β₂·matchday + β₃·ht_score_diff + β₄·team_strength + β₅·opp_strength + β₆·referee_fouls_tendency"},
-        {"type": "formula", "text": "Z_F = (μ_obs − μ_exp) / (σ_obs / √n)"},
-        {"type": "paragraph", "text": "Nota: para n < 30, a aproximação Normal é imprecisa. Idealmente usar thresholds da distribuição t com n-1 graus de liberdade. Esta limitação afecta sobretudo árbitros com poucas épocas."},
-        {"type": "heading2", "text": "3.4. SuspicionScore"},
-        {"type": "paragraph", "text": "Métrica ordinal de intensidade agregada, sem distribuição estatística conhecida. Não deve ser usado como teste de hipótese — serve apenas para ranquear árbitros."},
-        {"type": "formula", "text": "SuspicionScore = |Z_amarelos| + |Z_vermelhos| + |Z_faltas|"},
-        {"type": "heading2", "text": "3.5. Correcção de Múltiplos Testes — FDR Global (v0.9.1)"},
-        {"type": "paragraph", "text": "Com 510 testes em simultâneo (170 árbitros×épocas × 3 métricas), a probabilidade de falsos positivos sem correcção é substancial. A correcção Benjamini-Hochberg é aplicada sobre o conjunto TOTAL de 510 p-values numa única família global:"},
-        {"type": "code", "text": "# cal/bias_engine.py — FDR GLOBAL (v0.9.1, corrige erro anterior)\n# ANTES (v0.9.0 — incorrecto): FDR aplicado separadamente por métrica\n# DEPOIS (correcto): empilhar todos os p-values numa única família\nall_pvals = pd.concat([\n    result['p_value_yellow'].rename('p').to_frame().assign(metric='yellow'),\n    result['p_value_red'].rename('p').to_frame().assign(metric='red'),\n    result['p_value_fouls'].rename('p').to_frame().assign(metric='fouls'),\n], ignore_index=True)\nall_pvals['p_adj'] = fdr_correction(all_pvals['p']).values  # 510 testes\n# Redistribuir p-values ajustados para as colunas originais por métrica"},
-        {"type": "caption", "text": "Listagem 4 — FDR global sobre 510 p-values (cal/bias_engine.py)"},
-        {"type": "heading2", "text": "3.6. Teste Formal de Overdispersion (Cameron & Trivedi, 1990)"},
-        {"type": "code", "text": "# cal/bias_engine.py — teste formal Cameron & Trivedi (1990)\n# Variável dependente: (Y - mu)^2 - Y\n# Regressor: mu^2 (sem constante)\ny_aux = (obs - exp) ** 2 - obs\nx_aux = exp ** 2\nalpha = float(np.dot(x_aux, y_aux) / np.dot(x_aux, x_aux))\n# Resultado empírico: alpha=0.0139, t=8.183, p≈0\n# Interpretação: overdispersion estatisticamente significativa\n#   mas magnitude negligenciável (1.39% acima do Poisson)\n# Distinção crítica: significância estatística ≠ significância prática"},
-        {"type": "caption", "text": "Listagem 5 — Teste formal de overdispersion"},
-        {"type": "heading2", "text": "3.7. Thresholds de Alerta"},
-        {"type": "paragraph", "text": "Os thresholds são orientativos. A evidência estatística robusta é definida exclusivamente pela correcção FDR (p_adj < 0.05):"},
-        {"type": "list", "items": ["|Z| ≥ 1.0 — Monitorizar: padrão a acompanhar", "|Z| ≥ 2.5 — Suspeito: padrão improvável sem correcção", "|Z| ≥ 3.0 — Anomalia: padrão muito improvável sem correcção", "p_adj < 0.05 — FDR sig.: evidência robusta após correcção global"]},
-        {"type": "paragraph", "text": "Um Z-score de 2.5 ou 3.0 sem confirmação FDR deve ser interpretado como sinal para análise mais detalhada, não como evidência de viés."},
-        {"type": "heading1", "text": "4. Análise de Home Bias por Contexto de Marcador"},
-        {"type": "paragraph", "text": "O CAL segmenta as decisões do árbitro em três contextos de marcador ao intervalo: HOME_WINNING, DRAW e HOME_LOSING. O PressureBiasIndex mede se o árbitro trata as equipas de forma diferente conforme o contexto:"},
-        {"type": "formula", "text": "PressureBiasIndex = media_fouls_diff(HOME_LOSING) − media_fouls_diff(HOME_WINNING)"},
-        {"type": "paragraph", "text": "Valor positivo indica que o árbitro favorece mais a equipa da casa quando esta está a perder — contexto de maior pressão dos adeptos. Esta análise controla parcialmente a crítica de viés de variável omitida ao segmentar por contexto de marcador, embora o contexto de marcador seja ele próprio endógeno à qualidade relativa das equipas (limitação documentada)."},
-        {"type": "heading1", "text": "5. Resultados Empíricos"},
-        {"type": "heading2", "text": "5.1. Overdispersion — Significância Estatística vs. Prática"},
-        {"type": "paragraph", "text": "O teste formal de Cameron & Trivedi (1990) devolve alpha=0.0139, t=8.183, p≈0. Há overdispersion estatisticamente significativa, mas a magnitude é negligenciável: a variância observada é apenas 1.39% acima da esperada pelo Poisson. Com n=4816, efeitos desta dimensão atingem elevada significância estatística sem relevância prática. O modelo Poisson é adequado; a overdispersion constitui uma limitação menor a documentar."},
-        {"type": "heading2", "text": "5.2. Resultados do FDR Global (510 testes)"},
-        {"type": "list", "items": ["Amarelos: 0 padrões significativos após FDR global (melhor p_adj = 0.548).", "Faltas: 11 padrões significativos em 8 árbitros distintos.", "Vermelhos: 0 padrões significativos."]},
-        {"type": "paragraph", "text": "Conclusão fundamental: não existe evidência estatisticamente robusta de desvios em cartões amarelos na Primeira Liga no período analisado. Os 11 padrões de faltas mantiveram-se idênticos quer com FDR por métrica separada quer com FDR global — os p-values mais baixos de faltas (< 0.002) são suficientemente distantes dos de amarelos (mínimo 0.003) para que a aplicação global não altere as conclusões."},
-        {"type": "heading2", "text": "5.3. Árbitros com Padrões Robustos em Faltas"},
-        {"type": "table", "headers": ["Árbitro", "Épocas", "Z médio", "Dif. obs-exp", "p_adj"], "rows": [
-          ["Claudio Filipe Ruivo Pereira", "2", "-4.363", "-2.8 f/j", "0.000000"],
-          ["Miguel Nogueira", "2", "-3.728", "-2.1 f/j", "0.007242"],
-          ["Luís Godinho", "2", "+3.144", "+1.8 f/j", "0.022383"],
-          ["Vasilica Iancu", "1", "-4.499", "-2.5 f/j", "0.000595"],
-          ["David Rafael Oliveira da Silva", "1", "-3.727", "-2.3 f/j", "0.007242"],
-          ["Joao Antonio Ferreira Goncalves", "1", "-3.546", "-1.9 f/j", "0.011078"],
-          ["Jose Bessa", "1", "-3.410", "-2.0 f/j", "0.013812"],
-          ["Rui Oliveira", "1", "+3.068", "+1.7 f/j", "0.035870"]
-        ]},
-        {"type": "caption", "text": "Listagem 6 — Árbitros com evidência robusta após FDR global (Dif. em faltas/jogo observadas - esperadas)"},
-        {"type": "paragraph", "text": "O sinal negativo domina (7 de 8 árbitros): padrão de menos faltas assinaladas do que o modelo espera, consistente com estilo mais permissivo. Cláudio Filipe Ruivo Pereira apresenta o padrão mais robusto: Z=-5.279 em 2022/23 (p_adj≈0, 28 jogos) e Z=-3.447 em 2023/24 (p_adj=0.014, 36 jogos)."},
-        {"type": "heading2", "text": "5.4. Interpretação: Estilo vs. Viés"},
-        {"type": "paragraph", "text": "Um desvio negativo em faltas (menos faltas que o esperado) pode reflectir dois mecanismos distintos: (1) estilo de arbitragem sistematicamente mais permissivo independentemente das equipas envolvidas; ou (2) viés a favor de equipas específicas que cometeriam mais faltas sem penalização. Para distinguir estes mecanismos é necessário cruzar os Z-scores de faltas com os Z-scores de amarelos."},
-        {"type": "code", "text": "-- Correlação Z_faltas vs Z_amarelos para os 8 árbitros com FDR sig.\nSELECT r.name, s.season,\n       ROUND(s.fouls_diff_bias_z::numeric,3)  AS z_faltas,\n       ROUND(s.yellow_diff_bias_z::numeric,3) AS z_amarelos\nFROM referee_bias_scores s JOIN referees r USING (referee_id)\nWHERE s.sig_fouls_fdr = true\nORDER BY r.name, s.season;"},
-        {"type": "caption", "text": "Listagem 7 — Query para análise de estilo vs. viés"},
-        {"type": "paragraph", "text": "Esta análise deve ser realizada como próximo passo antes de qualquer interpretação pública dos padrões identificados."},
-        {"type": "heading2", "text": "5.5. Análise de Poder Estatístico"},
-        {"type": "paragraph", "text": "A capacidade de detectar um efeito depende do tamanho amostral. Para o teste t de faltas com alpha=0.05 e poder de 80%, os mínimos aproximados são:"},
-        {"type": "list", "items": ["Efeito grande (|d|=0.8): n ≥ 14 jogos", "Efeito médio (|d|=0.5): n ≥ 34 jogos", "Efeito pequeno (|d|=0.2): n ≥ 200 jogos"]},
-        {"type": "paragraph", "text": "Com o mínimo de 10 jogos por época adoptado pelo sistema, apenas efeitos grandes são detectáveis com 80% de poder. A ausência de sinalização para árbitros com poucas épocas não pode ser interpretada como ausência de padrão."},
-        {"type": "heading1", "text": "6. Arquitectura do Sistema"},
-        {"type": "paragraph", "text": "O CAL corre em Docker com 20 tabelas PostgreSQL e dashboard Streamlit com sete vistas analíticas. A pipeline de execução é idempotente:"},
-        {"type": "code", "text": "python run_ingest.py   '2024/25'   # ingestão football-data.co.uk\npython run_referees.py '2024/25'   # árbitros via Sofascore\npython run_features.py '2024/25'   # feature engineering\npython run_models.py               # treino LOSO\npython run_bias.py                 # Z-scores + FDR global + overdispersion\npython run_cards.py                # faltas/amarelo por equipa\npython run_bias_history.py         # histórico por jornada\npython run_alerts.py   '2024/25'   # alertas automáticos\npython run_home_bias.py            # home bias por contexto"},
-        {"type": "caption", "text": "Listagem 8 — Pipeline completa"},
-        {"type": "heading1", "text": "7. Limitações e Considerações Éticas"},
-        {"type": "heading2", "text": "7.1. Limitações Metodológicas"},
-        {"type": "paragraph", "text": "Primeiro, o modelo não controla para heterogeneidade não observada das equipas — estilos de jogo, agressividade táctica, contexto competitivo. Um Z-score elevado pode resultar de matchups específicos e não de viés arbitral. Esta é a limitação mais relevante e não tem solução com os dados actualmente disponíveis."},
-        {"type": "paragraph", "text": "Segundo, as observações não são estritamente independentes: jogos consecutivos têm correlação temporal. Modelos de efeitos mistos com efeitos aleatórios por árbitro e equipa (Gelman & Hill, 2007) seriam mais rigorosos mas requerem uma reescrita substancial da camada de modelos."},
-        {"type": "paragraph", "text": "Terceiro, a variável ht_score_diff tem um problema de especificação parcial: o marcador ao intervalo pode ser consequência de decisões arbitrais da primeira parte. A solução completa requereria dados de eventos ao minuto."},
-        {"type": "paragraph", "text": "Quarto, os thresholds de alerta são baseados na distribuição Normal. Para n < 30, a estatística de faltas segue uma distribuição t com n-1 graus de liberdade, e os quantis diferem dos da Normal — para n=5 o quantil 97.5% é 2.78 (vs. 1.96 na Normal). Usar thresholds Normais para amostras pequenas é conservadoramente impreciso."},
-        {"type": "paragraph", "text": "Quinto, o modelo assume que o árbitro médio da liga é a referência de neutralidade. Se a média da liga estiver sistematicamente enviesada, o sistema detecta desvios relativos a um padrão já deformado."},
-        {"type": "paragraph", "text": "Sexto, a ausência de dados VAR impede a construção de métricas de erro confirmado (IELC) e de variação de probabilidade de vitória (ΔWP). Estas métricas teriam maior validade de conteúdo mas requerem fontes não disponíveis gratuitamente."},
-        {"type": "heading2", "text": "7.2. Estatuto Epistemológico"},
-        {"type": "paragraph", "text": "O sistema CAL é uma ferramenta analítica exploratória sólida. Identifica desvios estatísticos consistentes com viés — não prova viés causal. A ausência de inferência causal forte resulta de limitações de dados e de especificação do modelo, não de falhas no design geral. A transparência sobre estas limitações é uma forma de rigor científico."},
-        {"type": "heading2", "text": "7.3. Considerações Éticas"},
-        {"type": "paragraph", "text": "O CAL foi concebido como ferramenta de escrutínio público, não como instrumento acusatório. A terminologia (suspeito, anomalia) é técnica, não moral. Os resultados não provam intenção ou corrupção. A publicação de análises por árbitro é equiparável à análise de desempenho de jogadores ou treinadores — prática aceite no jornalismo desportivo, desde que acompanhada de contextualização metodológica adequada."},
-        {"type": "heading1", "text": "8. Declaração de Utilização de Inteligência Artificial"},
-        {"type": "list", "items": ["Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.", "Âmbito: geração de código Python, SQL e HTML; documentação técnica; estruturação deste artigo.", "Responsabilidade: a concepção metodológica, todas as correcções estatísticas e a validação dos resultados são da responsabilidade do autor. As correcções da fórmula de variância (v0.8.0) e do FDR global (v0.9.1) foram identificadas em revisão crítica independente e validadas pelo autor antes de implementação.", "Dados: nenhum dado foi gerado ou modificado por IA. Todas as fontes são públicas e verificáveis."]},
-        {"type": "heading1", "text": "9. Conclusão"},
-        {"type": "paragraph", "text": "O sistema CAL representa uma contribuição para a análise quantitativa da arbitragem na Primeira Liga Portuguesa. Após três rondas de revisão crítica, a versão v0.9.1 corrige dois erros metodológicos identificados: a fórmula de variância binomial e a aplicação do FDR como família única global. O teste formal de overdispersion confirma a adequação do modelo Poisson com magnitude negligenciável."},
-        {"type": "paragraph", "text": "Os resultados empíricos são mais conservadores do que os Z-scores brutos sugeriam: 11 padrões de desvio em faltas em 8 árbitros distintos, nenhum em cartões amarelos. Três árbitros com padrão reproduzível em duas épocas distintas constituem a evidência mais forte — a reprodutibilidade inter-épocas reduz substancialmente a probabilidade de resultado casual."},
-        {"type": "paragraph", "text": "O sistema está ao nível de ferramenta analítica exploratória sólida. Para atingir o nível de instrumento de inferência científica forte seria necessário: dados de eventos ao minuto; modelos de efeitos mistos; e controlo para estilos de jogo das equipas."},
-        {"type": "heading1", "text": "Referências Bibliográficas"},
-        {"type": "references", "items": [
-          "Agresti, A. (2002). Categorical Data Analysis (2nd ed.). Wiley.",
-          "Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society: Series B, 57(1), 289–300.",
-          "Cameron, A. C., & Trivedi, P. K. (1990). Regression-based tests for overdispersion in the Poisson model. Journal of Econometrics, 46(3), 347–364.",
-          "Dixon, M., & Robinson, M. (1998). A birth process model for association football matches. Journal of the Royal Statistical Society: Series D, 47(3), 523–538.",
-          "Dohmen, T. (2008). The influence of social forces: Evidence from the behavior of football referees. Economic Inquiry, 46(3), 411–424.",
-          "Garicano, L., Palacios-Huerta, I., & Prendergast, C. (2005). Favoritism under social pressure. Review of Economics and Statistics, 87(2), 208–216.",
-          "Gelman, A., & Hill, J. (2007). Data Analysis Using Regression and Multilevel/Hierarchical Models. Cambridge University Press.",
-          "James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning. Springer.",
-          "Karlis, D., & Ntzoufras, I. (2003). Analysis of sports data by using bivariate Poisson models. Journal of the Royal Statistical Society: Series D, 52(3), 381–393.",
-          "Lewis, M. (2003). Moneyball: The Art of Winning an Unfair Game. W. W. Norton & Company.",
-          "Nevill, A. M., Balmer, N. J., & Williams, A. M. (2002). The influence of crowd noise and experience upon refereeing decisions in association football. Psychology of Sport and Exercise, 3(4), 261–272.",
-          "Scoppa, V. (2021). Social pressure in the stadiums: Do agents change behavior without crowd support? Journal of Economic Psychology, 82, 102344.",
-          "Sutter, M., & Kocher, M. G. (2004). Favoritism of agents: The case of referees' home bias. Journal of Economic Psychology, 25(4), 461–469.",
-          "União Europeia (2024). Regulamento (UE) 2024/1689 do Parlamento Europeu e do Conselho relativo à inteligência artificial (EU AI Act)."
-        ]}
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · CAL — Criticar a Arbitragem Legalmente · Lisboa, Portugal · 2026"
+        },
+        {
+          "type": "heading2",
+          "text": "Resumo"
+        },
+        {
+          "type": "paragraph",
+          "text": "A arbitragem desportiva é um domínio reconhecidamente susceptível a enviesamentos cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. O presente artigo descreve os fundamentos teóricos, a implementação computacional e os resultados empíricos do sistema CAL (Criticar a Arbitragem Legalmente), desenvolvido para a Primeira Liga Portuguesa. Para cada conceito estatístico são apresentadas a formulação matemática e a implementação Python correspondente. O sistema cobre 2673 jogos de 9 épocas (2017/18–2025/26). Após três rondas de revisão crítica independente, foram corrigidos: (1) a fórmula de variância do Z-score binomial [ΣPᵢ(1-Pᵢ) em vez de exp·(1-exp/n)]; (2) a correcção de múltiplos testes passou a aplicar Benjamini-Hochberg sobre todos os 510 p-values numa única família global. O teste formal de overdispersion (Cameron & Trivedi, 1990) confirma que a variância é apenas 1.39% acima do esperado pelo Poisson — magnitude negligenciável apesar de estatisticamente significativa com n=4816. Após FDR global a 5%, identificaram-se 11 padrões de desvio em faltas estatisticamente robustos em 8 árbitros distintos; nenhum padrão de cartões amarelos sobreviveu à correcção. O sistema está ao nível de ferramenta analítica exploratória sólida, não de instrumento de inferência causal forte."
+        },
+        {
+          "type": "keywords",
+          "text": "Palavras-chave: arbitragem desportiva; Z-score binomial; Poisson; Benjamini-Hochberg; FDR; overdispersion; Python; PostgreSQL; Liga Portugal."
+        },
+        {
+          "type": "heading1",
+          "text": "1. Introdução"
+        },
+        {
+          "type": "paragraph",
+          "text": "O futebol profissional é um dos fenómenos económicos e culturais mais relevantes do século XXI. A Primeira Liga Portuguesa movimenta centenas de milhões de euros por época em direitos televisivos, transferências e receitas de bilheteira. A arbitragem desportiva assume uma dimensão que transcende o campo: uma decisão arbitral pode determinar o acesso às competições europeias, com impacto financeiro directo de vários milhões de euros."
+        },
+        {
+          "type": "paragraph",
+          "text": "A literatura científica sobre viés de arbitragem demonstra que árbitros são susceptíveis a influências externas — pressão dos adeptos (Nevill, Balmer & Williams, 2002; Garicano, Palacios-Huerta & Prendergast, 2005), estatuto das equipas (Sutter & Kocher, 2004) e fadiga de decisão (Dohmen, 2008). A maior parte destes estudos analisa ligas de grande dimensão; a realidade portuguesa carece de análise sistemática."
+        },
+        {
+          "type": "paragraph",
+          "text": "O sistema CAL propõe-se colmatar esta lacuna com uma abordagem quantitativa rigorosa, transparente e reprodutível, aplicando modelos estatísticos a 2673 jogos de 9 épocas. Este artigo documenta três rondas de revisão crítica independente e as correcções metodológicas dela resultantes, seguindo o princípio de que a transparência sobre erros corrigidos é uma forma de rigor científico, não uma fraqueza."
+        },
+        {
+          "type": "heading1",
+          "text": "2. Revisão da Literatura"
+        },
+        {
+          "type": "heading2",
+          "text": "2.1. Viés de Arbitragem: Evidência Empírica"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nevill, Balmer e Williams (2002) demonstraram que árbitros experientes tomam decisões diferentes quando expostos ao ruído dos adeptos. Em 40 árbitros que avaliaram os mesmos 47 lances com e sem som de adeptos, a presença de ruído reduzia significativamente as faltas assinaladas contra a equipa da casa."
+        },
+        {
+          "type": "paragraph",
+          "text": "Garicano, Palacios-Huerta e Prendergast (2005) demonstraram que os árbitros concedem mais tempo de compensação quando a equipa da casa está a perder por margem reduzida. Sutter e Kocher (2004) estimaram que ~30% da vantagem de jogar em casa na Bundesliga é explicável por decisões arbitrais enviesadas. Dohmen (2008) mostrou que o viés se manifesta sobretudo em decisões subjectivas (penáltis, cartões), não em factos objectivos (fora-de-jogo)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Scoppa (2021) analisou a Série A italiana durante o período sem adeptos (COVID-19), confirmando que a eliminação do público reduziu significativamente o viés a favor da equipa da casa — evidência causal robusta do mecanismo de pressão social."
+        },
+        {
+          "type": "heading2",
+          "text": "2.2. Analytics Desportivo"
+        },
+        {
+          "type": "paragraph",
+          "text": "A revolução do analytics iniciada com Moneyball (Lewis, 2003) chegou ao futebol com métricas como o expected goals (xG). Estas métricas partilham com o CAL o princípio de comparar observado com esperado segundo um modelo neutro. Para a realidade portuguesa, Leite (2013) encontrou padrões compatíveis com viés arbitral mas sem granularidade suficiente para análise por árbitro."
+        },
+        {
+          "type": "heading2",
+          "text": "2.3. Metodologias de Detecção e Lacunas"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dixon e Robinson (1998) e Karlis e Ntzoufras (2003) propuseram modelos Poisson para futebol, abordagem que o CAL adapta para faltas esperadas. A validação cruzada LOSO é a prática recomendada para dados temporais (James et al., 2013). A correcção de múltiplos testes, frequentemente negligenciada em sports analytics, é obrigatória quando se testam dezenas de árbitros em simultâneo (Benjamini & Hochberg, 1995). Gelman e Hill (2007) recomendam modelos de efeitos mistos para dados hierárquicos como os desta análise — limitação reconhecida do sistema actual."
+        },
+        {
+          "type": "heading1",
+          "text": "3. Modelos Estatísticos e Implementação"
+        },
+        {
+          "type": "heading2",
+          "text": "3.1. Feature Matrix"
+        },
+        {
+          "type": "paragraph",
+          "text": "A feature matrix é construída em cal/features/engineering.py com uma linha por equipa por jogo. O shift(1) nas médias móveis evita look-ahead bias na força das equipas e na tendência do árbitro."
+        },
+        {
+          "type": "code",
+          "text": "# cal/features/engineering.py\ndf['team_strength'] = (df.groupby('team_id')['points']\n    .transform(lambda x: x.shift(1).rolling(10, min_periods=3).mean()))\ndf['referee_yc_tendency'] = (df.groupby('referee_id')['yellow_cards']\n    .transform(lambda x: x.shift(1).rolling(20, min_periods=5).mean()))\ndf['ht_score_diff'] = df['ht_goals_for'] - df['ht_goals_against']"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 1 — Feature matrix (cal/features/engineering.py)"
+        },
+        {
+          "type": "heading2",
+          "text": "3.2. Modelo de Cartões (xYC e xRC)"
+        },
+        {
+          "type": "formula",
+          "text": "P(Y=1|X) = σ(β₀ + β₁·is_home + β₂·matchday + β₃·team_strength + β₄·opp_strength + β₅·referee_tendency)"
+        },
+        {
+          "type": "code",
+          "text": "# cal/models/train.py — validação LOSO\nfor test_season in df['season'].unique():\n    train = df[df['season'] != test_season]\n    test  = df[df['season'] == test_season].copy()\n    pipe = Pipeline([('scaler', StandardScaler()),\n                     ('model', LogisticRegression(C=1.0, max_iter=500))])\n    pipe.fit(train[FEATURES_YC], train['got_yellow'])\n    test['expected_yellows'] = pipe.predict_proba(test[FEATURES_YC])[:, 1]\n    # Resultados LOSO: Brier Score xYC=0.067 (nulo: 0.078, ganho 14%)"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 2 — Treino xYC com LOSO"
+        },
+        {
+          "type": "heading3",
+          "text": "Z-score de Viés para Cartões — Fórmula Corrigida (v0.8.0)"
+        },
+        {
+          "type": "formula",
+          "text": "Z_Y = (Σ Y_obs − Σ Pᵢ) / √(Σ Pᵢ · (1 − Pᵢ))"
+        },
+        {
+          "type": "paragraph",
+          "text": "Correcção v0.8.0: a fórmula anterior usava √(exp·(1-exp/n)), matematicamente incorrecta para Bernoullis não i.i.d. A variância correcta é ΣPᵢ(1-Pᵢ) — soma das variâncias individuais de cada jogo (Agresti, 2002, Cap. 1)."
+        },
+        {
+          "type": "code",
+          "text": "# cal/bias_engine.py — fórmula CORRIGIDA (v0.8.0)\n# ANTES (v0.7.x — incorrecto): var_y = exp_y * (1 - exp_y / n)\n# DEPOIS (correcto):\np_i_y = grp['exp_yellows'].clip(0, 1)        # P(cartão) por jogo\nvar_y = float((p_i_y * (1 - p_i_y)).sum())   # Σ Pᵢ(1-Pᵢ)\nz_y   = (obs_y - exp_y) / np.sqrt(var_y) if var_y > 0 else 0.0"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 3 — Correcção variância binomial"
+        },
+        {
+          "type": "heading2",
+          "text": "3.3. Modelo de Faltas (xF)"
+        },
+        {
+          "type": "formula",
+          "text": "log(E[F|X]) = β₀ + β₁·is_home + β₂·matchday + β₃·ht_score_diff + β₄·team_strength + β₅·opp_strength + β₆·referee_fouls_tendency"
+        },
+        {
+          "type": "formula",
+          "text": "Z_F = (μ_obs − μ_exp) / (σ_obs / √n)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nota: para n < 30, a aproximação Normal é imprecisa. Idealmente usar thresholds da distribuição t com n-1 graus de liberdade. Esta limitação afecta sobretudo árbitros com poucas épocas."
+        },
+        {
+          "type": "heading2",
+          "text": "3.4. SuspicionScore"
+        },
+        {
+          "type": "paragraph",
+          "text": "Métrica ordinal de intensidade agregada, sem distribuição estatística conhecida. Não deve ser usado como teste de hipótese — serve apenas para ranquear árbitros."
+        },
+        {
+          "type": "formula",
+          "text": "SuspicionScore = |Z_amarelos| + |Z_vermelhos| + |Z_faltas|"
+        },
+        {
+          "type": "heading2",
+          "text": "3.5. Correcção de Múltiplos Testes — FDR Global (v0.9.1)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Com 510 testes em simultâneo (170 árbitros×épocas × 3 métricas), a probabilidade de falsos positivos sem correcção é substancial. A correcção Benjamini-Hochberg é aplicada sobre o conjunto TOTAL de 510 p-values numa única família global:"
+        },
+        {
+          "type": "code",
+          "text": "# cal/bias_engine.py — FDR GLOBAL (v0.9.1, corrige erro anterior)\n# ANTES (v0.9.0 — incorrecto): FDR aplicado separadamente por métrica\n# DEPOIS (correcto): empilhar todos os p-values numa única família\nall_pvals = pd.concat([\n    result['p_value_yellow'].rename('p').to_frame().assign(metric='yellow'),\n    result['p_value_red'].rename('p').to_frame().assign(metric='red'),\n    result['p_value_fouls'].rename('p').to_frame().assign(metric='fouls'),\n], ignore_index=True)\nall_pvals['p_adj'] = fdr_correction(all_pvals['p']).values  # 510 testes\n# Redistribuir p-values ajustados para as colunas originais por métrica"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 4 — FDR global sobre 510 p-values (cal/bias_engine.py)"
+        },
+        {
+          "type": "heading2",
+          "text": "3.6. Teste Formal de Overdispersion (Cameron & Trivedi, 1990)"
+        },
+        {
+          "type": "code",
+          "text": "# cal/bias_engine.py — teste formal Cameron & Trivedi (1990)\n# Variável dependente: (Y - mu)^2 - Y\n# Regressor: mu^2 (sem constante)\ny_aux = (obs - exp) ** 2 - obs\nx_aux = exp ** 2\nalpha = float(np.dot(x_aux, y_aux) / np.dot(x_aux, x_aux))\n# Resultado empírico: alpha=0.0139, t=8.183, p≈0\n# Interpretação: overdispersion estatisticamente significativa\n#   mas magnitude negligenciável (1.39% acima do Poisson)\n# Distinção crítica: significância estatística ≠ significância prática"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 5 — Teste formal de overdispersion"
+        },
+        {
+          "type": "heading2",
+          "text": "3.7. Thresholds de Alerta"
+        },
+        {
+          "type": "paragraph",
+          "text": "Os thresholds são orientativos. A evidência estatística robusta é definida exclusivamente pela correcção FDR (p_adj < 0.05):"
+        },
+        {
+          "type": "list",
+          "items": [
+            "|Z| ≥ 1.0 — Monitorizar: padrão a acompanhar",
+            "|Z| ≥ 2.5 — Suspeito: padrão improvável sem correcção",
+            "|Z| ≥ 3.0 — Anomalia: padrão muito improvável sem correcção",
+            "p_adj < 0.05 — FDR sig.: evidência robusta após correcção global"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Um Z-score de 2.5 ou 3.0 sem confirmação FDR deve ser interpretado como sinal para análise mais detalhada, não como evidência de viés."
+        },
+        {
+          "type": "heading1",
+          "text": "4. Análise de Home Bias por Contexto de Marcador"
+        },
+        {
+          "type": "paragraph",
+          "text": "O CAL segmenta as decisões do árbitro em três contextos de marcador ao intervalo: HOME_WINNING, DRAW e HOME_LOSING. O PressureBiasIndex mede se o árbitro trata as equipas de forma diferente conforme o contexto:"
+        },
+        {
+          "type": "formula",
+          "text": "PressureBiasIndex = media_fouls_diff(HOME_LOSING) − media_fouls_diff(HOME_WINNING)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Valor positivo indica que o árbitro favorece mais a equipa da casa quando esta está a perder — contexto de maior pressão dos adeptos. Esta análise controla parcialmente a crítica de viés de variável omitida ao segmentar por contexto de marcador, embora o contexto de marcador seja ele próprio endógeno à qualidade relativa das equipas (limitação documentada)."
+        },
+        {
+          "type": "heading1",
+          "text": "5. Resultados Empíricos"
+        },
+        {
+          "type": "heading2",
+          "text": "5.1. Overdispersion — Significância Estatística vs. Prática"
+        },
+        {
+          "type": "paragraph",
+          "text": "O teste formal de Cameron & Trivedi (1990) devolve alpha=0.0139, t=8.183, p≈0. Há overdispersion estatisticamente significativa, mas a magnitude é negligenciável: a variância observada é apenas 1.39% acima da esperada pelo Poisson. Com n=4816, efeitos desta dimensão atingem elevada significância estatística sem relevância prática. O modelo Poisson é adequado; a overdispersion constitui uma limitação menor a documentar."
+        },
+        {
+          "type": "heading2",
+          "text": "5.2. Resultados do FDR Global (510 testes)"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Amarelos: 0 padrões significativos após FDR global (melhor p_adj = 0.548).",
+            "Faltas: 11 padrões significativos em 8 árbitros distintos.",
+            "Vermelhos: 0 padrões significativos."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Conclusão fundamental: não existe evidência estatisticamente robusta de desvios em cartões amarelos na Primeira Liga no período analisado. Os 11 padrões de faltas mantiveram-se idênticos quer com FDR por métrica separada quer com FDR global — os p-values mais baixos de faltas (< 0.002) são suficientemente distantes dos de amarelos (mínimo 0.003) para que a aplicação global não altere as conclusões."
+        },
+        {
+          "type": "heading2",
+          "text": "5.3. Árbitros com Padrões Robustos em Faltas"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Árbitro",
+            "Épocas",
+            "Z médio",
+            "Dif. obs-exp",
+            "p_adj"
+          ],
+          "rows": [
+            [
+              "Claudio Filipe Ruivo Pereira",
+              "2",
+              "-4.363",
+              "-2.8 f/j",
+              "0.000000"
+            ],
+            [
+              "Miguel Nogueira",
+              "2",
+              "-3.728",
+              "-2.1 f/j",
+              "0.007242"
+            ],
+            [
+              "Luís Godinho",
+              "2",
+              "+3.144",
+              "+1.8 f/j",
+              "0.022383"
+            ],
+            [
+              "Vasilica Iancu",
+              "1",
+              "-4.499",
+              "-2.5 f/j",
+              "0.000595"
+            ],
+            [
+              "David Rafael Oliveira da Silva",
+              "1",
+              "-3.727",
+              "-2.3 f/j",
+              "0.007242"
+            ],
+            [
+              "Joao Antonio Ferreira Goncalves",
+              "1",
+              "-3.546",
+              "-1.9 f/j",
+              "0.011078"
+            ],
+            [
+              "Jose Bessa",
+              "1",
+              "-3.410",
+              "-2.0 f/j",
+              "0.013812"
+            ],
+            [
+              "Rui Oliveira",
+              "1",
+              "+3.068",
+              "+1.7 f/j",
+              "0.035870"
+            ]
+          ]
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 6 — Árbitros com evidência robusta após FDR global (Dif. em faltas/jogo observadas - esperadas)"
+        },
+        {
+          "type": "paragraph",
+          "text": "O sinal negativo domina (7 de 8 árbitros): padrão de menos faltas assinaladas do que o modelo espera, consistente com estilo mais permissivo. Cláudio Filipe Ruivo Pereira apresenta o padrão mais robusto: Z=-5.279 em 2022/23 (p_adj≈0, 28 jogos) e Z=-3.447 em 2023/24 (p_adj=0.014, 36 jogos)."
+        },
+        {
+          "type": "heading2",
+          "text": "5.4. Interpretação: Estilo vs. Viés"
+        },
+        {
+          "type": "paragraph",
+          "text": "Um desvio negativo em faltas (menos faltas que o esperado) pode reflectir dois mecanismos distintos: (1) estilo de arbitragem sistematicamente mais permissivo independentemente das equipas envolvidas; ou (2) viés a favor de equipas específicas que cometeriam mais faltas sem penalização. Para distinguir estes mecanismos é necessário cruzar os Z-scores de faltas com os Z-scores de amarelos."
+        },
+        {
+          "type": "code",
+          "text": "-- Correlação Z_faltas vs Z_amarelos para os 8 árbitros com FDR sig.\nSELECT r.name, s.season,\n       ROUND(s.fouls_diff_bias_z::numeric,3)  AS z_faltas,\n       ROUND(s.yellow_diff_bias_z::numeric,3) AS z_amarelos\nFROM referee_bias_scores s JOIN referees r USING (referee_id)\nWHERE s.sig_fouls_fdr = true\nORDER BY r.name, s.season;"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 7 — Query para análise de estilo vs. viés"
+        },
+        {
+          "type": "paragraph",
+          "text": "Esta análise deve ser realizada como próximo passo antes de qualquer interpretação pública dos padrões identificados."
+        },
+        {
+          "type": "heading2",
+          "text": "5.5. Análise de Poder Estatístico"
+        },
+        {
+          "type": "paragraph",
+          "text": "A capacidade de detectar um efeito depende do tamanho amostral. Para o teste t de faltas com alpha=0.05 e poder de 80%, os mínimos aproximados são:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Efeito grande (|d|=0.8): n ≥ 14 jogos",
+            "Efeito médio (|d|=0.5): n ≥ 34 jogos",
+            "Efeito pequeno (|d|=0.2): n ≥ 200 jogos"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Com o mínimo de 10 jogos por época adoptado pelo sistema, apenas efeitos grandes são detectáveis com 80% de poder. A ausência de sinalização para árbitros com poucas épocas não pode ser interpretada como ausência de padrão."
+        },
+        {
+          "type": "heading1",
+          "text": "6. Arquitectura do Sistema"
+        },
+        {
+          "type": "paragraph",
+          "text": "O CAL corre em Docker com 20 tabelas PostgreSQL e dashboard Streamlit com sete vistas analíticas. A pipeline de execução é idempotente:"
+        },
+        {
+          "type": "code",
+          "text": "python run_ingest.py   '2024/25'   # ingestão football-data.co.uk\npython run_referees.py '2024/25'   # árbitros via Sofascore\npython run_features.py '2024/25'   # feature engineering\npython run_models.py               # treino LOSO\npython run_bias.py                 # Z-scores + FDR global + overdispersion\npython run_cards.py                # faltas/amarelo por equipa\npython run_bias_history.py         # histórico por jornada\npython run_alerts.py   '2024/25'   # alertas automáticos\npython run_home_bias.py            # home bias por contexto"
+        },
+        {
+          "type": "caption",
+          "text": "Listagem 8 — Pipeline completa"
+        },
+        {
+          "type": "heading1",
+          "text": "7. Limitações e Considerações Éticas"
+        },
+        {
+          "type": "heading2",
+          "text": "7.1. Limitações Metodológicas"
+        },
+        {
+          "type": "paragraph",
+          "text": "Primeiro, o modelo não controla para heterogeneidade não observada das equipas — estilos de jogo, agressividade táctica, contexto competitivo. Um Z-score elevado pode resultar de matchups específicos e não de viés arbitral. Esta é a limitação mais relevante e não tem solução com os dados actualmente disponíveis."
+        },
+        {
+          "type": "paragraph",
+          "text": "Segundo, as observações não são estritamente independentes: jogos consecutivos têm correlação temporal. Modelos de efeitos mistos com efeitos aleatórios por árbitro e equipa (Gelman & Hill, 2007) seriam mais rigorosos mas requerem uma reescrita substancial da camada de modelos."
+        },
+        {
+          "type": "paragraph",
+          "text": "Terceiro, a variável ht_score_diff tem um problema de especificação parcial: o marcador ao intervalo pode ser consequência de decisões arbitrais da primeira parte. A solução completa requereria dados de eventos ao minuto."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quarto, os thresholds de alerta são baseados na distribuição Normal. Para n < 30, a estatística de faltas segue uma distribuição t com n-1 graus de liberdade, e os quantis diferem dos da Normal — para n=5 o quantil 97.5% é 2.78 (vs. 1.96 na Normal). Usar thresholds Normais para amostras pequenas é conservadoramente impreciso."
+        },
+        {
+          "type": "paragraph",
+          "text": "Quinto, o modelo assume que o árbitro médio da liga é a referência de neutralidade. Se a média da liga estiver sistematicamente enviesada, o sistema detecta desvios relativos a um padrão já deformado."
+        },
+        {
+          "type": "paragraph",
+          "text": "Sexto, a ausência de dados VAR impede a construção de métricas de erro confirmado (IELC) e de variação de probabilidade de vitória (ΔWP). Estas métricas teriam maior validade de conteúdo mas requerem fontes não disponíveis gratuitamente."
+        },
+        {
+          "type": "heading2",
+          "text": "7.2. Estatuto Epistemológico"
+        },
+        {
+          "type": "paragraph",
+          "text": "O sistema CAL é uma ferramenta analítica exploratória sólida. Identifica desvios estatísticos consistentes com viés — não prova viés causal. A ausência de inferência causal forte resulta de limitações de dados e de especificação do modelo, não de falhas no design geral. A transparência sobre estas limitações é uma forma de rigor científico."
+        },
+        {
+          "type": "heading2",
+          "text": "7.3. Considerações Éticas"
+        },
+        {
+          "type": "paragraph",
+          "text": "O CAL foi concebido como ferramenta de escrutínio público, não como instrumento acusatório. A terminologia (suspeito, anomalia) é técnica, não moral. Os resultados não provam intenção ou corrupção. A publicação de análises por árbitro é equiparável à análise de desempenho de jogadores ou treinadores — prática aceite no jornalismo desportivo, desde que acompanhada de contextualização metodológica adequada."
+        },
+        {
+          "type": "heading1",
+          "text": "8. Declaração de Utilização de Inteligência Artificial"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
+            "Âmbito: geração de código Python, SQL e HTML; documentação técnica; estruturação deste artigo.",
+            "Responsabilidade: a concepção metodológica, todas as correcções estatísticas e a validação dos resultados são da responsabilidade do autor. As correcções da fórmula de variância (v0.8.0) e do FDR global (v0.9.1) foram identificadas em revisão crítica independente e validadas pelo autor antes de implementação.",
+            "Dados: nenhum dado foi gerado ou modificado por IA. Todas as fontes são públicas e verificáveis."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "9. Conclusão"
+        },
+        {
+          "type": "paragraph",
+          "text": "O sistema CAL representa uma contribuição para a análise quantitativa da arbitragem na Primeira Liga Portuguesa. Após três rondas de revisão crítica, a versão v0.9.1 corrige dois erros metodológicos identificados: a fórmula de variância binomial e a aplicação do FDR como família única global. O teste formal de overdispersion confirma a adequação do modelo Poisson com magnitude negligenciável."
+        },
+        {
+          "type": "paragraph",
+          "text": "Os resultados empíricos são mais conservadores do que os Z-scores brutos sugeriam: 11 padrões de desvio em faltas em 8 árbitros distintos, nenhum em cartões amarelos. Três árbitros com padrão reproduzível em duas épocas distintas constituem a evidência mais forte — a reprodutibilidade inter-épocas reduz substancialmente a probabilidade de resultado casual."
+        },
+        {
+          "type": "paragraph",
+          "text": "O sistema está ao nível de ferramenta analítica exploratória sólida. Para atingir o nível de instrumento de inferência científica forte seria necessário: dados de eventos ao minuto; modelos de efeitos mistos; e controlo para estilos de jogo das equipas."
+        },
+        {
+          "type": "heading1",
+          "text": "Referências Bibliográficas"
+        },
+        {
+          "type": "references",
+          "items": [
+            "Agresti, A. (2002). Categorical Data Analysis (2nd ed.). Wiley.",
+            "Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society: Series B, 57(1), 289–300.",
+            "Cameron, A. C., & Trivedi, P. K. (1990). Regression-based tests for overdispersion in the Poisson model. Journal of Econometrics, 46(3), 347–364.",
+            "Dixon, M., & Robinson, M. (1998). A birth process model for association football matches. Journal of the Royal Statistical Society: Series D, 47(3), 523–538.",
+            "Dohmen, T. (2008). The influence of social forces: Evidence from the behavior of football referees. Economic Inquiry, 46(3), 411–424.",
+            "Garicano, L., Palacios-Huerta, I., & Prendergast, C. (2005). Favoritism under social pressure. Review of Economics and Statistics, 87(2), 208–216.",
+            "Gelman, A., & Hill, J. (2007). Data Analysis Using Regression and Multilevel/Hierarchical Models. Cambridge University Press.",
+            "James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning. Springer.",
+            "Karlis, D., & Ntzoufras, I. (2003). Analysis of sports data by using bivariate Poisson models. Journal of the Royal Statistical Society: Series D, 52(3), 381–393.",
+            "Lewis, M. (2003). Moneyball: The Art of Winning an Unfair Game. W. W. Norton & Company.",
+            "Nevill, A. M., Balmer, N. J., & Williams, A. M. (2002). The influence of crowd noise and experience upon refereeing decisions in association football. Psychology of Sport and Exercise, 3(4), 261–272.",
+            "Scoppa, V. (2021). Social pressure in the stadiums: Do agents change behavior without crowd support? Journal of Economic Psychology, 82, 102344.",
+            "Sutter, M., & Kocher, M. G. (2004). Favoritism of agents: The case of referees' home bias. Journal of Economic Psychology, 25(4), 461–469.",
+            "União Europeia (2024). Regulamento (UE) 2024/1689 do Parlamento Europeu e do Conselho relativo à inteligência artificial (EU AI Act)."
+          ]
+        }
       ]
     },
     {
@@ -143,10 +512,227 @@
       "category": "Arquitectura SIG",
       "date": "2026",
       "readtime": "18 min de leitura",
-      "tags": ["PostGIS", "GeoServer", "QGIS", "Docker", "Apache Airflow", "Sentinel-2", "SIG Municipal"],
+      "tags": [
+        "PostGIS",
+        "GeoServer",
+        "QGIS",
+        "Docker",
+        "Apache Airflow",
+        "Sentinel-2",
+        "SIG Municipal"
+      ],
       "featured": false,
       "status": "in-preparation",
       "excerpt": "Uma descrição arquitectural detalhada de uma implementação SIG open-source faseada, desenhada para um município de 120.000 habitantes. Abrange automação de pipeline Sentinel-2 para monitorização de risco de incêndios florestais, integração de cadastro agrícola, inventário de infraestruturas municipais e portal de transparência pública — com justificação da selecção de tecnologias, estratégia de migração de dados e breakdown de custos em três opções de âmbito."
+    },
+    {
+      "id": 3,
+      "title": "EconoStats Portugal: De Zero à Produção em Duas Semanas",
+      "subtitle": "Como a combinação de indicadores económicos com uma camada GIS cria algo que ainda não existe em Portugal — e porque é que isso importa",
+      "category": "Engenharia de Dados",
+      "date": "Maio 2026",
+      "readtime": "12 min de leitura",
+      "tags": [
+        "Django",
+        "PostGIS",
+        "GeoDjango",
+        "Leaflet",
+        "D3.js",
+        "PostgreSQL",
+        "Python",
+        "GIS",
+        "Pipeline de Dados"
+      ],
+      "featured": true,
+      "status": "published",
+      "excerpt": "O EconoStats Portugal passou de um repositório vazio para uma aplicação Django em produção com 4.015 indicadores económicos, uma camada GIS sobre PostGIS para polos industriais, cinco pipelines automatizados e um chatbot com IA — em menos de duas semanas de desenvolvimento activo. Este artigo descreve o que foi construído, as decisões técnicas por detrás disso, e porque é que a combinação de dados macroeconómicos com contexto geográfico é mais rara e mais valiosa do que parece à primeira vista.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · Maio 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. O Espaço do Problema"
+        },
+        {
+          "type": "paragraph",
+          "text": "Portugal tem bons dados económicos públicos. O Ministério da Economia publica o boletim GEE mensalmente — um workbook Excel completo que cobre actividade industrial, preços, comércio, turismo e sentimento empresarial. O INE publica PIB, emprego e séries de preços através de uma API REST. O Banco de Portugal publica o indicador coincidente diariamente. O Eurostat torna tudo isto comparável entre os estados-membros da UE. Os dados existem, são públicos e estão razoavelmente estruturados."
+        },
+        {
+          "type": "paragraph",
+          "text": "O que não existe é um único lugar que agregue estes dados, os contextualize geograficamente e os torne legíveis para quem não é economista. Não existe nenhum site português que mostre, no mesmo ecrã, que o sector do papel e cartão cresceu 3,2% no ano passado e onde é que a The Navigator Company e a Celbi têm as suas instalações de produção. Nenhum site que permita ver as taxas de desemprego regional num mapa e simultaneamente perceber como se relacionam com a composição industrial de cada região."
+        },
+        {
+          "type": "paragraph",
+          "text": "É esse espaço que o EconoStats Portugal foi construído para preencher."
+        },
+        {
+          "type": "heading1",
+          "text": "2. O Que Foi Construído"
+        },
+        {
+          "type": "paragraph",
+          "text": "O EconoStats Portugal ficou online a 9 de Maio de 2026. No final da Fase 2 (24 de Maio de 2026), o sistema tinha 14 páginas em produção, 4.015 indicadores económicos na base de dados, 33 empresas geocodificadas, cinco pipelines automatizados, uma coropleta D3.js para as regiões NUTS3 de Portugal e um chatbot com IA com contexto por página. A stack completa:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Django 6.0.5 + GeoDjango — framework de aplicação e ORM espacial",
+            "PostgreSQL 16 + PostGIS 3.4 — base de dados espacial com índices GIST nas localizações das empresas",
+            "Gunicorn + Nginx — deployment em produção no VPS Hetzner (88.198.95.103)",
+            "Leaflet.js — mapas interactivos de localização de empresas com filtros por sector",
+            "D3.js + TopoJSON — coropleta NUTS3 com limites administrativos Eurostat 2021",
+            "Chart.js 4.4.1 — séries temporais, gráficos de barras e doughnut em todo o site",
+            "Alpine.js — interactividade leve para tooltips e filtros",
+            "HTMX — actualizações parciais de página sem framework JavaScript",
+            "API Anthropic (claude-sonnet-4) — chatbot contextual com conhecimento estrutural verificado"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "O schema da base de dados é mínimo mas intencional: cinco tabelas tratam de tudo. Subsetor armazena os 12 subsectores industriais com os seus códigos CAE e pesos sectoriais. Indicador guarda 4.015 pontos de séries temporais com fonte, tipo, período e valor. Empresa contém os dados fundamentais das empresas. UnidadeLocal liga as empresas a coordenadas geográficas através de uma geometria Point PostGIS em WGS84. PipelineLog regista cada execução de pipeline — fonte, estado, contadores de registos, duração em segundos — visível no painel de administração e no rodapé de cada página."
+        },
+        {
+          "type": "heading1",
+          "text": "3. O Pipeline de Dados"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cinco comandos de gestão Django agendados via cron tratam de toda a ingestão de dados. O principal — fetch_gee — corre diariamente às 08h00 e vale a pena descrever em detalhe porque ilustra um desafio real de produção: o URL do boletim GEE muda a cada publicação."
+        },
+        {
+          "type": "paragraph",
+          "text": "A abordagem ingénua seria fixar o URL do Excel em código e actualizá-lo manualmente quando quebra. Em vez disso, o pipeline começa por fazer scraping ao site do GEE para encontrar o href actual que aponta para um ficheiro .xlsx e depois descarrega-o. Esta única decisão eliminou uma categoria inteira de falhas de manutenção. O workbook Excel tem 25 folhas; o parser trata duas estruturas distintas — layout horizontal para séries conjunturais mensais (índice de actividade económica, IHPC, produção industrial, sentimento empresarial) e layout vertical para dados anuais das contas nacionais."
+        },
+        {
+          "type": "paragraph",
+          "text": "Cada inserção usa o update_or_create do ORM Django com uma chave composta de (nome, fonte, tipo, período, data). O pipeline é totalmente idempotente — executá-lo múltiplas vezes com os mesmos dados produz exactamente o mesmo estado da base de dados. Última execução medida: 1.653 registos processados em 8,2 segundos."
+        },
+        {
+          "type": "paragraph",
+          "text": "Os quatro pipelines restantes cobrem dados do Eurostat. Dois correm diariamente (conjunturais: desemprego, IHPC, PIB trimestral por país), dois correm semanalmente ao domingo (estruturais: dívida pública, défice, PIB per capita em PPC, indicadores do mercado de trabalho por país, desemprego regional por NUTS2). Todos registam no PipelineLog; uma falha em qualquer pipeline não afecta o site — limita-se a mostrar dados ligeiramente mais antigos até à próxima execução com sucesso."
+        },
+        {
+          "type": "heading1",
+          "text": "4. A Camada GIS"
+        },
+        {
+          "type": "paragraph",
+          "text": "É aqui que o EconoStats difere de todos os outros sites de dados económicos portugueses, e vale a pena explicar cuidadosamente as decisões de design."
+        },
+        {
+          "type": "paragraph",
+          "text": "A primeira questão foi o que colocar no mapa. Os agregados do PIB e as estatísticas de emprego são dados regionais — pertencem a uma coropleta. As localizações das empresas são dados pontuais — pertencem a um mapa Leaflet com popups. Tentar colocar ambos no mesmo mapa cria ruído visual sem clareza analítica. A decisão foi construir dois componentes GIS distintos: um mapa Leaflet para localizações de empresas (já em produção), e uma coropleta D3.js usando TopoJSON para dados regionais NUTS3 (concluída na Fase 2)."
+        },
+        {
+          "type": "paragraph",
+          "text": "O mapa Leaflet mostra actualmente 33 empresas geocodificadas em 8 subsectores industriais. Cada ponto é dimensionado proporcionalmente ao número estimado de trabalhadores. Os pontos pulsam se o subsector da empresa teve crescimento positivo em 2025; são estáticos se o crescimento foi negativo. Clicar num ponto abre uma ficha completa da empresa: denominação social, NIPC, código CAE principal, município, efectivo estimado, capital social, grupo económico e variação homóloga. O mapa conecta bidirecionalmente às páginas de sector — cada página de detalhe de sector tem um botão 'Ver no Mapa GIS' que abre o mapa pré-filtrado para esse sector, usando um parâmetro hash no URL."
+        },
+        {
+          "type": "paragraph",
+          "text": "A coropleta cobre todas as 25 regiões NUTS3 portuguesas usando os limites administrativos Eurostat 2021. A geocodificação inversa — atribuir a cada empresa a sua região NUTS2 e NUTS3 — foi feita inteiramente no PostGIS através de um spatial join em vez de uma chamada a uma API. É mais rápido, reproduzível e funciona offline."
+        },
+        {
+          "type": "code",
+          "text": "-- Atribuição NUTS3 via spatial join PostGIS\nUPDATE core_unidadelocal ul\nSET nuts3 = n.nuts_id\nFROM nuts3_boundaries n\nWHERE ST_Within(ul.geom, n.geom);"
+        },
+        {
+          "type": "caption",
+          "text": "Atribuição NUTS3 usando ST_Within do PostGIS — sem necessidade de API externa"
+        },
+        {
+          "type": "heading1",
+          "text": "5. Porque É Que Esta Combinação É Rara"
+        },
+        {
+          "type": "paragraph",
+          "text": "A pergunta que vale a pena fazer é: porque é que isto ainda não existe? Os dados são públicos. As ferramentas são gratuitas. O Django e o PostGIS são maduros e bem documentados. A resposta revela algo sobre como os projectos analíticos tendem a ser definidos."
+        },
+        {
+          "type": "paragraph",
+          "text": "Os portais de dados económicos são tipicamente construídos por economistas ou por institutos públicos de estatística. O seu modelo mental dos dados é tabular: séries, períodos, valores. Uma coropleta é, no máximo, uma ilustração — algo acrescentado depois do trabalho analítico estar feito, para tornar um relatório mais apelativo. A camada geográfica é um afterthought porque a geografia não é onde a análise económica acontece nessa tradição."
+        },
+        {
+          "type": "paragraph",
+          "text": "As plataformas GIS, por outro lado, são tipicamente construídas à volta de uso do solo, monitorização ambiental, infraestrutura ou cadastro — domínios onde a dimensão espacial é primária e os dados económicos aparecem apenas como um atributo. O profissional de GIS pensa em camadas e geometrias; uma série temporal de índices mensais de actividade industrial não é um objecto natural nesse mundo."
+        },
+        {
+          "type": "paragraph",
+          "text": "O EconoStats situa-se na intersecção destas duas tradições por design. Os dados económicos não são decoração num mapa, e o mapa não é decoração num dashboard de estatísticas. São duas vistas da mesma questão subjacente: o que está a acontecer na economia produtiva portuguesa, e onde é que está a acontecer?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Esta intersecção importa sobretudo para três tipos de análise que se tornam directas no EconoStats mas são difíceis ou impossíveis com um portal de estatísticas puro ou uma plataforma GIS pura: compreender a divergência económica regional (porque é que o desemprego no Algarve é estruturalmente diferente do desemprego no Norte, dadas as suas composições industriais distintas?), identificar exposição geográfica a choques sectoriais (que municípios dependem fortemente de subsectores com indicadores negativos?), e contextualizar o desempenho empresarial dentro do seu ambiente económico regional."
+        },
+        {
+          "type": "heading1",
+          "text": "6. O Que Ainda Falta"
+        },
+        {
+          "type": "paragraph",
+          "text": "Duas semanas de desenvolvimento activo chegam a um MVP, não a um produto acabado. O balanço honesto do que a Fase 3 e seguintes precisam de tratar:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Escala dos dados de empresas — 33 empresas geocodificadas em 8 subsectores é uma prova de conceito. A análise sectorial com significado requer 300 a 500 empresas. A limitação não é técnica; é de sourcing de dados. Não existe uma fonte gratuita, estruturada e programática de dados de empresas portuguesas com moradas. A estratégia actual envolve listas de exportadores da AICEP, directórios de associados de associações sectoriais (ATP para têxteis, CELPA para pasta e papel, ACAP para automóvel) e curadoria manual a partir de registos comerciais públicos.",
+            "Pipelines INE e Banco de Portugal — o boletim GEE é a espinha dorsal, mas não cobre tudo. A API REST do INE e a API BPstat estão mapeadas mas ainda não implementadas. Adicioná-las expande a cobertura para componentes trimestrais do PIB, dados de emprego detalhados e o indicador coincidente com a sua série histórica completa.",
+            "Versão inglesa — as 14 páginas estão em português. Um caminho /en/ está previsto para a Fase 4.",
+            "Contexto narrativo por sector — os dados estão lá, mas interpretá-los requer saber que uma queda de 2% no índice de actividade industrial nos têxteis é diferente de uma queda de 2% no automóvel, porque as dinâmicas estruturais, a exposição às exportações e a concentração de emprego são diferentes. Acrescentar conteúdo interpretativo curado a cada página de sector é trabalho editorial, não de engenharia."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "7. As Decisões Técnicas Que Se Mantiveram"
+        },
+        {
+          "type": "paragraph",
+          "text": "Duas semanas de desenvolvimento intensivo produzem sempre uma lista de coisas a corrigir. Mas algumas decisões mostraram-se robustas desde o início e vale a pena documentá-las como tal."
+        },
+        {
+          "type": "paragraph",
+          "text": "Django management commands para os pipelines de dados, em vez de scripts autónomos ou um orquestrador de workflows, foi a escolha certa nesta escala. Os comandos correm no contexto do ORM Django, têm acesso a todos os modelos e configurações, são invocáveis a partir do cron sem qualquer infraestrutura adicional, e integram-se naturalmente com o painel de administração via PipelineLog. A sobrecarga operacional é mínima."
+        },
+        {
+          "type": "paragraph",
+          "text": "PostGIS para todas as operações espaciais, em vez de fazer cálculos de geometria em Python, eliminou uma classe inteira de problemas. Spatial joins, queries point-in-polygon para atribuição NUTS, cálculos de distância — tudo tratado em SQL, na camada da base de dados, com indexação adequada. O codebase não tem imports de Shapely ou Fiona."
+        },
+        {
+          "type": "paragraph",
+          "text": "Alpine.js para a interactividade do frontend em vez do React ou Vue manteve a camada de templates simples. O filtro de sectores no mapa de empresas, a exibição de tooltips e as interacções de formulário são tratados com atributos x-data directamente nos templates HTML. Sem build step, sem node_modules, sem compilação."
+        },
+        {
+          "type": "paragraph",
+          "text": "Operações upsert idempotentes em cada pipeline significam que re-executar qualquer pipeline após uma falha, uma correcção de dados ou uma migração de schema produz um estado consistente da base de dados. É uma exigência de disciplina, não uma funcionalidade — mas acertá-la desde o início poupa muito tempo de debugging mais tarde."
+        },
+        {
+          "type": "heading1",
+          "text": "8. Declaração de Utilização de Inteligência Artificial"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
+            "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
+            "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas e a validação dos resultados são da exclusiva responsabilidade do autor.",
+            "Dados: nenhum dado foi gerado ou modificado por IA. Todas as fontes são públicas e verificáveis (GEE, Eurostat, INE, Banco de Portugal).",
+            "Classificação EU AI Act: sistema de risco mínimo. O EconoStats apresenta dados institucionais públicos com atribuição de fonte. O chatbot com IA opera com conhecimento estrutural verificado e reconhecimento explícito de incerteza."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "9. Conclusão"
+        },
+        {
+          "type": "paragraph",
+          "text": "O EconoStats Portugal não é um produto acabado. É uma base funcional que demonstra algo específico: que a combinação de dados macroeconómicos de séries temporais com uma camada de aplicação geograficamente consciente é tanto tecnicamente directa como analiticamente valiosa — e que esta combinação é rara no panorama informativo português não porque seja difícil, mas porque as duas tradições que produzem estas ferramentas raramente se sobrepõem."
+        },
+        {
+          "type": "paragraph",
+          "text": "O site está em produção em econostats.terradigital.net. O documento de arquitectura está disponível no portfólio TerraDigital. A Fase 3 está em curso."
+        }
+      ]
     }
   ]
 }
