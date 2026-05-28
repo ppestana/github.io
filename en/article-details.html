@@ -5,16 +5,10 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article — Pedro Pestana — Open-Source Business Applications · Geospatial Systems</title>
-
-    <!-- SEO & Language Tags -->
     <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/article-details.html">
     <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/artigo-detalhes.html">
     <link rel="canonical" href="https://pedropestana.com/en/article-details.html">
-
-    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
     <link rel="stylesheet" href="/css/cookie-consent.css">
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +33,6 @@
                 <li><a href="articles.html">Articles</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <!-- Language Switcher -->
             <div class="language-switcher">
                 <a href="article-details.html" class="lang-link active" title="English">EN</a>
                 <span class="lang-separator">|</span>
@@ -48,79 +41,57 @@
         </div>
     </nav>
 
-    <main class="container" style="padding-top:1.5rem;padding-bottom:3rem;">
-        <div class="article-details-container" style="padding:0;max-width:none;margin:0;">
+    <main class="container" style="max-width:820px;padding-top:1.5rem;padding-bottom:3rem;">
 
-            <!-- Back button -->
-            <a href="articles.html" class="btn-back">
-                <i class="fas fa-arrow-left"></i> Back to Articles
-            </a>
+        <a href="articles.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Articles
+        </a>
 
-            <!-- Article header — full width -->
-            <header class="article-header-detail">
-                <div class="article-meta-detail">
-                    <span class="article-category-detail" id="article-category"></span>
-                    <span class="article-date-detail" id="article-date"></span>
-                    <span class="article-readtime-detail" id="article-readtime"></span>
-                </div>
-                <h1 class="article-title-detail" id="article-title"></h1>
-                <p class="article-subtitle-detail" id="article-subtitle"></p>
-
-                <div class="article-author">
-                    <div class="author-info">
-                        <img src="/assets/profile.jpg" alt="Pedro Pestana" class="author-photo">
-                        <div class="author-details">
-                            <div class="author-name">Pedro Pestana</div>
-                            <div class="author-title">Geospatial Systems Engineer</div>
-                        </div>
-                    </div>
-                    <div class="article-share">
-                        <span class="share-label">Share:</span>
-                        <div class="share-buttons">
-                            <a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank" class="social-icon" aria-label="Bluesky">
-                                <i class="fa-brands fa-bluesky"></i>
-                            </a>
-                            <a href="#" class="share-btn" aria-label="Share on LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" class="share-btn" aria-label="Share by Email">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                        </div>
+        <header class="article-header-detail">
+            <div class="article-meta-detail">
+                <span class="article-category-detail" id="article-category"></span>
+                <span class="article-date-detail" id="article-date"></span>
+                <span class="article-readtime-detail" id="article-readtime"></span>
+            </div>
+            <h1 class="article-title-detail" id="article-title"></h1>
+            <p class="article-subtitle-detail" id="article-subtitle"></p>
+            <div class="article-author">
+                <div class="author-info">
+                    <img src="/assets/profile.jpg" alt="Pedro Pestana" class="author-photo">
+                    <div class="author-details">
+                        <div class="author-name">Pedro Pestana</div>
+                        <div class="author-title">Geospatial Systems Engineer</div>
                     </div>
                 </div>
-            </header>
-
-            <!-- Status banner -->
-            <div class="article-status-banner" id="article-status-banner" style="display:none;"></div>
-
-            <!-- 2-column layout: article body + sidebar -->
-            <div style="display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start;">
-
-                <!-- Left: article content + footer -->
-                <div>
-                    <article class="article-content-detail" id="article-content" style="margin-bottom:1.5rem;"></article>
-                    <footer class="article-footer-detail">
-                        <div class="article-tags-detail" id="article-tags"></div>
-                        <div class="article-actions">
-                            <a href="articles.html" class="btn btn-outline">
-                                <i class="fas fa-arrow-left"></i> All Articles
-                            </a>
-                        </div>
-                    </footer>
-                </div>
-
-                <!-- Right: related articles sidebar -->
-                <aside class="related-articles-sidebar" style="position:sticky;top:100px;">
-                    <div class="sidebar-card">
-                        <h3><i class="fas fa-newspaper"></i> Related Articles</h3>
-                        <div id="related-articles-list"></div>
+                <div class="article-share">
+                    <span class="share-label">Share:</span>
+                    <div class="share-buttons">
+                        <a href="https://bsky.app/profile/ppestana.bsky.social" target="_blank" class="social-icon" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
+                        <a href="#" class="share-btn" aria-label="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="share-btn" aria-label="Share by Email"><i class="fas fa-envelope"></i></a>
                     </div>
-                </aside>
+                </div>
+            </div>
+        </header>
 
-            </div><!-- /2-col -->
+        <div class="article-status-banner" id="article-status-banner" style="display:none;"></div>
 
-        </div>
+        <article class="article-content-detail" id="article-content"></article>
+
+        <footer class="article-footer-detail">
+            <div class="article-tags-detail" id="article-tags"></div>
+            <div class="article-actions">
+                <a href="articles.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> All Articles
+                </a>
+            </div>
+        </footer>
+
+        <section style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--color-gray-light,#e5e7eb);">
+            <h3 style="font-size:1rem;margin-bottom:1rem;"><i class="fas fa-newspaper" style="margin-right:.5rem;"></i>Related Articles</h3>
+            <div id="related-articles-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;"></div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -174,13 +145,8 @@
     <script src="/js/cookie-consent.js"></script>
     <script>
         const cookieConsent = new CookieConsentManager({
-            analyticsScripts: [{
-                type: 'gtag',
-                id: 'G-XXXXXXXXXX'
-            }],
-            onConsentChange: function(preferences) {
-                console.log('Cookie preferences updated:', preferences);
-            }
+            analyticsScripts: [{ type: 'gtag', id: 'G-XXXXXXXXXX' }],
+            onConsentChange: function(preferences) { console.log('Cookie preferences updated:', preferences); }
         });
     </script>
 </body>
