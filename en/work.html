@@ -4,92 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work—Pedro Pestana—Open-Source Business Applications · Geospatial Systems</title>
-
-    <!-- CRITICAL: Load cookie consent CSS BEFORE any analytics -->
     <link rel="stylesheet" href="/css/cookie-consent.css">
     <link rel="stylesheet" href="/css/style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <!-- SEO & Language Tags -->
     <link rel="alternate" hreflang="en" href="https://pedropestana.com/en/work.html">
     <link rel="alternate" hreflang="pt" href="https://pedropestana.com/pt/trabalho.html">
     <link rel="canonical" href="https://pedropestana.com/en/work.html">
-
     <style>
-        /* Page-specific overrides — keeps work.html proportions consistent with other pages */
-        .work-section {
-            margin-bottom: 2rem;
-        }
-        .work-section h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-        .terradigital-block {
-            background: var(--color-gray-light, #f3f4f6);
-            border-left: 4px solid var(--color-primary, #2563eb);
-            padding: 1.5rem 2rem;
-            border-radius: 4px;
-            margin-bottom: 2rem;
-        }
-        .terradigital-block h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .terradigital-block p {
-            margin-bottom: 0.75rem;
-        }
-        .work-grid-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2.5rem;
-            align-items: start;
-        }
-        .work-sidebar h3 {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-gray, #6b7280);
-            margin-bottom: 0.75rem;
-            margin-top: 1.5rem;
-        }
-        .work-sidebar h3:first-child {
-            margin-top: 0;
-        }
-        .work-sidebar ul {
-            list-style: none;
-            margin: 0 0 0.5rem 0;
-            padding: 0;
-        }
-        .work-sidebar ul li {
-            padding: 0.35rem 0;
-            border-bottom: 1px solid var(--color-gray-light, #f3f4f6);
-            font-size: 0.9rem;
-        }
-        .work-sidebar ul li:last-child {
-            border-bottom: none;
-        }
-        @media (max-width: 768px) {
-            .work-grid-layout {
-                grid-template-columns: 1fr;
-            }
-        }
+        .work-header        { padding: 2rem 0 1.5rem; text-align: center; }
+        .work-header h1     { font-size: 2.5rem; margin-bottom: 1rem; }
+        .work-header p      { font-size: 1.25rem; color: var(--color-gray); max-width: 800px; margin: 0 auto; }
+        .work-block         { margin-bottom: 2rem; }
+        .work-block h2      { font-size: 1.75rem; margin-bottom: 1rem; }
+        .td-card            { background: var(--color-gray-light,#f3f4f6); border-left: 4px solid var(--color-primary,#2563eb); padding: 1.5rem 2rem; border-radius: 4px; }
+        .td-card h2         { margin-top: 0; font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .td-card p          { margin-bottom: 0.75rem; }
+        .work-grid          { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .work-grid .focus-item { margin: 0; }
+        .work-two-col       { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; align-items: start; }
+        .work-sidebar h3    { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-gray,#6b7280); margin: 1.25rem 0 0.5rem; }
+        .work-sidebar h3:first-child { margin-top: 0; }
+        .work-sidebar ul    { list-style: none; margin: 0; padding: 0; }
+        .work-sidebar li    { padding: 0.3rem 0; border-bottom: 1px solid var(--color-gray-light,#f3f4f6); font-size: 0.9rem; }
+        .work-sidebar li:last-child { border-bottom: none; }
+        .work-cta           { background: var(--color-gray-light,#f3f4f6); border-radius: 8px; padding: 2rem; text-align: center; }
+        .work-cta h2        { margin-top: 0; font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .work-cta p         { max-width: 700px; margin: 0 auto 1.25rem; color: var(--color-gray); }
+        @media (max-width: 900px) { .work-grid { grid-template-columns: repeat(2,1fr); } }
+        @media (max-width: 640px) { .work-grid { grid-template-columns: 1fr; } .work-two-col { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">PP</span>
-                <span>Pedro Pestana</span>
-            </a>
-            <button class="menu-toggle" aria-label="Toggle navigation">
-                <span class="hamburger"></span>
-            </button>
+            <a href="index.html" class="logo"><span class="logo-icon">PP</span><span>Pedro Pestana</span></a>
+            <button class="menu-toggle" aria-label="Toggle navigation"><span class="hamburger"></span></button>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -108,79 +60,63 @@
 
     <main class="container">
 
-        <header class="page-header">
-            <h1 class="page-title">What I Do</h1>
-            <p class="page-subtitle">Independent consulting and technical delivery under the TerraDigital brand — geospatial systems, data engineering, and open-source business applications.</p>
+        <header class="work-header">
+            <h1>What I Do</h1>
+            <p>Independent consulting and technical delivery under the TerraDigital brand — geospatial systems, data engineering, and open-source business applications.</p>
         </header>
 
-        <!-- TerraDigital brand block -->
-        <div class="terradigital-block">
-            <h2><i class="fas fa-globe" style="margin-right: 0.5rem; color: var(--color-primary, #2563eb);"></i>TerraDigital</h2>
-            <p>TerraDigital is my consulting brand for open-source geospatial and data engineering work. The name reflects the core idea: territorial intelligence expressed through digital systems. Everything I build runs on open-source infrastructure — PostGIS, QGIS, Django, Python, Docker — without vendor lock-in or licence costs for clients.</p>
-            <p>The portfolio ranges from custom WebGIS platforms and spatial data pipelines to full-stack business applications where the map is not a decoration but the analytical core of the system.</p>
-            <a href="https://www.terradigital.net" target="_blank" rel="noopener noreferrer" class="contact-link">
-                <i class="fas fa-external-link-alt"></i> Visit TerraDigital
-            </a>
+        <div class="work-block">
+            <div class="td-card">
+                <h2><i class="fas fa-globe" style="margin-right:0.5rem;color:var(--color-primary,#2563eb)"></i>TerraDigital</h2>
+                <p>TerraDigital is my consulting brand for open-source geospatial and data engineering work. The name reflects the core idea: territorial intelligence expressed through digital systems. Everything I build runs on open-source infrastructure — PostGIS, QGIS, Django, Python, Docker — without vendor lock-in or licence costs for clients.</p>
+                <p>The portfolio ranges from custom WebGIS platforms and spatial data pipelines to full-stack business applications where the map is not a decoration but the analytical core of the system.</p>
+                <a href="https://www.terradigital.net" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fas fa-external-link-alt"></i> Visit TerraDigital</a>
+            </div>
         </div>
 
-        <!-- Areas of work -->
-        <section class="work-section">
+        <div class="work-block">
             <h2>Areas of Work</h2>
-            <div class="focus-grid">
+            <div class="work-grid">
                 <div class="focus-item">
                     <h3><i class="fas fa-map-marked-alt"></i> WebGIS Platforms</h3>
-                    <p>End-to-end geospatial web applications — from PostGIS spatial databases and GeoServer feature services to Leaflet front-ends and Django/GeoDjango backends. Designed for real operational use, not demos.</p>
+                    <p>End-to-end geospatial web applications — PostGIS spatial databases, GeoServer feature services, Leaflet front-ends, and Django/GeoDjango backends. Designed for real operational use, not demos.</p>
                 </div>
                 <div class="focus-item">
                     <h3><i class="fas fa-database"></i> Spatial Data Engineering</h3>
-                    <p>Design and implementation of spatial ETL pipelines, PostGIS schemas, automated data ingestion from public sources (Copernicus, IPMA, NASA FIRMS), and change-data-capture workflows for monitoring environments.</p>
+                    <p>Spatial ETL pipelines, PostGIS schemas, automated ingestion from public sources (Copernicus, IPMA, NASA FIRMS), and change-data-capture workflows for monitoring environments.</p>
                 </div>
                 <div class="focus-item">
                     <h3><i class="fas fa-layer-group"></i> Business Applications with a Territorial Core</h3>
-                    <p>Django applications where territorial data — cadastre, georeferenced assets, field collection, route management — is the structural spine of the system, not an afterthought added to a generic CRUD application.</p>
+                    <p>Django applications where territorial data — cadastre, georeferenced assets, field collection, route management — is the structural spine, not an afterthought added to a generic CRUD application.</p>
                 </div>
                 <div class="focus-item">
                     <h3><i class="fas fa-chart-bar"></i> Analytical Systems &amp; Statistical Models</h3>
-                    <p>Data pipelines and dashboards for pattern detection and anomaly analysis. Applied statistical methods (Z-scores, Poisson regression, Benjamini-Hochberg FDR correction) on structured event data, delivered as interactive Streamlit or Django applications.</p>
+                    <p>Pipelines and dashboards for pattern detection and anomaly analysis. Z-scores, Poisson regression, Benjamini-Hochberg FDR correction — delivered as interactive Streamlit or Django applications.</p>
                 </div>
                 <div class="focus-item">
                     <h3><i class="fas fa-code"></i> Static Sites &amp; Content Infrastructure</h3>
-                    <p>Vanilla HTML/CSS/JS sites hosted on GitHub Pages with zero running costs. Git-based CMS (Sveltia) via Cloudflare Workers OAuth, automated build pipelines with GitHub Actions, and GDPR-compliant cookie management.</p>
+                    <p>Vanilla HTML/CSS/JS on GitHub Pages with zero running costs. Git-based CMS (Sveltia) via Cloudflare Workers OAuth, GitHub Actions build pipelines, and GDPR-compliant cookie management.</p>
                 </div>
                 <div class="focus-item">
                     <h3><i class="fas fa-server"></i> Infrastructure &amp; Deployment</h3>
-                    <p>Docker Compose stacks on Hetzner VPS with Nginx, Gunicorn, PostgreSQL, Let's Encrypt SSL, and automated backups. Self-hosted, auditable, and free of third-party runtime dependencies.</p>
+                    <p>Docker Compose stacks on Hetzner VPS — Nginx, Gunicorn, PostgreSQL, Let's Encrypt SSL, automated backups. Self-hosted, auditable, and free of third-party runtime dependencies.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- How I work + sidebar -->
-        <section class="work-section">
+        <div class="work-block">
             <h2>How I Work</h2>
-            <div class="work-grid-layout">
-                <div class="work-main">
+            <div class="work-two-col">
+                <div>
                     <p>Most of my engagements begin with a client who has a spatial problem they can't quite articulate as a technical specification — a cadastre that doesn't match reality, a field inspection process that runs on spreadsheets and phone calls, or an environmental monitoring requirement with no budget for commercial platforms.</p>
                     <p>My role is to translate that operational reality into a working system: define the data model, choose the right open-source stack, build iteratively, and hand over something the client can actually maintain. I work alone or in small teams, which means every architectural decision is made by the person who will also write the migration script at 11pm.</p>
-                    <ul class="approach-list" style="margin-top: 1rem;">
-                        <li>
-                            <strong>Open-source only</strong><br>
-                            No ESRI, no proprietary databases, no SaaS lock-in. The stack is always auditable, portable, and free to run.
-                        </li>
-                        <li>
-                            <strong>Delivery over architecture</strong><br>
-                            A working PostGIS + Django application solving a real problem is worth more than an elegant microservices diagram that never ships.
-                        </li>
-                        <li>
-                            <strong>Documented and transferable</strong><br>
-                            Systems are built to be handed over. Documentation, migration scripts, and operational runbooks are part of the deliverable.
-                        </li>
-                        <li>
-                            <strong>Minimum viable infrastructure</strong><br>
-                            A single well-configured Hetzner VPS handles most workloads. Cloud complexity is introduced only when the problem genuinely demands it.
-                        </li>
+                    <ul class="approach-list" style="margin-top:1rem">
+                        <li><strong>Open-source only</strong><br>No ESRI, no proprietary databases, no SaaS lock-in. The stack is always auditable, portable, and free to run.</li>
+                        <li><strong>Delivery over architecture</strong><br>A working PostGIS + Django application solving a real problem is worth more than an elegant microservices diagram that never ships.</li>
+                        <li><strong>Documented and transferable</strong><br>Systems are built to be handed over. Documentation, migration scripts, and operational runbooks are part of the deliverable.</li>
+                        <li><strong>Minimum viable infrastructure</strong><br>A single well-configured Hetzner VPS handles most workloads. Cloud complexity is introduced only when the problem genuinely demands it.</li>
                     </ul>
                 </div>
-
                 <div class="work-sidebar">
                     <h3>Core Stack</h3>
                     <ul>
@@ -193,7 +129,6 @@
                         <li>GitHub Pages · Cloudflare Workers</li>
                         <li>Streamlit · FastAPI</li>
                     </ul>
-
                     <h3>Active Projects</h3>
                     <ul>
                         <li><strong>EconoStats Portugal</strong> — economic indicators WebGIS</li>
@@ -201,28 +136,20 @@
                         <li><strong>CAL</strong> — referee bias detection, Primeira Liga</li>
                         <li><strong>NaturalMed Clinic Manager</strong> — TCM practice management</li>
                     </ul>
-
                     <h3>Interested in working together?</h3>
-                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">I take on a small number of consulting engagements at any given time.</p>
-                    <a href="contact.html" class="contact-link">
-                        <i class="fas fa-paper-plane"></i> Contact
-                    </a>
+                    <p style="font-size:0.9rem;margin-bottom:0.5rem">I take on a small number of consulting engagements at any given time.</p>
+                    <a href="contact.html" class="contact-link"><i class="fas fa-paper-plane"></i> Contact</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Articles CTA -->
-        <section class="work-section">
-            <div class="cta-section">
-                <div class="cta-content">
-                    <h2>Technical Writing</h2>
-                    <p>I write about the decisions behind these projects — architecture choices, data modelling trade-offs, statistical methods, and lessons from production deployments. The articles section covers EconoStats, CAL, SAEIF, and other TerraDigital work in technical depth.</p>
-                    <a href="articles.html" class="cta-button">
-                        <i class="fas fa-book-open"></i> Read the Articles
-                    </a>
-                </div>
+        <div class="work-block">
+            <div class="work-cta">
+                <h2>Technical Writing</h2>
+                <p>I write about the decisions behind these projects — architecture choices, data modelling trade-offs, statistical methods, and lessons from production deployments. The articles section covers EconoStats, CAL, SAEIF, and other TerraDigital work in technical depth.</p>
+                <a href="articles.html" class="btn btn-primary"><i class="fas fa-book-open"></i> Read the Articles</a>
             </div>
-        </section>
+        </div>
 
     </main>
 
@@ -230,10 +157,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <span class="logo-icon">PP</span>
-                        <span>Pedro Pestana</span>
-                    </a>
+                    <a href="index.html" class="logo"><span class="logo-icon">PP</span><span>Pedro Pestana</span></a>
                     <p class="footer-tagline">Open-Source Business Applications · Geospatial Systems</p>
                 </div>
                 <div class="footer-links">
@@ -277,9 +201,7 @@
     <script>
         const cookieConsent = new CookieConsentManager({
             analyticsScripts: [{ type: 'gtag', id: 'G-XXXXXXXXXX' }],
-            onConsentChange: function(preferences) {
-                console.log('Cookie preferences updated:', preferences);
-            }
+            onConsentChange: function(p) { console.log('Consent updated:', p); }
         });
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('current-year').textContent = new Date().getFullYear();
