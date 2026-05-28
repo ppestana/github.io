@@ -106,16 +106,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="featured-projects">
-            <div class="section-header">
-                <h2 class="section-title">Trabalho em Destaque</h2>
-                <a href="trabalho.html" class="btn-text">Ver todo o trabalho <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div id="featured-projects-container" class="projects-grid">
-                <div class="loading">A carregar projectos...</div>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
@@ -184,7 +174,6 @@
         });
         
         document.addEventListener('DOMContentLoaded', function() {
-            loadFeaturedProjects();
             document.getElementById('current-year').textContent = new Date().getFullYear();
         });
     </script>
