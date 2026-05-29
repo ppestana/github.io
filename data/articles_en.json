@@ -860,7 +860,7 @@
             "Automated newsletter — HTML email generated automatically from each article",
             "GDPR compliant — UK GDPR + EU GDPR cookie consent implemented",
             "iOS Safari compatible — hamburger menu debugging resolved a specific WebKit rendering issue",
-            "Google Calendar embed — appointment availability visible on the site"
+            "Appointment booking managed via the NaturalMed Clinic Manager — the Google Calendar embed was removed and replaced by the clinic's dedicated management system"
           ]
         },
         {
@@ -873,7 +873,8 @@
             "Tools used: Claude (Anthropic, 2025–2026), as a programming and documentation assistant.",
             "Scope: generation of HTML, CSS, JavaScript and Python code; technical documentation; structuring of this article.",
             "Responsibility: system architecture, all technical decisions, requirements gathering and domain research are the sole responsibility of the author.",
-            "Data: no patient data was processed or stored in the development of this project."
+            "Data: no patient data was processed or stored in the development of this project.",
+            "Testing and results: all functional testing, user acceptance testing with the practitioner, and validation of results were carried out by the author."
           ]
         },
         {
@@ -886,7 +887,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The site is live at naturalmed-wellness.com."
+          "text": "The site is live at <a href=\"https://www.naturalmed-wellness.com\" target=\"_blank\" rel=\"noopener noreferrer\">naturalmed-wellness.com</a>."
         }
       ]
     },
@@ -1048,7 +1049,8 @@
             "Tools used: Claude (Anthropic, 2025–2026), as a programming and documentation assistant.",
             "Scope: generation of Python, SQL, HTML and JavaScript code; technical documentation; structuring of this article.",
             "Responsibility: system architecture, all technical decisions, domain research, and clinical requirements gathering are the sole responsibility of the author.",
-            "Data: the system handles clinical patient data. All data protection measures — encryption in transit, access controls, audit logging — were designed and implemented by the author."
+            "Data: the system handles clinical patient data. All data protection measures — encryption in transit, access controls, audit logging — were designed and implemented by the author.",
+            "Testing and results: all functional testing, clinical workflow validation with the practitioner, and verification of results were carried out by the author."
           ]
         },
         {

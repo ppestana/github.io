@@ -860,7 +860,7 @@
             "Newsletter automatizada — HTML de email gerado automaticamente a partir de cada artigo",
             "Conforme RGPD — UK GDPR + RGPD UE com consentimento de cookies implementado",
             "Compatível com iOS Safari — debugging do menu hamburger resolveu um problema de renderização específico do WebKit",
-            "Embed Google Calendar — disponibilidade de marcações visível no site"
+            "Marcação de consultas gerida via NaturalMed Clinic Manager — o embed do Google Calendar foi retirado e substituído pelo sistema de gestão dedicado da clínica"
           ]
         },
         {
@@ -873,7 +873,8 @@
             "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
             "Âmbito: geração de código HTML, CSS, JavaScript e Python; documentação técnica; estruturação deste artigo.",
             "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas, a recolha de requisitos e a investigação de domínio são da exclusiva responsabilidade do autor.",
-            "Dados: não foram processados nem armazenados dados de pacientes no desenvolvimento deste projecto."
+            "Dados: não foram processados nem armazenados dados de pacientes no desenvolvimento deste projecto.",
+            "Testes e resultados: todos os testes funcionais, testes de aceitação com o profissional e validação dos resultados foram realizados pelo autor."
           ]
         },
         {
@@ -886,7 +887,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O site está em produção em naturalmed-wellness.com."
+          "text": "O site está em produção em <a href=\"https://www.naturalmed-wellness.com\" target=\"_blank\" rel=\"noopener noreferrer\">naturalmed-wellness.com</a>."
         }
       ]
     },
@@ -1048,7 +1049,8 @@
             "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
             "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
             "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas, a investigação de domínio e a recolha de requisitos clínicos são da exclusiva responsabilidade do autor.",
-            "Dados: o sistema trata dados clínicos de pacientes. Todas as medidas de protecção de dados — encriptação em trânsito, controlos de acesso, registo de auditoria — foram desenhadas e implementadas pelo autor."
+            "Dados: o sistema trata dados clínicos de pacientes. Todas as medidas de protecção de dados — encriptação em trânsito, controlos de acesso, registo de auditoria — foram desenhadas e implementadas pelo autor.",
+            "Testes e resultados: todos os testes funcionais, a validação do fluxo de trabalho clínico com o profissional e a verificação dos resultados foram realizados pelo autor."
           ]
         },
         {
