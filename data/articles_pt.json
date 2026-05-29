@@ -733,6 +733,337 @@
           "text": "O site está em produção em econostats.terradigital.net. O documento de arquitectura está disponível no portfólio TerraDigital. A Fase 3 está em curso."
         }
       ]
+    },
+    {
+      "id": 4,
+      "title": "NaturalMed Wellness: Construir um Site para um Domínio Desconhecido",
+      "subtitle": "Como compreender a Medicina Tradicional Chinesa moldou todas as decisões técnicas num site bilingue completo com custo zero",
+      "category": "Desenvolvimento Web",
+      "date": "Maio 2026",
+      "readtime": "10 min de leitura",
+      "tags": [
+        "GitHub Pages",
+        "Sveltia CMS",
+        "Cloudflare Workers",
+        "GitHub Actions",
+        "Python",
+        "RGPD",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "featured": false,
+      "status": "published",
+      "excerpt": "Construir um site para uma clínica de Medicina Tradicional Chinesa no País de Gales implicou aprender o suficiente sobre MTC para fazer as perguntas certas — e depois tomar cada decisão técnica ao serviço de um profissional que precisava de publicar artigos, gerir newsletters e cumprir o RGPD do Reino Unido e da UE simultaneamente, com custo zero de hosting.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · Maio 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. O Briefing"
+        },
+        {
+          "type": "paragraph",
+          "text": "O cliente — um profissional de Medicina Tradicional Chinesa a gerir uma clínica no País de Gales, Reino Unido — precisava de um site bilingue (inglês e português) que pudesse ser actualizado sem conhecimentos técnicos, publicasse artigos em ambas as línguas, enviasse newsletters aos pacientes e cumprisse a regulamentação de protecção de dados em ambos os lados da divisão pós-Brexit: UK GDPR e EU RGPD em simultâneo."
+        },
+        {
+          "type": "paragraph",
+          "text": "A restrição que moldou tudo o resto: custo zero de hosting. O profissional gere uma pequena clínica independente e não podia assumir custos mensais de infraestrutura. Todas as decisões técnicas decorreram desta restrição."
+        },
+        {
+          "type": "heading1",
+          "text": "2. O Problema do Domínio"
+        },
+        {
+          "type": "paragraph",
+          "text": "Antes de escrever uma única linha de código, dediquei tempo considerável a compreender a Medicina Tradicional Chinesa o suficiente para fazer perguntas úteis. A MTC tem um vocabulário específico — Qi, meridianos, diagnóstico pela língua, diagnóstico pelo pulso, os Cinco Elementos, a teoria dos órgãos Zang-Fu — e uma jornada do paciente que difere substancialmente da medicina ocidental. Um paciente não marca uma consulta para um 'problema'; vem para uma 'condição' compreendida através de um quadro diagnóstico que integra sintomas físicos, estado emocional, padrões de sono e hábitos alimentares."
+        },
+        {
+          "type": "paragraph",
+          "text": "Isto importou para a arquitectura do site porque a estrutura do conteúdo tinha de reflectir a forma como um profissional de MTC pensa sobre o seu trabalho, não como uma clínica de saúde genérica apresenta os seus serviços. A secção 'O Que Trato' não é uma lista de condições mas um conjunto de padrões. A secção 'Sobre' não é um CV mas uma explicação de uma filosofia diagnóstica. Acertar nisto exigiu múltiplas rondas de questionamento estruturado com o profissional — tratando a recolha de requisitos como uma investigação de domínio."
+        },
+        {
+          "type": "heading1",
+          "text": "3. A Stack"
+        },
+        {
+          "type": "paragraph",
+          "text": "A restrição de custo zero apontou directamente para o GitHub Pages para hosting. O requisito do profissional de actualizar conteúdo sem conhecimentos técnicos apontou para um CMS headless. A combinação destas duas restrições — hosting estático com gestão de conteúdo baseada em Git — levou ao Sveltia CMS, autenticado via um proxy OAuth em Cloudflare Workers que faz a mediação entre o CMS baseado no browser e a API do GitHub sem expor credenciais."
+        },
+        {
+          "type": "list",
+          "items": [
+            "GitHub Pages — hosting estático, custo zero, HTTPS automático via Let's Encrypt",
+            "Sveltia CMS — CMS Git baseado no browser, edita ficheiros directamente no repositório GitHub",
+            "Cloudflare Workers — proxy OAuth para autenticação GitHub (tier gratuito)",
+            "GitHub Actions — pipeline de build disparado em cada commit",
+            "build_articles.py — script Python que converte artigos Markdown em HTML, actualiza a listagem e gera a newsletter",
+            "HTML/CSS/JavaScript vanilla — sem framework, sem node_modules, sem build step para o site"
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "4. O Pipeline de Build"
+        },
+        {
+          "type": "paragraph",
+          "text": "O componente tecnicamente mais interessante é o pipeline de build. Quando o profissional escreve um novo artigo no Sveltia CMS e guarda, é feito um commit no repositório. O GitHub Actions detecta o commit e executa o build_articles.py, que faz três coisas em sequência: converte o ficheiro Markdown numa página HTML de artigo estilizada, actualiza a página de listagem de artigos com a nova entrada e gera uma versão HTML newsletter do artigo formatada para clientes de email."
+        },
+        {
+          "type": "paragraph",
+          "text": "A geração da newsletter foi a parte mais constrangida do build. Os clientes de email — em particular o Outlook — têm suporte CSS notoriamente limitado. O HTML da newsletter usa layout baseado em tabelas com estilos inline, sem stylesheets externos, sem JavaScript, e imagens referenciadas por URL absoluto. O output é um único ficheiro HTML auto-suficiente que pode ser enviado via o sistema de newsletter baseado em BCC do Gmail sem uma plataforma de email paga."
+        },
+        {
+          "type": "paragraph",
+          "text": "O pipeline corre em menos de 30 segundos. O fluxo de trabalho do profissional é: abrir o CMS em /admin/, escrever um artigo, clicar em Guardar. Dois minutos depois o artigo está publicado no site e um ficheiro HTML pronto para newsletter está disponível para download."
+        },
+        {
+          "type": "heading1",
+          "text": "5. RGPD: Duas Jurisdições em Simultâneo"
+        },
+        {
+          "type": "paragraph",
+          "text": "O UK GDPR pós-Brexit e o RGPD da UE são quadros legais substancialmente semelhantes mas tecnicamente distintos. A clínica está sediada no País de Gales e serve pacientes no Reino Unido; o site é acessível a partir da UE; o developer está baseado em Portugal. Isto criou um requisito genuíno de conformidade de dupla jurisdição."
+        },
+        {
+          "type": "paragraph",
+          "text": "A implementação do consentimento de cookies tinha de satisfazer ambos os quadros sem ser desnecessariamente complexa. A solução: um único banner de consentimento com três categorias (necessário, analytics, marketing), preferências guardadas em localStorage, carregamento condicional de scripts de analytics e uma política de privacidade que aborda explicitamente os requisitos da ICO do Reino Unido e da autoridade de supervisão da UE. Não são carregados analytics até ser dado consentimento explícito — o site corre completamente sem qualquer rastreio para visitantes que recusam."
+        },
+        {
+          "type": "paragraph",
+          "text": "Um desafio específico: a obfuscação de email do Cloudflare, que estava activa no domínio e estava a alterar os endereços de email de contacto no HTML antes de chegarem ao browser. Isto exigiu desactivar a obfuscação automática de email do Cloudflare para o domínio, mantendo os restantes benefícios de CDN do Cloudflare — um passo de configuração não óbvio que demorou mais a diagnosticar do que a corrigir."
+        },
+        {
+          "type": "heading1",
+          "text": "6. O Que Tornou Este Projecto Diferente"
+        },
+        {
+          "type": "paragraph",
+          "text": "A maioria dos projectos de desenvolvimento web começa com um briefing já traduzido em requisitos técnicos: 'precisamos de um blog, um formulário de contacto e um widget de reservas.' Este projecto exigiu trabalhar ao contrário a partir de um domínio — a MTC — para derivar quais deveriam ser os requisitos técnicos. O profissional sabia o que precisava de comunicar; não sabia como expressar isso como uma estrutura de site."
+        },
+        {
+          "type": "paragraph",
+          "text": "A competência mais valiosa aplicada neste projecto não foi nenhuma tecnologia específica mas a capacidade de fazer perguntas de domínio de forma sistemática: o que precisa um novo paciente de compreender antes de marcar consulta? O que procuram os pacientes existentes quando regressam ao site? Qual é a diferença entre uma condição e um padrão em termos de MTC, e como é que isso afecta a estrutura de navegação? A implementação técnica seguiu naturalmente uma vez que estas perguntas tinham respostas."
+        },
+        {
+          "type": "heading1",
+          "text": "7. Resultados"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Custo zero de hosting — tier gratuito do GitHub Pages trata todo o tráfego",
+            "Bilingue EN/PT — todas as 8 páginas e artigos disponíveis em ambas as línguas",
+            "Conteúdo gerido por CMS — profissional publica artigos sem assistência técnica",
+            "Newsletter automatizada — HTML de email gerado automaticamente a partir de cada artigo",
+            "Conforme RGPD — UK GDPR + RGPD UE com consentimento de cookies implementado",
+            "Compatível com iOS Safari — debugging do menu hamburger resolveu um problema de renderização específico do WebKit",
+            "Embed Google Calendar — disponibilidade de marcações visível no site"
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "8. Declaração de Utilização de Inteligência Artificial"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
+            "Âmbito: geração de código HTML, CSS, JavaScript e Python; documentação técnica; estruturação deste artigo.",
+            "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas, a recolha de requisitos e a investigação de domínio são da exclusiva responsabilidade do autor.",
+            "Dados: não foram processados nem armazenados dados de pacientes no desenvolvimento deste projecto."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "9. Conclusão"
+        },
+        {
+          "type": "paragraph",
+          "text": "O site NaturalMed Wellness demonstra que um site bilingue completo com custo zero, gestão de conteúdo por CMS, pipelines de build automatizados, geração de newsletter e conformidade RGPD de dupla jurisdição é alcançável com GitHub Pages, Cloudflare Workers e uma stack HTML vanilla disciplinada. O investimento mais importante não foi na tecnologia mas na compreensão do domínio o suficiente para tomar as decisões estruturais certas antes de escrever qualquer código."
+        },
+        {
+          "type": "paragraph",
+          "text": "O site está em produção em naturalmed-wellness.com."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "NaturalMed Clinic Manager: Construir um Sistema Clínico para um Domínio Nunca Antes Explorado",
+      "subtitle": "Como o desenvolvimento iterativo e a investigação de domínio produziram um sistema completo de gestão de clínica MTC em três meses de desenvolvimento solo",
+      "category": "Aplicação de Negócio",
+      "date": "Maio 2026",
+      "readtime": "12 min de leitura",
+      "tags": [
+        "Django",
+        "PostgreSQL",
+        "Docker",
+        "Redis",
+        "Celery",
+        "Nginx",
+        "Hetzner",
+        "Python",
+        "FullCalendar"
+      ],
+      "featured": false,
+      "status": "published",
+      "excerpt": "Construir um sistema de gestão clínica para um profissional de Medicina Tradicional Chinesa implicou aprender um domínio clínico de raiz — notas SOAP, diagnóstico pela língua e pelo pulso, bibliotecas de fórmulas herbáceas, o sistema calendárico dos Troncos e Ramos — e traduzir esse conhecimento numa aplicação Django com 19 modelos em 9 apps, deployed no Hetzner com Docker Compose, autenticação de dois factores e backups diários automatizados.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · Maio 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. O Ponto de Partida"
+        },
+        {
+          "type": "paragraph",
+          "text": "O briefing era claro no resultado mas opaco no domínio: construir um sistema de gestão clínica para um profissional de Medicina Tradicional Chinesa. O resultado — algo para gerir pacientes, consultas, tratamentos, prescrições e facturação — mapeia-se em padrões de aplicação familiares. O domínio — a prática clínica de MTC — não."
+        },
+        {
+          "type": "paragraph",
+          "text": "A MTC não é uma versão simplificada da medicina ocidental. Tem o seu próprio quadro diagnóstico, o seu próprio vocabulário clínico, a sua própria teoria do corpo e as suas próprias modalidades de tratamento. Um profissional de MTC não diagnostica uma 'condição' no sentido do ICD-10; identifica um 'padrão' — uma combinação de sinais e sintomas interpretados através da lente do Qi, Sangue, equilíbrio Yin/Yang e o sistema de órgãos Zang-Fu. Os registos clínicos que servem a medicina ocidental são estruturalmente inadequados para a prática de MTC."
+        },
+        {
+          "type": "paragraph",
+          "text": "Isto significou que antes de desenhar um único modelo de base de dados, tive de compreender MTC o suficiente para fazer as perguntas certas. Como é a admissão de um novo paciente? O que se regista em cada sessão de tratamento? Como se estruturam as prescrições herbáceas? O que é o sistema dos Troncos e Ramos e porque é que importa clinicamente? As respostas moldaram todas as decisões arquitecturais."
+        },
+        {
+          "type": "heading1",
+          "text": "2. O Que Foi Construído"
+        },
+        {
+          "type": "paragraph",
+          "text": "O NaturalMed Clinic Manager é uma aplicação Django 5.1 com 19 modelos de base de dados em 9 apps, deployed no Hetzner Cloud com Docker Compose. O desenvolvimento decorreu ao longo de aproximadamente três meses como projecto solo, com o âmbito a expandir iterativamente à medida que os testes clínicos revelavam novos requisitos."
+        },
+        {
+          "type": "list",
+          "items": [
+            "tenants — multi-tenancy para múltiplas instâncias de clínica num único deployment",
+            "accounts — gestão de utilizadores com controlo de acesso baseado em funções e autenticação de dois factores",
+            "patients — admissão de pacientes, dados demográficos, historial clínico, gestão de consentimentos",
+            "appointments — integração FullCalendar.js, tipos de consulta, rastreio de estado",
+            "treatment — notas SOAP, diagnóstico MTC pela língua e pulso com upload de fotografia, historial de tratamentos",
+            "billing — facturação com IVA, exportação PDF via WeasyPrint, catálogo de serviços com Quick Select",
+            "stock — gestão de inventário, ordens de compra, gestão de fornecedores",
+            "expenses — rastreio de despesas com breakdown por categoria e gráficos de resumo financeiro",
+            "prescriptions — biblioteca de fórmulas herbáceas, construtor de fórmulas personalizadas, notas de dosagem e preparação"
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "3. A Camada Clínica MTC"
+        },
+        {
+          "type": "paragraph",
+          "text": "O componente técnico mais distintivo é a camada clínica — o conjunto de funcionalidades que distingue este sistema de um sistema genérico de consultas e facturação. Três merecem menção específica."
+        },
+        {
+          "type": "heading2",
+          "text": "Notas SOAP com Extensões MTC"
+        },
+        {
+          "type": "paragraph",
+          "text": "As notas SOAP standard (Subjectivo, Objectivo, Avaliação, Plano) são a base da documentação clínica. A extensão MTC acrescenta uma secção de diagnóstico estruturado que captura características da língua (cor, revestimento, forma, humidade), qualidades do pulso nas três posições em cada pulso (cun, guan, chi — cada uma mapeada a sistemas de órgãos específicos), e o diagnóstico de padrão resultante em termos MTC. As fotografias da língua podem ser carregadas directamente da sessão de tratamento e armazenadas associadas ao registo clínico."
+        },
+        {
+          "type": "heading2",
+          "text": "Biblioteca de Fórmulas Herbáceas"
+        },
+        {
+          "type": "paragraph",
+          "text": "A medicina herbácea chinesa usa fórmulas clássicas — combinações de ervas com proporções e indicações estabelecidas — como ponto de partida para prescrições individualizadas. A biblioteca de fórmulas armazena tanto as fórmulas clássicas como as modificações personalizadas do profissional, com cada erva registada pelo seu nome chinês (pinyin), nome botânico latino, gama de dosagem típica e acções clínicas. Uma prescrição é construída seleccionando uma fórmula base e ajustando as quantidades individuais de ervas para a apresentação específica do paciente."
+        },
+        {
+          "type": "heading2",
+          "text": "Calculador de Troncos e Ramos (Ganzhi 干支)"
+        },
+        {
+          "type": "paragraph",
+          "text": "O sistema dos Troncos e Ramos é um quadro calendárico e cosmológico tradicional chinês que mapeia o tempo — anos, meses, dias, horas — num ciclo de dez Troncos Celestes e doze Ramos Terrestres. Na MTC, a data de nascimento de um paciente expressa em termos Ganzhi tem significado clínico para compreender tendências constitucionais. O calculador converte qualquer data gregoriana para o seu equivalente Ganzhi e apresenta as correspondências elementais e de sistemas de órgãos associadas. Este foi o componente intelectualmente mais desconhecido para implementar — exigiu compreender um sistema calendárico sem equivalente directo ocidental."
+        },
+        {
+          "type": "heading1",
+          "text": "4. Desenvolvimento Iterativo sob Incerteza de Domínio"
+        },
+        {
+          "type": "paragraph",
+          "text": "O desafio metodológico mais significativo foi construir um sistema para um domínio que eu estava a aprender enquanto construía. A abordagem standard — recolher todos os requisitos, desenhar o schema completo, depois implementar — não era viável porque nem eu nem o profissional podíamos especificar completamente os requisitos antecipadamente. A prática clínica de MTC tem subtilezas que só emergem através do uso."
+        },
+        {
+          "type": "paragraph",
+          "text": "A solução foi desenvolvimento verdadeiramente iterativo: construir a versão mínima viável de cada funcionalidade, colocá-la em frente do profissional e deixar os testes clínicos revelar o que estava em falta ou errado. O módulo de prescrições passou por quatro revisões significativas à medida que o fluxo de trabalho real do profissional — que diferia do que qualquer um de nós tinha antecipado — se tornava claro através do uso. A funcionalidade Quick Select de facturação emergiu inteiramente da observação de que introduzir itens de linha de serviço um a um era demasiado lento para o fluxo de trabalho no final da sessão."
+        },
+        {
+          "type": "paragraph",
+          "text": "Esta abordagem tem um custo: o schema acumulou alguma dívida estrutural à medida que os requisitos evoluíram. O modelo de tratamento, por exemplo, tem uma relação mais complexa com o modelo de consulta do que um design greenfield produziria. A troca foi deliberada — um sistema funcional com dívida gerível é preferível a um sistema teoricamente limpo que não corresponde ao fluxo de trabalho real do profissional."
+        },
+        {
+          "type": "heading1",
+          "text": "5. Infraestrutura"
+        },
+        {
+          "type": "paragraph",
+          "text": "A stack de deployment corre num VPS Hetzner Cloud com Docker Compose:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Django 5.1 + Gunicorn — servidor de aplicação",
+            "PostgreSQL 16 — base de dados primária",
+            "Redis — armazenamento de sessões e message broker Celery",
+            "Celery — fila de tarefas assíncronas para geração de PDF e email",
+            "Nginx — reverse proxy e serviço de ficheiros estáticos",
+            "Let's Encrypt + Certbot — provisionamento e renovação automática de certificado SSL",
+            "Backups diários automatizados — dump PostgreSQL para armazenamento remoto, retenção de 30 dias"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A multi-tenancy é implementada ao nível da aplicação via um identificador de tenant em cada modelo. Isto permite que múltiplas instâncias de clínica partilhem um único deployment com isolamento completo de dados. A autenticação de dois factores é obrigatória para todas as contas via django-two-factor-auth com TOTP."
+        },
+        {
+          "type": "heading1",
+          "text": "6. O Que Este Projecto Demonstra"
+        },
+        {
+          "type": "paragraph",
+          "text": "O NaturalMed Clinic Manager demonstra algo específico sobre o tipo de desenvolvimento de software que a TerraDigital faz: a disponibilidade para entrar num domínio desconhecido, investir na sua compreensão adequada e construir sistemas que reflectem a estrutura real do domínio em vez de forçar o domínio num template genérico."
+        },
+        {
+          "type": "paragraph",
+          "text": "Um sistema genérico de gestão clínica teria servido algumas das necessidades do profissional. Não teria capturado o diagnóstico pela língua e pulso, não teria compreendido a estrutura das fórmulas herbáceas chinesas e não teria incluído o calculador Ganzhi. Estas não são funcionalidades decorativas — são o registo clínico de que um profissional de MTC realmente precisa. Construí-las exigiu investigação de domínio, não apenas programação."
+        },
+        {
+          "type": "heading1",
+          "text": "7. Declaração de Utilização de Inteligência Artificial"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
+            "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
+            "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas, a investigação de domínio e a recolha de requisitos clínicos são da exclusiva responsabilidade do autor.",
+            "Dados: o sistema trata dados clínicos de pacientes. Todas as medidas de protecção de dados — encriptação em trânsito, controlos de acesso, registo de auditoria — foram desenhadas e implementadas pelo autor."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "8. Conclusão"
+        },
+        {
+          "type": "paragraph",
+          "text": "Três meses de desenvolvimento solo produziram um sistema clínico que um profissional de MTC usa diariamente para gerir a sua prática. O sistema cobre o âmbito operacional completo — gestão de pacientes, consultas, registos clínicos, prescrições, facturação, stock e despesas — com funcionalidades clínicas específicas para a prática de MTC que nenhum sistema off-the-shelf fornece."
+        },
+        {
+          "type": "paragraph",
+          "text": "A lição mais importante deste projecto é que o conhecimento de domínio não é opcional quando se constrói software especializado. O tempo investido em compreender a MTC antes de escrever código não foi overhead — foi o trabalho de design que tornou tudo o resto possível."
+        }
+      ]
     }
   ]
 }

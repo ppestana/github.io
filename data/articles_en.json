@@ -733,6 +733,337 @@
           "text": "The site is live at econostats.terradigital.net. The architecture document is available in the TerraDigital portfolio. Phase 3 is in progress."
         }
       ]
+    },
+    {
+      "id": 4,
+      "title": "NaturalMed Wellness: Building a Static Site for a Domain I Didn't Know",
+      "subtitle": "How understanding Traditional Chinese Medicine shaped every technical decision in a zero-cost, fully-featured bilingual website",
+      "category": "Web Development",
+      "date": "May 2026",
+      "readtime": "10 min read",
+      "tags": [
+        "GitHub Pages",
+        "Sveltia CMS",
+        "Cloudflare Workers",
+        "GitHub Actions",
+        "Python",
+        "GDPR",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "featured": false,
+      "status": "published",
+      "excerpt": "Building a website for a Traditional Chinese Medicine clinic in Wales meant learning enough about TCM to ask the right questions — and then making every technical decision serve a practitioner who needed to publish articles, manage newsletters, and comply with both UK and EU GDPR, with zero ongoing hosting cost.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · May 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. The Brief"
+        },
+        {
+          "type": "paragraph",
+          "text": "The client — a Traditional Chinese Medicine practitioner running a clinic in Wales, UK — needed a bilingual website (English and Portuguese) that could be updated without technical knowledge, published articles in both languages, sent newsletters to patients, and complied with data protection regulations on both sides of the post-Brexit divide: UK GDPR and EU GDPR simultaneously."
+        },
+        {
+          "type": "paragraph",
+          "text": "The constraint that shaped everything else: zero ongoing hosting cost. The practitioner runs a small independent clinic and could not commit to monthly infrastructure costs. Every technical decision flowed from that constraint."
+        },
+        {
+          "type": "heading1",
+          "text": "2. The Domain Problem"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before writing a single line of code, I spent considerable time understanding Traditional Chinese Medicine well enough to ask useful questions. TCM has a specific vocabulary — Qi, meridians, tongue diagnosis, pulse diagnosis, the Five Elements, Zang-Fu organ theory — and a specific patient journey that differs substantially from Western medicine. A patient doesn't book an appointment for a 'problem'; they come for a 'condition' that is understood through a diagnostic framework that integrates physical symptoms, emotional state, sleep patterns, and dietary habits."
+        },
+        {
+          "type": "paragraph",
+          "text": "This mattered for the site architecture because the content structure had to reflect how a TCM practitioner thinks about their work, not how a generic health clinic presents its services. The 'What I Treat' section is not a list of conditions but a set of patterns. The 'About' section is not a CV but an explanation of a diagnostic philosophy. Getting this right required multiple rounds of structured questioning with the practitioner — treating the requirements gathering as a domain investigation."
+        },
+        {
+          "type": "heading1",
+          "text": "3. The Stack"
+        },
+        {
+          "type": "paragraph",
+          "text": "The zero-cost constraint pointed directly to GitHub Pages for hosting. The practitioner's requirement to update content without technical knowledge pointed to a headless CMS. The combination of these two constraints — static hosting with Git-based content management — led to Sveltia CMS, authenticated via a Cloudflare Workers OAuth proxy that mediates between the browser-based CMS and the GitHub API without exposing credentials."
+        },
+        {
+          "type": "list",
+          "items": [
+            "GitHub Pages — static hosting, zero cost, automatic HTTPS via Let's Encrypt",
+            "Sveltia CMS — browser-based Git CMS, edits files directly in the GitHub repository",
+            "Cloudflare Workers — OAuth proxy for GitHub authentication (free tier)",
+            "GitHub Actions — build pipeline triggered on every commit",
+            "build_articles.py — Python script that converts Markdown articles to HTML, updates the article listing, and generates the newsletter",
+            "Vanilla HTML/CSS/JavaScript — no framework, no node_modules, no build step for the site itself"
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "4. The Build Pipeline"
+        },
+        {
+          "type": "paragraph",
+          "text": "The most technically interesting component is the build pipeline. When the practitioner writes a new article in Sveltia CMS and saves it, a commit is made to the repository. GitHub Actions detects the commit and runs build_articles.py, which does three things in sequence: converts the Markdown file to a styled HTML article page, updates the articles listing page with the new entry, and generates an HTML newsletter version of the article formatted for email clients."
+        },
+        {
+          "type": "paragraph",
+          "text": "The newsletter generation was the most constrained part of the build. Email clients — particularly Outlook — have notoriously limited CSS support. The newsletter HTML uses table-based layout with inline styles, no external stylesheets, no JavaScript, and images referenced by absolute URL. The output is a single self-contained HTML file that can be sent via Gmail's BCC-based newsletter system without a paid email platform."
+        },
+        {
+          "type": "paragraph",
+          "text": "The pipeline runs in under 30 seconds. The practitioner's workflow is: open the CMS at /admin/, write an article, click Save. Two minutes later the article is live on the site and a newsletter-ready HTML file is available for download."
+        },
+        {
+          "type": "heading1",
+          "text": "5. GDPR: Two Jurisdictions Simultaneously"
+        },
+        {
+          "type": "paragraph",
+          "text": "Post-Brexit UK GDPR and EU GDPR are substantively similar but technically distinct legal frameworks. The clinic is based in Wales and serves patients in the UK; the website is accessible from the EU; the developer is based in Portugal. This created a genuine dual-jurisdiction compliance requirement."
+        },
+        {
+          "type": "paragraph",
+          "text": "The cookie consent implementation had to satisfy both frameworks without being unnecessarily complex. The solution: a single consent banner with three categories (necessary, analytics, marketing), stored preferences in localStorage, conditional loading of any analytics scripts, and a privacy policy that explicitly addresses both UK ICO and EU supervisory authority requirements. No analytics are loaded until explicit consent is given — the site runs fully without any tracking for visitors who decline."
+        },
+        {
+          "type": "paragraph",
+          "text": "One specific challenge: Cloudflare's email obfuscation, which was active on the domain and was scrambling the contact email addresses in the HTML before they reached the browser. This required disabling Cloudflare's automatic email obfuscation for the domain while maintaining the rest of Cloudflare's CDN benefits — a non-obvious configuration step that took longer to diagnose than to fix."
+        },
+        {
+          "type": "heading1",
+          "text": "6. What Made This Project Different"
+        },
+        {
+          "type": "paragraph",
+          "text": "Most web development projects begin with a brief that is already translated into technical requirements: 'we need a blog, a contact form, and a booking widget.' This project required working backwards from a domain — TCM — to derive what the technical requirements should be. The practitioner knew what they needed to communicate; they didn't know how to express that as a website structure."
+        },
+        {
+          "type": "paragraph",
+          "text": "The most valuable skill deployed in this project was not any particular technology but the ability to ask domain questions systematically: What does a new patient need to understand before booking? What do existing patients look for when they return to the site? What is the difference between a condition and a pattern in TCM terms, and how does that affect the navigation structure? The technical implementation followed naturally once these questions had answers."
+        },
+        {
+          "type": "heading1",
+          "text": "7. Results"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Zero ongoing hosting cost — GitHub Pages free tier handles all traffic",
+            "Bilingual EN/PT — all 8 pages and articles available in both languages",
+            "CMS-managed content — practitioner publishes articles without technical assistance",
+            "Automated newsletter — HTML email generated automatically from each article",
+            "GDPR compliant — UK GDPR + EU GDPR cookie consent implemented",
+            "iOS Safari compatible — hamburger menu debugging resolved a specific WebKit rendering issue",
+            "Google Calendar embed — appointment availability visible on the site"
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "8. Artificial Intelligence Usage Statement"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tools used: Claude (Anthropic, 2025–2026), as a programming and documentation assistant.",
+            "Scope: generation of HTML, CSS, JavaScript and Python code; technical documentation; structuring of this article.",
+            "Responsibility: system architecture, all technical decisions, requirements gathering and domain research are the sole responsibility of the author.",
+            "Data: no patient data was processed or stored in the development of this project."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "9. Conclusion"
+        },
+        {
+          "type": "paragraph",
+          "text": "The NaturalMed Wellness website demonstrates that a zero-cost, fully-featured bilingual site with CMS-managed content, automated build pipelines, newsletter generation, and dual-jurisdiction GDPR compliance is achievable with GitHub Pages, Cloudflare Workers, and a disciplined vanilla HTML stack. The most important investment was not in the technology but in understanding the domain well enough to make the right structural decisions before writing any code."
+        },
+        {
+          "type": "paragraph",
+          "text": "The site is live at naturalmed-wellness.com."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "NaturalMed Clinic Manager: Building a Clinical System for a Domain You've Never Worked In",
+      "subtitle": "How iterative development and domain investigation produced a full-featured TCM practice management system over three months of solo development",
+      "category": "Business Application",
+      "date": "May 2026",
+      "readtime": "12 min read",
+      "tags": [
+        "Django",
+        "PostgreSQL",
+        "Docker",
+        "Redis",
+        "Celery",
+        "Nginx",
+        "Hetzner",
+        "Python",
+        "FullCalendar"
+      ],
+      "featured": false,
+      "status": "published",
+      "excerpt": "Building a clinic management system for a Traditional Chinese Medicine practitioner meant learning a clinical domain from scratch — SOAP notes, tongue and pulse diagnosis, herbal formula libraries, the Stems and Branches calendar system — and translating that knowledge into a Django application with 19 models across 9 apps, deployed on Hetzner with Docker Compose, multi-factor authentication, and automated daily backups.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · May 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. The Starting Point"
+        },
+        {
+          "type": "paragraph",
+          "text": "The brief was clear in its outcome but opaque in its domain: build a clinic management system for a Traditional Chinese Medicine practitioner. The outcome — something to manage patients, appointments, treatments, prescriptions, and billing — maps onto familiar application patterns. The domain — TCM clinical practice — does not."
+        },
+        {
+          "type": "paragraph",
+          "text": "TCM is not a simplified version of Western medicine. It has its own diagnostic framework, its own clinical vocabulary, its own theory of the body, and its own treatment modalities. A TCM practitioner does not diagnose a 'condition' in the ICD-10 sense; they identify a 'pattern' — a combination of signs and symptoms interpreted through the lens of Qi, Blood, Yin/Yang balance, and the Zang-Fu organ system. The clinical records that serve Western medicine are structurally inadequate for TCM practice."
+        },
+        {
+          "type": "paragraph",
+          "text": "This meant that before designing a single database model, I had to understand enough TCM to ask the right questions. What does a new patient intake look like? What gets recorded at each treatment session? How are herbal prescriptions structured? What is the Stems and Branches system and why does it matter clinically? The answers shaped every architectural decision."
+        },
+        {
+          "type": "heading1",
+          "text": "2. What Was Built"
+        },
+        {
+          "type": "paragraph",
+          "text": "The NaturalMed Clinic Manager is a Django 5.1 application with 19 database models across 9 apps, deployed on Hetzner Cloud with Docker Compose. Development ran over approximately three months as a solo project, with the scope expanding iteratively as clinical testing revealed new requirements."
+        },
+        {
+          "type": "list",
+          "items": [
+            "tenants — multi-tenancy for multiple clinic instances under a single deployment",
+            "accounts — user management with role-based access and two-factor authentication (django-two-factor-auth)",
+            "patients — patient intake, demographic data, clinical history, consent management",
+            "appointments — FullCalendar.js integration, appointment types, status tracking",
+            "treatment — SOAP notes, TCM tongue and pulse diagnosis with photography upload, treatment history",
+            "billing — invoicing with VAT, PDF export via WeasyPrint, service catalogue with Quick Select",
+            "stock — inventory management, purchase orders, supplier management",
+            "expenses — expense tracking with category breakdown and financial summary charts",
+            "prescriptions — herbal formula library, custom formula builder, dosage and preparation notes"
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "3. The TCM Clinical Layer"
+        },
+        {
+          "type": "paragraph",
+          "text": "The most distinctive technical component is the clinical layer — the set of features that distinguish this from a generic appointment and billing system. Three deserve specific mention."
+        },
+        {
+          "type": "heading2",
+          "text": "SOAP Notes with TCM Extensions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Standard SOAP notes (Subjective, Objective, Assessment, Plan) are the baseline of clinical documentation. The TCM extension adds a structured diagnosis section that captures tongue characteristics (colour, coating, shape, moisture), pulse qualities at the three positions on each wrist (cun, guan, chi — each mapped to specific organ systems), and the resulting pattern diagnosis in TCM terms. Tongue photographs can be uploaded directly from the treatment session and stored against the clinical record."
+        },
+        {
+          "type": "heading2",
+          "text": "Herbal Formula Library"
+        },
+        {
+          "type": "paragraph",
+          "text": "Chinese herbal medicine uses classical formulas — combinations of herbs with established proportions and indications — as the starting point for individualised prescriptions. The formula library stores both classical formulas and the practitioner's custom modifications, with each herb recorded by its Chinese name (pinyin), Latin botanical name, typical dosage range, and clinical actions. A prescription is built by selecting a base formula and adjusting individual herb quantities for the specific patient presentation."
+        },
+        {
+          "type": "heading2",
+          "text": "Stems and Branches (Ganzhi 干支) Calculator"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Stems and Branches system is a traditional Chinese calendrical and cosmological framework that maps time — years, months, days, hours — onto a cycle of ten Heavenly Stems and twelve Earthly Branches. In TCM, a patient's birth date expressed in Ganzhi terms carries clinical significance for understanding constitutional tendencies. The calculator converts any Gregorian date to its Ganzhi equivalent and displays the associated elemental and organ system correspondences. This was the most intellectually unfamiliar component to implement — it required understanding a calendrical system with no direct Western equivalent."
+        },
+        {
+          "type": "heading1",
+          "text": "4. Iterative Development Under Domain Uncertainty"
+        },
+        {
+          "type": "paragraph",
+          "text": "The most significant methodological challenge was building a system for a domain I was learning as I built it. The standard approach — gather all requirements, design the full schema, then implement — was not viable because neither I nor the practitioner could fully specify the requirements in advance. TCM clinical practice has subtleties that only emerge through use."
+        },
+        {
+          "type": "paragraph",
+          "text": "The solution was genuine iterative development: build the minimum viable version of each feature, put it in front of the practitioner, and let clinical testing reveal what was missing or wrong. The prescription module went through four significant revisions as the practitioner's actual workflow — which differed from what either of us had anticipated — became clear through use. The billing Quick Select feature emerged entirely from observing that entering service line items one by one was too slow for the end-of-session workflow."
+        },
+        {
+          "type": "paragraph",
+          "text": "This approach has a cost: the schema accumulated some structural debt as requirements evolved. The treatment model, for example, has a more complex relationship to the appointment model than a greenfield design would produce. The trade-off was deliberate — a working system with manageable debt is preferable to a theoretically clean system that doesn't match the practitioner's actual workflow."
+        },
+        {
+          "type": "heading1",
+          "text": "5. Infrastructure"
+        },
+        {
+          "type": "paragraph",
+          "text": "The deployment stack runs on a Hetzner Cloud VPS with Docker Compose. The composition:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Django 5.1 + Gunicorn — application server",
+            "PostgreSQL 16 — primary database",
+            "Redis — session storage and Celery message broker",
+            "Celery — asynchronous task queue for PDF generation and email",
+            "Nginx — reverse proxy and static file serving",
+            "Let's Encrypt + Certbot — automatic SSL certificate provisioning and renewal",
+            "Automated daily backups — PostgreSQL dump to remote storage, 30-day retention"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Multi-tenancy is implemented at the application level via a tenant identifier on each model. This allows multiple clinic instances — the practitioner may open a second location — to share a single deployment with complete data isolation. Two-factor authentication is mandatory for all accounts via django-two-factor-auth with TOTP."
+        },
+        {
+          "type": "heading1",
+          "text": "6. What This Project Demonstrates"
+        },
+        {
+          "type": "paragraph",
+          "text": "The NaturalMed Clinic Manager demonstrates something specific about the kind of software development that TerraDigital does: the willingness to enter an unfamiliar domain, invest in understanding it properly, and build systems that reflect the actual structure of the domain rather than forcing the domain into a generic template."
+        },
+        {
+          "type": "paragraph",
+          "text": "A generic clinic management system would have served some of the practitioner's needs. It would not have captured tongue and pulse diagnosis, would not have understood the structure of Chinese herbal formulas, and would not have included the Ganzhi calculator. These are not decorative features — they are the clinical record that a TCM practitioner actually needs. Building them required domain investigation, not just programming."
+        },
+        {
+          "type": "heading1",
+          "text": "7. Artificial Intelligence Usage Statement"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tools used: Claude (Anthropic, 2025–2026), as a programming and documentation assistant.",
+            "Scope: generation of Python, SQL, HTML and JavaScript code; technical documentation; structuring of this article.",
+            "Responsibility: system architecture, all technical decisions, domain research, and clinical requirements gathering are the sole responsibility of the author.",
+            "Data: the system handles clinical patient data. All data protection measures — encryption in transit, access controls, audit logging — were designed and implemented by the author."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "8. Conclusion"
+        },
+        {
+          "type": "paragraph",
+          "text": "Three months of solo development produced a clinical system that a TCM practitioner uses daily to manage their practice. The system covers the full operational scope — patient management, appointments, clinical records, prescriptions, billing, stock, and expenses — with clinical features specific to TCM practice that no off-the-shelf system provides."
+        },
+        {
+          "type": "paragraph",
+          "text": "The most important lesson from this project is that domain knowledge is not optional when building specialist software. The time invested in understanding TCM before writing code was not overhead — it was the design work that made everything else possible."
+        }
+      ]
     }
   ]
 }
