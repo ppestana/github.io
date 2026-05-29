@@ -717,7 +717,8 @@
             "Scope: generation of Python, SQL, HTML, and JavaScript code; technical documentation; structuring of this article.",
             "Responsibility: system architecture, all technical decisions, and validation of outputs are the sole responsibility of the author.",
             "Data: no data was generated or modified by AI. All sources are public and verifiable (GEE, Eurostat, INE, Banco de Portugal).",
-            "EU AI Act classification: minimal risk system. EconoStats presents public institutional data with source attribution. The AI chatbot operates with verified structural knowledge and explicit uncertainty acknowledgement."
+            "EU AI Act classification: minimal risk system. EconoStats presents public institutional data with source attribution. The AI chatbot operates with verified structural knowledge and explicit uncertainty acknowledgement.",
+            "Testing and results: all functional testing, pipeline validation, and verification of results were carried out by the author."
           ]
         },
         {

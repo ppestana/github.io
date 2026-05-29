@@ -717,7 +717,8 @@
             "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
             "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas e a validação dos resultados são da exclusiva responsabilidade do autor.",
             "Dados: nenhum dado foi gerado ou modificado por IA. Todas as fontes são públicas e verificáveis (GEE, Eurostat, INE, Banco de Portugal).",
-            "Classificação EU AI Act: sistema de risco mínimo. O EconoStats apresenta dados institucionais públicos com atribuição de fonte. O chatbot com IA opera com conhecimento estrutural verificado e reconhecimento explícito de incerteza."
+            "Classificação EU AI Act: sistema de risco mínimo. O EconoStats apresenta dados institucionais públicos com atribuição de fonte. O chatbot com IA opera com conhecimento estrutural verificado e reconhecimento explícito de incerteza.",
+            "Testes e resultados: todos os testes funcionais, a validação dos pipelines e a verificação dos resultados foram realizados pelo autor."
           ]
         },
         {
