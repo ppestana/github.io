@@ -1078,16 +1078,21 @@ section {
 }
 
 .about-section {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
 }
 
-/* Working with AI section — paragraphs mais compactos */
-.about-main .about-section:last-child {
+/* about-main sections — espaçamento compacto */
+.about-main .about-section {
     margin-bottom: var(--spacing-lg);
+    padding-bottom: 0;
 }
 
 .about-main .about-section p {
     margin-bottom: 0.85rem;
+}
+
+.about-main .about-section:last-child {
+    margin-bottom: 0;
 }
 
 /* CV Section in About Page (matches contact.html contact-method) */
