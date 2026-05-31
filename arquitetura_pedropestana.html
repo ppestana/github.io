@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>pedropestana.com — Arquitectura do Sistema v2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fafaf8;--surface:#ffffff;--surface2:#f4f3ef;--border:#e5e3dd;--border2:#d0cec6;
+  --text:#1a1915;--muted:#6b6960;
+  --accent:#1a4fa0;--accent-light:#e8eef8;
+  --accent2:#0f6e4f;--accent2-light:#e6f4ee;
+  --warn:#b84a1e;--warn-light:#fdf0eb;
+  --ok:#065f46;--ok-light:#d1fae5;
+  --font:'Sora',sans-serif;--mono:'JetBrains Mono',monospace
+}
+@media print{nav{display:none!important}body{font-size:12px}}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.7;display:flex}
+nav{width:240px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:2rem 1.5rem}
+.nav-logo{font-weight:700;font-size:.95rem;letter-spacing:-.02em;margin-bottom:.3rem;color:var(--accent)}
+.nav-url{font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-bottom:1.5rem;word-break:break-all}
+nav ul{list-style:none}
+nav ul li a{display:block;font-size:.78rem;color:var(--muted);text-decoration:none;padding:5px 0;border-left:2px solid transparent;padding-left:10px;transition:all .15s;margin-left:-10px}
+nav ul li a:hover{color:var(--text);border-color:var(--border2)}
+nav ul li a.active{color:var(--accent);border-color:var(--accent);font-weight:600}
+.nav-section-label{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono);margin:1.2rem 0 .4rem}
+main{flex:1;min-width:0;max-width:1100px}
+.cover{background:var(--text);color:#fff;padding:5rem 4rem;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,79,160,.3) 0%,transparent 70%);pointer-events:none}
+.cover-tag{font-family:var(--mono);font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.cover-tag::before{content:'';display:block;width:20px;height:1px;background:rgba(255,255,255,.3)}
+.cover h1{font-size:3rem;font-weight:700;letter-spacing:-.05em;line-height:1.05;margin-bottom:1rem}
+.cover h1 em{font-style:normal;color:#60a5fa}
+.cover-desc{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:520px;margin-bottom:2.5rem;line-height:1.6}
+.cover-meta{display:flex;gap:2rem;flex-wrap:wrap}
+.meta-item{font-size:.78rem}
+.meta-label{color:rgba(255,255,255,.35);font-family:var(--mono);font-size:.65rem;margin-bottom:2px}
+.meta-val{color:#fff;font-weight:600}
+.meta-val.ok{color:#4ade80}
+.content{padding:3rem 4rem}
+.section{margin-bottom:4rem}
+.section-num{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+h2{font-size:1.8rem;font-weight:700;letter-spacing:-.04em;margin-bottom:1rem;border-bottom:2px solid var(--border);padding-bottom:.6rem}
+h3{font-size:1.05rem;font-weight:600;letter-spacing:-.02em;margin:1.8rem 0 .6rem;color:var(--text)}
+h3::before{content:'—';color:var(--accent);margin-right:8px;font-weight:400}
+p{margin-bottom:.9rem;font-size:.95rem}
+ul.content-list{margin:.5rem 0 1rem;padding:0;list-style:none}
+ul.content-list li{padding:6px 0 6px 1.2rem;border-bottom:1px solid var(--border);font-size:.9rem;position:relative}
+ul.content-list li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700}
+ul.content-list li:last-child{border-bottom:none}
+.callout{border-left:3px solid var(--accent);background:var(--accent-light);padding:1rem 1.2rem;border-radius:0 8px 8px 0;margin:1.2rem 0;font-size:.9rem}
+.callout.ok{border-color:var(--ok);background:var(--ok-light)}
+.callout.warn{border-color:var(--warn);background:var(--warn-light)}
+.callout-label{font-family:var(--mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:4px}
+.callout.ok .callout-label{color:var(--ok)}
+.callout.warn .callout-label{color:var(--warn)}
+.table-wrap{overflow-x:auto;margin:1.2rem 0}
+table{width:100%;border-collapse:collapse;font-size:.78rem;word-break:break-word}
+thead tr{background:var(--text)}
+thead th{text-align:left;padding:10px 14px;color:#fff;font-weight:600;font-size:.78rem;font-family:var(--mono);letter-spacing:.02em}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+tbody tr:hover{background:var(--surface2)}
+tbody tr:nth-child(even){background:var(--surface2)}
+td{padding:10px 14px;vertical-align:top}
+td:first-child{font-weight:600;color:var(--accent);font-family:var(--mono);font-size:.8rem}
+.stack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+.stack-item{background:var(--surface);padding:1.2rem}
+.stack-layer{font-family:var(--mono);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.stack-tech{font-weight:700;font-size:1rem;letter-spacing:-.02em;margin-bottom:4px}
+.stack-why{font-size:.78rem;color:var(--muted)}
+.stack-status{font-size:.65rem;font-family:var(--mono);margin-top:4px;font-weight:600}
+.stack-status.ok{color:var(--ok)}
+.stack-status.pending{color:var(--warn)}
+.file-tree{background:#1a1915;color:#e8eaf0;border-radius:10px;padding:1.2rem;margin:1.2rem 0;font-family:var(--mono);font-size:.78rem;line-height:1.8;overflow-x:auto}
+.ft-dir{color:#60a5fa;font-weight:600}
+.ft-file{color:#e8eaf0}
+.ft-comment{color:#6b7280}
+.ft-new{color:#4ade80;font-weight:600}
+.ft-legacy{color:#f59e0b}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1.2rem 0}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center}
+.stat-val{font-size:1.8rem;font-weight:700;color:var(--accent);letter-spacing:-.03em}
+.stat-label{font-size:.72rem;color:var(--muted);font-family:var(--mono);margin-top:3px}
+.roadmap{margin:1.2rem 0}
+.phase{display:flex;gap:1.2rem;margin-bottom:1px;background:var(--surface);border:1px solid var(--border);padding:1.2rem;position:relative}
+.phase:first-child{border-radius:10px 10px 0 0}
+.phase:last-child{border-radius:0 0 10px 10px}
+.phase:not(:first-child){border-top:none}
+.phase-num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;font-family:var(--mono)}
+.phase-num.done{background:var(--ok)}
+.phase-num.pending{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.phase-content{flex:1}
+.phase-title{font-weight:700;font-size:.95rem;margin-bottom:2px}
+.phase-desc{font-size:.85rem;color:var(--muted)}
+.phase-badge{font-family:var(--mono);font-size:.65rem;padding:2px 8px;border-radius:4px;font-weight:600;position:absolute;top:1.2rem;right:1.2rem}
+.badge-done{background:var(--ok-light);color:var(--ok)}
+.badge-pending{background:var(--surface2);color:var(--muted)}
+.changelog{margin:1.2rem 0}
+.cl-entry{display:flex;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border);font-size:.78rem;word-break:break-word}
+.cl-entry:last-child{border-bottom:none}
+.cl-hash{font-family:var(--mono);font-size:.7rem;color:var(--accent);flex-shrink:0;width:70px;padding-top:2px}
+.cl-msg{color:var(--text)}
+.cl-date{font-family:var(--mono);font-size:.65rem;color:var(--muted);flex-shrink:0;text-align:right;padding-top:2px}
+code{font-family:var(--mono);font-size:.8rem;background:var(--surface2);padding:1px 6px;border-radius:4px;border:1px solid var(--border);color:var(--accent)}
+.doc-footer{background:var(--surface2);border-top:1px solid var(--border);padding:2rem 4rem;font-size:.78rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+@media(max-width:768px){body{flex-direction:column}nav{width:100%;height:auto;position:relative}.content,.cover{padding:2rem 1.5rem}.cover h1{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">pedropestana.com</div>
+  <div class="nav-url">github.com/ppestana/github.io</div>
+  <div class="nav-section-label">Documento</div>
+  <ul>
+    <li><a href="#changelog">0. Changelog</a></li>
+    <li><a href="#estado">1. Estado actual</a></li>
+    <li><a href="#visao">2. Visão geral</a></li>
+    <li><a href="#estrutura">3. Estrutura de ficheiros</a></li>
+    <li><a href="#paginas">4. Páginas implementadas</a></li>
+    <li><a href="#dados">5. Camada de dados (JSON)</a></li>
+    <li><a href="#cms">6. Sveltia CMS</a></li>
+    <li><a href="#js">7. JavaScript</a></li>
+    <li><a href="#css">8. CSS</a></li>
+    <li><a href="#seo">9. SEO</a></li>
+    <li><a href="#hosting">10. Hosting e deployment</a></li>
+    <li><a href="#conteudo">11. Conteúdo actual</a></li>
+    <li><a href="#roadmap">12. Roadmap</a></li>
+    <li><a href="#riscos">13. Riscos e pendências</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="cover">
+  <div class="cover-tag">arquitectura e estado do sistema · v2.3</div>
+  <h1>pedropestana<br><em>.com</em></h1>
+  <p class="cover-desc">Website pessoal e portfólio profissional de Pedro Pestana — TerraDigital. Site estático bilingue (EN/PT) com CMS Git-based, SEO completo, GA4, sitemap e robots.txt. Servido via GitHub Pages com domínio personalizado.</p>
+  <div class="cover-meta">
+    <div class="meta-item"><div class="meta-label">URL</div><div class="meta-val ok">www.pedropestana.com ✓ ONLINE</div></div>
+    <div class="meta-item"><div class="meta-label">Repositório</div><div class="meta-val">github.com/ppestana/github.io</div></div>
+    <div class="meta-item"><div class="meta-label">Hosting</div><div class="meta-val">GitHub Pages (gratuito)</div></div>
+    <div class="meta-item"><div class="meta-label">Versão doc.</div><div class="meta-val">2.3 — 31 Maio 2026</div></div>
+    <div class="meta-item"><div class="meta-label">Último commit</div><div class="meta-val ok">061a7d0 · About+Articles actualizados · image renderer · CSS fix</div></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- 0. CHANGELOG -->
+<div class="section" id="changelog">
+  <div class="section-num">secção 00</div>
+  <h2>Changelog</h2>
+  <div class="changelog">
+    <div class="cl-entry"><div class="cl-hash">061a7d0</div><div class="cl-msg">Fix excessive spacing between About sections (CSS margin-bottom compactado)</div><div class="cl-date">31 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">92a61b4</div><div class="cl-msg">Add image support to article renderer; clinic screenshots to article 5; update About page</div><div class="cl-date">31 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">61898a8</div><div class="cl-msg">Reduce spacing between About sections (primeira correcção CSS)</div><div class="cl-date">31 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">9513ee6</div><div class="cl-msg">Sitemap: actualizado para 24 URLs (artigos 4 e 5 EN+PT)</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">9f0d0ad</div><div class="cl-msg">Artigos 4+5: correcção 2FA, Google Calendar, AI testing, link NaturalMed</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">6bfe489</div><div class="cl-msg">Add artigos: NaturalMed Website (id:4) e Clinic Manager (id:5) EN+PT</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">2f4a98b</div><div class="cl-msg">GA4: set real measurement ID G-THSWRD90CK em 20 ficheiros</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">f7a1e0a</div><div class="cl-msg">Add sitemap.xml (20 URLs) e robots.txt</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">001ac3c</div><div class="cl-msg">SEO: meta tags em work.html e trabalho.html</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">5466371</div><div class="cl-msg">Restaurar work.html, trabalho.html e config.yml eliminados acidentalmente</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">931e77e</div><div class="cl-msg">SEO: meta description, author, robots, Open Graph em 14 páginas EN+PT</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">96677f0</div><div class="cl-msg">Add PT CV redirect page → en/cv_pedro_pestana.html</div><div class="cl-date">29 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">6f308b5</div><div class="cl-msg">Fix article sort: featured first, then by id (corrige parsing de datas PT)</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">6fbb9fd</div><div class="cl-msg">Remove painel azul decorativo do card de artigo em destaque</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">f1745ce</div><div class="cl-msg">Article layout: remover sidebar, artigos relacionados no rodapé</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">0d5c0d4</div><div class="cl-msg">Add EconoStats article (EN+PT): de zero à produção, GIS+económico</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">35d7e26</div><div class="cl-msg">About: rewrite narrativa (1982→Austrália→pivot GIS), filosofia e sidebar</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">f393132</div><div class="cl-msg">Homepage: remover secção Featured Work</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">a7456b5</div><div class="cl-msg">Replace Projects with Work page (filosofia TerraDigital)</div><div class="cl-date">28 Mai 2026</div></div>
+    <div class="cl-entry"><div class="cl-hash">39991da</div><div class="cl-msg">CMS: renomear colecção projects para work</div><div class="cl-date">28 Mai 2026</div></div>
+  </div>
+</div>
+
+<!-- 1. ESTADO ACTUAL -->
+<div class="section" id="estado">
+  <div class="section-num">secção 01</div>
+  <h2>Estado Actual do Sistema</h2>
+  <div class="callout ok">
+    <div class="callout-label">Sistema em produção — v2.3</div>
+    Após actualização de 31 de Maio de 2026: About EN+PT actualizado com 5 projectos activos (NaturalMed, CS-THB, SAEIF adicionados) e nova secção "Working with AI". Renderer de artigos agora suporta imagens (<code>image</code> e <code>image-row</code>). Artigo 5 (NaturalMed Clinic Manager) inclui 3 écrans da aplicação com legendas EN+PT. CSS corrigido — espaçamento entre secções do About compactado.
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-val">11</div><div class="stat-label">Páginas EN activas</div></div>
+    <div class="stat-card"><div class="stat-val">11</div><div class="stat-label">Páginas PT activas</div></div>
+    <div class="stat-card"><div class="stat-val">5</div><div class="stat-label">Artigos (5 pub. + 0 prep.)*</div></div>
+    <div class="stat-card"><div class="stat-val">6</div><div class="stat-label">Projectos no portfólio</div></div>
+    <div class="stat-card"><div class="stat-val">24</div><div class="stat-label">URLs no sitemap</div></div>
+    <div class="stat-card"><div class="stat-val">0€</div><div class="stat-label">Custo mensal hosting</div></div>
+  </div>
+  <h3>O que está implementado</h3>
+  <ul class="content-list">
+    <li>Site estático bilingue EN/PT — sem framework, sem build step, sem node_modules</li>
+    <li>Estrutura de directórios <code>/en/</code> e <code>/pt/</code> com todas as páginas espelhadas (11+11)</li>
+    <li>Redirect automático na raiz — <code>index.html</code> redirige para <code>/en/index.html</code></li>
+    <li>Sveltia CMS via GitHub OAuth + Cloudflare Workers proxy — edição via browser</li>
+    <li>GDPR cookie consent — banner, GA4 condicional, preferências em localStorage</li>
+    <li>GA4 G-THSWRD90CK — activo em todas as páginas, dispara apenas após consentimento</li>
+    <li>SEO completo — title, meta description, author, robots, Open Graph em todas as páginas</li>
+    <li>sitemap.xml com 20 URLs priorizadas · robots.txt com referência ao sitemap</li>
+    <li>Nav e footer consistentes em todas as páginas (EN + PT)</li>
+    <li>Language switcher EN ↔ PT em todas as páginas</li>
+    <li>Artigos carregados dinamicamente de JSON — sem backend</li>
+    <li>Domínio personalizado via CNAME — Namecheap DNS</li>
+  </ul>
+</div>
+
+<!-- 2. VISÃO GERAL -->
+<div class="section" id="visao">
+  <div class="section-num">secção 02</div>
+  <h2>Visão Geral e Filosofia</h2>
+  <p>O pedropestana.com é um site estático puro — HTML, CSS e JavaScript vanilla, sem framework de frontend, sem sistema de build, sem dependências de runtime. O objectivo foi minimizar a complexidade operacional e maximizar a longevidade: um site que funciona sem servidor, sem base de dados, sem processo de compilação e sem custos de hosting.</p>
+  <p>O conteúdo dinâmico (artigos, projectos, competências) é gerido através de ficheiros JSON em <code>/data/</code> carregados via <code>fetch()</code> no browser. O CMS é o Sveltia — uma interface web que edita esses ficheiros JSON directamente no repositório GitHub via OAuth. Não há backend.</p>
+  <div class="callout">
+    <div class="callout-label">Princípio de design</div>
+    Zero custo de hosting · Zero dependências de runtime · Zero build step · Editável via browser (Sveltia CMS) · Deployável com git push · SEO-ready · GDPR-compliant
+  </div>
+  <h3>Audiência alvo</h3>
+  <ul class="content-list">
+    <li>Clientes de consultoria B2B (geoespacial, dados, Django)</li>
+    <li>Recrutadores internacionais (mercado AU, UK, PT)</li>
+    <li>Pares técnicos que lêem os artigos de investigação</li>
+    <li>Referência de portfólio para propostas TerraDigital</li>
+  </ul>
+</div>
+
+<!-- 3. ESTRUTURA DE FICHEIROS -->
+<div class="section" id="estrutura">
+  <div class="section-num">secção 03</div>
+  <h2>Estrutura de Ficheiros</h2>
+  <div class="file-tree">
+<span class="ft-dir">github.io/</span>  <span class="ft-comment">→ repositório ppestana/github.io · branch main · commit 9513ee6</span>
+│
+├── <span class="ft-file">index.html</span>              <span class="ft-comment">redirect para /en/index.html</span>
+├── <span class="ft-file">CNAME</span>                   <span class="ft-comment">www.pedropestana.com</span>
+├── <span class="ft-file">.nojekyll</span>               <span class="ft-comment">desactiva Jekyll no GitHub Pages</span>
+├── <span class="ft-new">sitemap.xml</span>             <span class="ft-comment">★ NOVO 29 Mai — 20 URLs com prioridade e frequência</span>
+├── <span class="ft-new">robots.txt</span>              <span class="ft-comment">★ NOVO 29 Mai — Allow: / · Sitemap: .../sitemap.xml</span>
+│
+├── <span class="ft-dir">en/</span>                     <span class="ft-comment">versão inglês — 11 páginas activas</span>
+│   ├── <span class="ft-file">index.html</span>
+│   ├── <span class="ft-file">about.html</span>           <span class="ft-comment">narrativa 1982→AU→GIS pivot · reescrito 28 Mai</span>
+│   ├── <span class="ft-file">skills.html</span>
+│   ├── <span class="ft-new">work.html</span>            <span class="ft-comment">★ NOVO 28 Mai — filosofia TerraDigital, 6 áreas</span>
+│   ├── <span class="ft-file">articles.html</span>
+│   ├── <span class="ft-file">article-details.html</span> <span class="ft-comment">renderização dinâmica via JSON · coluna 820px · sem sidebar</span>
+│   ├── <span class="ft-file">contact.html</span>
+│   ├── <span class="ft-file">privacy.html</span>
+│   ├── <span class="ft-file">cv_pedro_pestana.html</span><span class="ft-comment">CV completo em HTML (EN only)</span>
+│   ├── <span class="ft-legacy">projects.html</span>       <span class="ft-comment">⚠ legado — fora do nav</span>
+│   └── <span class="ft-legacy">project-details.html</span><span class="ft-comment">⚠ legado</span>
+│
+├── <span class="ft-dir">pt/</span>                     <span class="ft-comment">versão português — 11 páginas activas (espelho de /en/)</span>
+│   ├── <span class="ft-file">index.html</span>
+│   ├── <span class="ft-file">sobre.html</span>           <span class="ft-comment">reescrito 28 Mai</span>
+│   ├── <span class="ft-file">competencias.html</span>
+│   ├── <span class="ft-new">trabalho.html</span>        <span class="ft-comment">★ NOVO 28 Mai</span>
+│   ├── <span class="ft-file">artigos.html</span>
+│   ├── <span class="ft-file">artigo-detalhes.html</span>
+│   ├── <span class="ft-file">contacto.html</span>
+│   ├── <span class="ft-file">privacidade.html</span>
+│   ├── <span class="ft-new">cv_pedro_pestana.html</span><span class="ft-comment">★ NOVO 29 Mai — redirect para ../en/cv_pedro_pestana.html</span>
+│   ├── <span class="ft-legacy">projectos.html</span>      <span class="ft-comment">⚠ legado — fora do nav</span>
+│   └── <span class="ft-legacy">projecto-detalhes.html</span><span class="ft-comment">⚠ legado</span>
+│
+├── <span class="ft-dir">data/</span>
+│   ├── <span class="ft-file">articles_en.json</span>     <span class="ft-comment">3 artigos (2 pub + 1 prep)</span>
+│   ├── <span class="ft-file">articles_pt.json</span>
+│   ├── <span class="ft-file">projects_en.json</span>     <span class="ft-comment">6 projectos</span>
+│   ├── <span class="ft-file">projects_pt.json</span>
+│   ├── <span class="ft-file">skills_en.json</span>       <span class="ft-comment">5 categorias · 29 skills</span>
+│   ├── <span class="ft-file">skills_pt.json</span>
+│   ├── <span class="ft-legacy">articles.json</span>       <span class="ft-comment">⚠ legado — não usado</span>
+│   └── <span class="ft-legacy">projects.json</span>       <span class="ft-comment">⚠ legado — não usado</span>
+│
+├── <span class="ft-dir">css/</span>
+│   ├── <span class="ft-file">style.css</span>            <span class="ft-comment">~3800 linhas — estilo global + componentes</span>
+│   ├── <span class="ft-file">cookie-consent.css</span>
+│   └── <span class="ft-file">contact-qr-minimal.css</span>
+│
+├── <span class="ft-dir">js/</span>
+│   ├── <span class="ft-file">main.js</span>              <span class="ft-comment">lógica principal — JSON, cards, i18n, ordenação artigos</span>
+│   ├── <span class="ft-file">article-details.js</span>   <span class="ft-comment">renderização de blocos de artigo</span>
+│   ├── <span class="ft-file">cookie-consent.js</span>    <span class="ft-comment">GDPR banner + GA4 condicional</span>
+│   └── <span class="ft-legacy">project-details.js</span>  <span class="ft-comment">⚠ legado</span>
+│
+├── <span class="ft-dir">assets/</span>
+│   ├── <span class="ft-file">profile.jpg</span>          <span class="ft-comment">foto de perfil · usada em og:image e páginas About/artigos</span>
+│   ├── <span class="ft-file">logo.svg</span>
+│   └── <span class="ft-dir">projects/</span>            <span class="ft-comment">imagens de projectos (JPG/PNG)</span>
+│
+└── <span class="ft-dir">admin/</span>
+    ├── <span class="ft-file">index.html</span>           <span class="ft-comment">interface Sveltia CMS — /admin/</span>
+    ├── <span class="ft-file">config.yml</span>           <span class="ft-comment">colecções: work, articles, skills · actualizado 28 Mai</span>
+    └── <span class="ft-file">SETUP.md</span>
+  </div>
+</div>
+
+<!-- 4. PÁGINAS -->
+<div class="section" id="paginas">
+  <div class="section-num">secção 04</div>
+  <h2>Páginas Implementadas</h2>
+  <p>EN e PT são simétricas — 11 páginas activas em cada versão. A única assimetria é o CV: a versão PT é um redirect automático para a versão EN (que é o documento original).</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Página EN</th><th>Página PT</th><th>Conteúdo</th><th>Fonte de dados</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>en/index.html</td><td>pt/index.html</td><td>Homepage — hero, areas of expertise</td><td>estático</td><td>✓ Activo</td></tr>
+      <tr><td>en/about.html</td><td>pt/sobre.html</td><td>Narrativa 1982→AU→GIS, educação, filosofia, TerraDigital</td><td>estático</td><td>✓ Reescrito 28 Mai</td></tr>
+      <tr><td>en/skills.html</td><td>pt/competencias.html</td><td>5 categorias, 29 competências com proficiência</td><td>skills_en/pt.json</td><td>✓ Activo</td></tr>
+      <tr><td>en/work.html</td><td>pt/trabalho.html</td><td>Filosofia TerraDigital, 6 áreas, como trabalho, stack</td><td>estático</td><td>✓ Novo 28 Mai</td></tr>
+      <tr><td>en/articles.html</td><td>pt/artigos.html</td><td>Listagem de artigos com filtros por categoria</td><td>articles_en/pt.json</td><td>✓ Activo</td></tr>
+      <tr><td>en/article-details.html</td><td>pt/artigo-detalhes.html</td><td>Detalhe de artigo — coluna 820px, sem sidebar</td><td>articles_en/pt.json</td><td>✓ Activo</td></tr>
+      <tr><td>en/contact.html</td><td>pt/contacto.html</td><td>Formulário de contacto, redes sociais</td><td>estático</td><td>✓ Activo</td></tr>
+      <tr><td>en/privacy.html</td><td>pt/privacidade.html</td><td>Política de privacidade e cookies</td><td>estático</td><td>✓ Activo</td></tr>
+      <tr><td>en/cv_pedro_pestana.html</td><td>pt/cv_pedro_pestana.html</td><td>CV EN completo · PT faz redirect automático em 4s</td><td>estático</td><td>✓ Activo (PT novo 29 Mai)</td></tr>
+      <tr><td>en/projects.html</td><td>pt/projectos.html</td><td>Portfólio de projectos (legado — fora do nav)</td><td>projects_en/pt.json</td><td>⚠ Legado</td></tr>
+      <tr><td>en/project-details.html</td><td>pt/projecto-detalhes.html</td><td>Detalhe de projecto (legado)</td><td>projects_en/pt.json</td><td>⚠ Legado</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- 5. DADOS JSON -->
+<div class="section" id="dados">
+  <div class="section-num">secção 05</div>
+  <h2>Camada de Dados — Ficheiros JSON</h2>
+  <p>Todo o conteúdo dinâmico do site é armazenado em ficheiros JSON em <code>/data/</code>. O JavaScript carrega estes ficheiros via <code>fetch()</code> e renderiza o HTML no cliente. Não há servidor, não há API, não há base de dados.</p>
+  <h3>articles_en.json / articles_pt.json</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ID</th><th>Título (EN)</th><th>Status</th><th>Featured</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Statistical Detection of Bias in Professional Sports Refereeing</td><td>published</td><td>✓</td></tr>
+      <tr><td>2</td><td>Open-Source GIS Architecture for Municipal Land Management</td><td>in-preparation</td><td>—</td></tr>
+      <tr><td>3</td><td>EconoStats Portugal: From Zero to Production in Two Weeks</td><td>published</td><td>✓</td></tr>
+      <tr><td>4</td><td>NaturalMed Wellness: Building a Static Site for a Domain I Didn't Know</td><td>published</td><td>—</td></tr>
+      <tr><td>5</td><td>NaturalMed Clinic Manager: Building a Clinical System for a Domain You've Never Worked In</td><td>published</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Tipos de blocos de artigo suportados</h3>
+  <ul class="content-list">
+    <li><code>heading1</code> / <code>heading2</code> / <code>heading3</code> — secções</li>
+    <li><code>paragraph</code> — texto corrido</li>
+    <li><code>authors</code> / <code>keywords</code> — metadados académicos</li>
+    <li><code>code</code> — bloco de código monospace fundo escuro</li>
+    <li><code>formula</code> — equação matemática em caixa destacada</li>
+    <li><code>caption</code> — legenda de figura/listagem</li>
+    <li><code>list</code> — lista não ordenada</li>
+    <li><code>table</code> — tabela com headers e rows</li>
+    <li><code>references</code> — lista numerada de referências bibliográficas</li>
+  </ul>
+  <h3>Ordenação de artigos (js/main.js)</h3>
+  <p>Artigos ordenados por: (1) featured primeiro, (2) id descendente. Esta ordenação é independente da língua — resolve o problema de <code>new Date("Maio 2026")</code> retornar <code>Invalid Date</code> em JavaScript, que causava ordenação incorrecta na versão PT.</p>
+  <h3>projects_en.json / projects_pt.json</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ID</th><th>Projecto</th><th>Categoria</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Property Map Generator</td><td>Automation & Tooling</td><td>published</td></tr>
+      <tr><td>2</td><td>Ecoturismo Portugal Portal</td><td>Web Mapping</td><td>in-development</td></tr>
+      <tr><td>3</td><td>Municipal GIS Architecture</td><td>Spatial Analysis</td><td>coming-soon</td></tr>
+      <tr><td>4</td><td>Referee Bias Detection (CAL)</td><td>Data Pipeline</td><td>coming-soon</td></tr>
+      <tr><td>5</td><td>NaturalMed Website</td><td>Web Development</td><td>published</td></tr>
+      <tr><td>6</td><td>NaturalMed Clinic Manager</td><td>Business Application</td><td>published</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- 6. CMS -->
+<div class="section" id="cms">
+  <div class="section-num">secção 06</div>
+  <h2>Sveltia CMS</h2>
+  <p>Interface web para edição dos ficheiros JSON directamente no repositório GitHub. Acessível em <code>/admin/</code> após autenticação OAuth.</p>
+  <h3>Autenticação</h3>
+  <ul class="content-list">
+    <li>GitHub OAuth App — client registado em github.com/settings/developers</li>
+    <li>Cloudflare Workers proxy — <code>sveltia-cms-auth.eu-cac.workers.dev</code></li>
+    <li>Repositório: <code>ppestana/github.io</code> · branch: <code>main</code></li>
+  </ul>
+  <h3>Colecções configuradas</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Colecção</th><th>Label CMS</th><th>Ficheiros geridos</th></tr></thead>
+    <tbody>
+      <tr><td>work</td><td>Work / Projectos</td><td>data/projects_en.json · data/projects_pt.json</td></tr>
+      <tr><td>articles</td><td>Articles / Artigos</td><td>data/articles_en.json · data/articles_pt.json</td></tr>
+      <tr><td>skills</td><td>Skills / Competências</td><td>data/skills_en.json · data/skills_pt.json</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn">
+    <div class="callout-label">Limitação actual</div>
+    O config.yml não inclui o campo <code>content</code> (array de blocos) na colecção articles. Artigos com conteúdo completo têm de ser editados directamente no JSON via editor de código.
+  </div>
+</div>
+
+<!-- 7. JAVASCRIPT -->
+<div class="section" id="js">
+  <div class="section-num">secção 07</div>
+  <h2>JavaScript — Arquitectura</h2>
+  <h3>js/main.js</h3>
+  <ul class="content-list">
+    <li>Detecção de língua via <code>document.documentElement.lang</code></li>
+    <li>i18n — objecto com strings EN/PT, função <code>t(key)</code></li>
+    <li>Carregamento de artigos — fetch JSON → ordenar (featured first, id desc) → renderizar cards</li>
+    <li>Card de artigo em destaque — badge FEATURED, sem painel visual lateral</li>
+    <li>Carregamento de competências — fetch JSON → renderizar categorias</li>
+    <li>Navegação mobile — hamburger menu toggle</li>
+  </ul>
+  <h3>js/article-details.js</h3>
+  <ul class="content-list">
+    <li>Lê parâmetro <code>?article=N</code> do URL</li>
+    <li>Fetch do JSON correspondente à língua da página</li>
+    <li>Renderização de blocos via switch em <code>block.type</code> — suporta: heading1/2/3, paragraph, authors, keywords, formula, code, caption, list, table, references, <strong>image (★ novo 31 Mai)</strong>, <strong>image-row (★ novo 31 Mai)</strong></li>
+    <li><code>image</code> — imagem única com legenda opcional, border-radius + box-shadow</li>
+    <li><code>image-row</code> — duas imagens lado a lado (flex), responsivo em mobile</li>
+    <li>Layout: coluna centrada max-width 820px, sem sidebar</li>
+    <li>Artigos relacionados no rodapé em grid horizontal</li>
+  </ul>
+  <h3>js/cookie-consent.js</h3>
+  <ul class="content-list">
+    <li>Banner GDPR — aparece na primeira visita</li>
+    <li>Preferências em <code>localStorage</code></li>
+    <li>GA4 (G-THSWRD90CK) só carrega após consentimento explícito</li>
+    <li>Link "repor preferências" via atributo <code>data-cookie-settings</code></li>
+  </ul>
+</div>
+
+<!-- 8. CSS -->
+<div class="section" id="css">
+  <div class="section-num">secção 08</div>
+  <h2>CSS — Organização</h2>
+  <p>Um único ficheiro <code>style.css</code> (~3800 linhas). CSS custom properties em <code>:root</code>. Sem pré-processador.</p>
+  <div class="callout">
+    <div class="callout-label">Nota de manutenção</div>
+    As páginas Work/Trabalho usam classes próprias (<code>.work-section</code>, <code>.work-block</code>, <code>.td-card</code>, <code>.work-grid</code>) definidas em <code>&lt;style&gt;</code> inline na página — não no style.css global. A regra <code>.about-section</code> foi compactada em 31 Mai 2026: <code>margin-bottom</code> reduzido de <code>3rem</code> para <code>1.5rem</code>; adicionadas regras específicas para <code>.about-main .about-section</code> (padding-bottom: 0) e parágrafos (margin-bottom: 0.85rem) para eliminar gaps excessivos entre secções do About.
+  </div>
+</div>
+
+<!-- 9. SEO -->
+<div class="section" id="seo">
+  <div class="section-num">secção 09</div>
+  <h2>SEO — Search Engine Optimization</h2>
+  <p>Implementado em 29 de Maio de 2026. Todas as páginas EN e PT têm o conjunto completo de meta tags.</p>
+  <h3>Tags implementadas em cada página</h3>
+  <ul class="content-list">
+    <li><code>&lt;title&gt;</code> — optimizado com palavras-chave relevantes (PostGIS, Django, GIS, Portugal)</li>
+    <li><code>&lt;meta name="description"&gt;</code> — descrição única por página, 150–160 caracteres</li>
+    <li><code>&lt;meta name="author"&gt;</code> — Pedro Pestana</li>
+    <li><code>&lt;meta name="robots"&gt;</code> — index, follow</li>
+    <li><code>&lt;meta property="og:title"&gt;</code> — título Open Graph</li>
+    <li><code>&lt;meta property="og:description"&gt;</code> — descrição Open Graph</li>
+    <li><code>&lt;meta property="og:type"&gt;</code> — website</li>
+    <li><code>&lt;meta property="og:url"&gt;</code> — URL canónico da página</li>
+    <li><code>&lt;meta property="og:image"&gt;</code> — /assets/profile.jpg</li>
+    <li><code>&lt;meta property="og:locale"&gt;</code> — en_GB ou pt_PT conforme a versão</li>
+    <li><code>&lt;meta property="og:site_name"&gt;</code> — Pedro Pestana · TerraDigital</li>
+    <li><code>&lt;link rel="alternate" hreflang&gt;</code> — EN/PT em todas as páginas</li>
+    <li><code>&lt;link rel="canonical"&gt;</code> — URL canónico</li>
+  </ul>
+  <h3>sitemap.xml</h3>
+  <ul class="content-list">
+    <li>24 URLs — 8 EN + 8 PT + 8 artigos publicados (EN+PT · ids 1, 3, 4, 5)</li>
+    <li>Prioridades: homepage 1.0, about/work/articles 0.9, skills/contact/cv 0.7–0.8, privacy 0.3</li>
+    <li>Frequências: homepage/articles weekly, restantes monthly ou yearly</li>
+    <li>Artigo id:2 (in-preparation) excluído intencionalmente</li>
+  </ul>
+  <h3>robots.txt</h3>
+  <ul class="content-list">
+    <li><code>User-agent: *</code> · <code>Allow: /</code></li>
+    <li>Referência ao sitemap: <code>Sitemap: https://www.pedropestana.com/sitemap.xml</code></li>
+  </ul>
+  <div class="callout warn">
+    <div class="callout-label">Passo seguinte recomendado</div>
+    Submeter o sitemap.xml no Google Search Console em search.google.com/search-console para acelerar a indexação. Requer verificação de propriedade do domínio (via DNS TXT record no Namecheap ou via ficheiro HTML na raiz do repo).
+  </div>
+</div>
+
+<!-- 10. HOSTING -->
+<div class="section" id="hosting">
+  <div class="section-num">secção 10</div>
+  <h2>Hosting e Deployment</h2>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-layer">Hosting</div>
+      <div class="stack-tech">GitHub Pages</div>
+      <div class="stack-why">Gratuito · SSL automático · Deploy via git push · CDN global</div>
+      <div class="stack-status ok">✓ Em produção</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Domínio</div>
+      <div class="stack-tech">Namecheap</div>
+      <div class="stack-why">CNAME www → ppestana.github.io · A records para GitHub Pages IPs</div>
+      <div class="stack-status ok">✓ Activo</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">SSL</div>
+      <div class="stack-tech">Let's Encrypt (via GitHub)</div>
+      <div class="stack-why">Provisionado automaticamente pelo GitHub Pages</div>
+      <div class="stack-status ok">✓ Activo</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">CMS Auth</div>
+      <div class="stack-tech">Cloudflare Workers</div>
+      <div class="stack-why">OAuth proxy para Sveltia CMS</div>
+      <div class="stack-status ok">✓ Activo</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Analytics</div>
+      <div class="stack-tech">Google Analytics 4</div>
+      <div class="stack-why">ID: G-THSWRD90CK · GDPR-compliant via cookie consent</div>
+      <div class="stack-status ok">✓ Configurado 29 Mai</div>
+    </div>
+    <div class="stack-item">
+      <div class="stack-layer">Indexação</div>
+      <div class="stack-tech">Google Search Console</div>
+      <div class="stack-why">Submissão de sitemap.xml recomendada — ainda não feita</div>
+      <div class="stack-status pending">⏳ Pendente</div>
+    </div>
+  </div>
+  <h3>Fluxo de deployment</h3>
+  <ul class="content-list">
+    <li>Editar ficheiros localmente em <code>~/Documents/GitHub/gitHub.io/</code></li>
+    <li><code>git add · git commit · git push</code> → GitHub Pages redeploy em 1–3 minutos</li>
+    <li>Sem CI/CD, sem GitHub Actions, sem build step</li>
+    <li>Edição via CMS: login em <code>/admin/</code> → editar → Save → commit automático via API GitHub</li>
+  </ul>
+</div>
+
+<!-- 11. CONTEÚDO -->
+<div class="section" id="conteudo">
+  <div class="section-num">secção 11</div>
+  <h2>Conteúdo Actual</h2>
+  <h3>Narrativa principal (About)</h3>
+  <p>Reescrita em 28 de Maio de 2026. Arco: 1982 Portugal (COBOL/IMS/DB2) → Austrália 1987 (Swinburne GradDip + RMIT MBA) → regresso Portugal 1994 → viragem para GIS motivada pela leitura científica sobre demografia/alimentos/água/desertificação/florestas. Filosofia: open-source always, delivery before architecture, documented and transferable, minimum viable infrastructure.</p>
+  <p><strong>Actualização 31 Mai 2026:</strong> sidebar "Active Projects" expandida com NaturalMed Clinic Manager, CS-THB Investigation e SAEIF (5 projectos no total); link para terradigital.net como referência de documentação completa. Nova secção "Working with AI / Trabalho com IA" adicionada no about-main antes da Professional Philosophy — descreve o uso de Claude (Anthropic) como parceiro técnico de execução.</p>
+  <h3>Página Work/Trabalho</h3>
+  <p>Criada em 28 de Maio de 2026. 6 áreas de trabalho (WebGIS, Spatial Data Engineering, Business Apps, Statistical Models, Static Sites, Infrastructure), secção "How I Work" com 4 princípios, sidebar com stack e projectos activos, link destacado para terradigital.net.</p>
+  <h3>Artigos publicados</h3>
+  <ul class="content-list">
+    <li><strong>id:1</strong> — Statistical Detection of Bias in Professional Sports Refereeing · paper académico · EN+PT · featured</li>
+    <li><strong>id:2</strong> — Open-Source GIS Architecture for Municipal Land Management · em preparação · EN+PT</li>
+    <li><strong>id:3</strong> — EconoStats Portugal: From Zero to Production in Two Weeks · artigo técnico · EN+PT · featured · publicado 28 Mai 2026</li>
+    <li><strong>id:4</strong> — NaturalMed Wellness: Building a Static Site for a Domain I Didn't Know · artigo técnico · EN+PT · publicado 29 Mai 2026</li>
+    <li><strong>id:5</strong> — NaturalMed Clinic Manager: Building a Clinical System for a Domain You've Never Worked In · artigo técnico · EN+PT · publicado 29 Mai 2026 · <strong>★ actualizado 31 Mai: 3 écrans da aplicação (dashboard, calendário, Ganzhi) inseridos com blocos image + image-row</strong></li>
+  </ul>
+</div>
+
+<!-- 12. ROADMAP -->
+<div class="section" id="roadmap">
+  <div class="section-num">secção 12</div>
+  <h2>Roadmap</h2>
+  <div class="roadmap">
+    <div class="phase">
+      <div class="phase-num done">✓</div>
+      <div class="phase-content">
+        <div class="phase-title">Fase 1 — Fundação bilingue</div>
+        <div class="phase-desc">Estrutura EN/PT · nav · footer · language switcher · cookie consent · skills · artigos · contact · privacy · CV</div>
+      </div>
+      <div class="phase-badge badge-done">✓ CONCLUÍDA</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num done">✓</div>
+      <div class="phase-content">
+        <div class="phase-title">Fase 2 — Conteúdo e identidade (28 Mai 2026)</div>
+        <div class="phase-desc">Página Work/Trabalho · About reescrito · Artigo EconoStats · Remoção de Featured Projects · Sveltia CMS actualizado · Ordenação de artigos corrigida · CV PT criado</div>
+      </div>
+      <div class="phase-badge badge-done">✓ CONCLUÍDA</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num done">✓</div>
+      <div class="phase-content">
+        <div class="phase-title">Fase 3 — SEO e descoberta (29 Mai 2026)</div>
+        <div class="phase-desc">Meta descriptions · Open Graph · sitemap.xml · robots.txt · GA4 G-THSWRD90CK configurado em 20 ficheiros</div>
+      </div>
+      <div class="phase-badge badge-done">✓ CONCLUÍDA</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num done">✓</div>
+      <div class="phase-content">
+        <div class="phase-title">Fase 4 — Artigos técnicos e renderer de imagens (31 Mai 2026)</div>
+        <div class="phase-desc">
+          · Suporte a imagens no renderer de artigos — tipos <code>image</code> e <code>image-row</code> adicionados ao article-details.js EN+PT<br>
+          · Artigo 5 (NaturalMed Clinic Manager) actualizado com 3 écrans: dashboard, calendário, ficha Ganzhi<br>
+          · About EN+PT: 5 projectos na sidebar (+ NaturalMed, CS-THB, SAEIF), link terradigital.net, secção "Working with AI"<br>
+          · CSS: espaçamento entre secções About compactado (commits 61898a8 + 061a7d0)<br>
+          · Artigo SAEIF — pendente (sistema ainda em desenvolvimento activo)
+        </div>
+      </div>
+      <div class="phase-badge badge-done">✓ CONCLUÍDA (parcial)</div>
+    </div>
+    <div class="phase">
+      <div class="phase-num">5</div>
+      <div class="phase-content">
+        <div class="phase-title">Fase 5 — Integração e limpeza</div>
+        <div class="phase-desc">
+          · Card EconoStats na página Work com link para econostats.terradigital.net<br>
+          · Remoção das páginas legado da raiz (about.html, skills.html, etc.)<br>
+          · Remoção de /en/projects.html e /pt/projectos.html (ou redirect 301)<br>
+          · Remoção dos ficheiros JSON legado (articles.json, projects.json)<br>
+          · Remoção de /en/portfolio_project_suggestions.html
+        </div>
+      </div>
+      <div class="phase-badge badge-pending">⏳ PENDENTE</div>
+    </div>
+  </div>
+</div>
+
+<!-- 13. RISCOS -->
+<div class="section" id="riscos">
+  <div class="section-num">secção 13</div>
+  <h2>Riscos e Pendências</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Item</th><th>Impacto</th><th>Notas</th></tr></thead>
+    <tbody>
+      <tr><td>Artigo SAEIF</td><td>MÉDIO</td><td>Sistema SAEIF ainda em desenvolvimento activo — artigo aguarda estabilização do sistema antes de ser escrito</td></tr>
+      <tr><td>Ficheiros legado na raiz</td><td>BAIXO</td><td>about.html, skills.html, etc. na raiz — versões desactualizadas, fora do nav mas acessíveis por URL directo</td></tr>
+      <tr><td>projects.html / projectos.html</td><td>BAIXO</td><td>Fora do nav mas o link "View Details" nos projectos aponta para project-details.html que existe</td></tr>
+      <tr><td>JSON legado</td><td>BAIXO</td><td>articles.json e projects.json na raiz de /data/ — não usados mas presentes no repo</td></tr>
+      <tr><td>Sveltia CMS — campo content</td><td>BAIXO</td><td>Artigos com conteúdo completo não editáveis via CMS — requerem edição directa do JSON</td></tr>
+      <tr><td>Clone local desactualizado</td><td>BAIXO</td><td>O clone em ~/pedropestana-site foi criado em 31 Mai 2026 e está actualizado. Para trabalho futuro: <code>cd ~/pedropestana-site &amp;&amp; git pull</code> antes de editar.</td></tr>
+      <tr><td>portfolio_project_suggestions.html</td><td>BAIXO</td><td>Ficheiro legado em /en/ sem equivalente PT, fora do nav — candidato a remoção na Fase 5</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+</div><!-- /content -->
+
+<div class="doc-footer">
+  <div>TerraDigital · Torres Vedras, Portugal · 31 Maio 2026 · v2.3</div>
+  <div>github.com/ppestana/github.io · commit 061a7d0 · www.pedropestana.com</div>
+</div>
+</main>
+
+<script>
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('nav a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+  });
+}, { rootMargin:'-25% 0px -65% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
