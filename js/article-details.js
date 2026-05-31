@@ -139,6 +139,21 @@ function renderBlock(block) {
                 `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`
             ).join('');
             return `<div class="article-table-wrap"><table class="article-table"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+        case 'image':
+            const imgCaption = block.caption ? `<p class="article-caption">${block.caption}</p>` : '';
+            const imgAlt = block.alt || '';
+            return `<figure class="article-figure">
+                <img src="${block.src}" alt="${imgAlt}" class="article-image" loading="lazy">
+                ${imgCaption}
+            </figure>`;
+        case 'image-row':
+            const rowCaptions = (block.images || []).map(img =>
+                `<figure class="article-figure-row-item">
+                    <img src="${img.src}" alt="${img.alt || ''}" class="article-image" loading="lazy">
+                    ${img.caption ? `<p class="article-caption">${img.caption}</p>` : ''}
+                </figure>`
+            ).join('');
+            return `<div class="article-figure-row">${rowCaptions}</div>`;
         case 'references':
             return `<ol class="article-references">${(block.items || []).map(i => `<li>${i}</li>`).join('')}</ol>`;
         default:
@@ -267,6 +282,33 @@ function injectArticleStyles() {
         }
         .article-references li {
             margin-bottom: 0.5rem;
+        }
+        .article-figure {
+            margin: 1.5rem 0 0.5rem;
+            text-align: center;
+        }
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color, #e5e7eb);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .article-figure-row {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+            flex-wrap: wrap;
+        }
+        .article-figure-row-item {
+            flex: 1;
+            min-width: 240px;
+            text-align: center;
+        }
+        @media (max-width: 640px) {
+            .article-figure-row {
+                flex-direction: column;
+            }
         }
     `;
     document.head.appendChild(style);

@@ -957,6 +957,27 @@
           ]
         },
         {
+          "type": "image",
+          "src": "/assets/projects/clinic/clinic-01-dashboard.png",
+          "alt": "NaturalMed Clinic Manager — Dashboard",
+          "caption": "Figura 1 — O dashboard operacional: consultas agendadas e realizadas, novos pacientes, receita do dia, tratamentos mensais, pacientes activos, taxa de cancelamento, receita média por consulta, resumo financeiro e alertas de stock — num único ecrã."
+        },
+        {
+          "type": "image-row",
+          "images": [
+            {
+              "src": "/assets/projects/clinic/clinic-02-calendar.png",
+              "alt": "NaturalMed Clinic Manager — Calendário de consultas",
+              "caption": "Figura 2 — Calendário semanal de consultas com estados a cores: Agendada, Confirmada, Realizada, Cancelada, Não compareceu. Vistas por Mês/Semana/Dia."
+            },
+            {
+              "src": "/assets/projects/clinic/clinic-08-ganzhi.png",
+              "alt": "NaturalMed Clinic Manager — Ficha de paciente com calculadora Ganzhi",
+              "caption": "Figura 3 — Ficha de paciente com a calculadora Troncos e Ramos (干支 Ganzhi): data de nascimento convertida em Pilares do Ano, Mês e Dia com correspondências elementais e de sistemas de órgãos."
+            }
+          ]
+        },
+        {
           "type": "heading1",
           "text": "3. A Camada Clínica MTC"
         },

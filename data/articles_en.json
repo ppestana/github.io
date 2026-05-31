@@ -957,6 +957,27 @@
           ]
         },
         {
+          "type": "image",
+          "src": "/assets/projects/clinic/clinic-01-dashboard.png",
+          "alt": "NaturalMed Clinic Manager — Dashboard",
+          "caption": "Figure 1 — The operational dashboard: today's scheduled and attended appointments, new patients, revenue, monthly treatments, active patients, cancellation rate, average revenue per appointment, financial summary, and stock alerts — all on a single screen."
+        },
+        {
+          "type": "image-row",
+          "images": [
+            {
+              "src": "/assets/projects/clinic/clinic-02-calendar.png",
+              "alt": "NaturalMed Clinic Manager — Appointments calendar",
+              "caption": "Figure 2 — Weekly appointment calendar with colour-coded status: Scheduled, Confirmed, Attended, Cancelled, No-show. Month/Week/Day views."
+            },
+            {
+              "src": "/assets/projects/clinic/clinic-08-ganzhi.png",
+              "alt": "NaturalMed Clinic Manager — Patient record with Ganzhi calculator",
+              "caption": "Figure 3 — Patient record showing the Stems and Branches (干支 Ganzhi) calculator: birth date converted to Year, Month, and Day Pillars with elemental and organ system correspondences."
+            }
+          ]
+        },
+        {
           "type": "heading1",
           "text": "3. The TCM Clinical Layer"
         },
