@@ -1078,7 +1078,16 @@ section {
 }
 
 .about-section {
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Working with AI section — paragraphs mais compactos */
+.about-main .about-section:last-child {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-main .about-section p {
+    margin-bottom: 0.85rem;
 }
 
 /* CV Section in About Page (matches contact.html contact-method) */
