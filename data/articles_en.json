@@ -1088,6 +1088,233 @@
           "text": "The most important lesson from this project is that domain knowledge is not optional when building specialist software. The time invested in understanding TCM before writing code was not overhead — it was the design work that made everything else possible."
         }
       ]
+    },
+    {
+      "id": 6,
+      "title": "SAEIF: Building a Real-Time Forest Fire Alert System with Open Data",
+      "subtitle": "How NASA satellites, IPMA weather stations, EFFIS fire danger forecasts, and ESA land cover data combine into a live monitoring platform for the Iberian Peninsula",
+      "category": "GIS Engineering",
+      "date": "June 2026",
+      "readtime": "14 min read",
+      "tags": [
+        "FastAPI",
+        "PostGIS",
+        "Python",
+        "Leaflet.js",
+        "Docker",
+        "NASA FIRMS",
+        "Copernicus",
+        "IPMA",
+        "EFFIS",
+        "Open Data",
+        "GIS"
+      ],
+      "featured": true,
+      "status": "published",
+      "excerpt": "SAEIF — Sistema de Alerta e Encaminhamento Imediato em Incêndios Florestais — is a real-time forest fire monitoring platform for the Iberian Peninsula. It cross-references NASA FIRMS satellite thermal anomalies from three satellites with PROCIV civil protection reports, scores each detection on a 0–100 risk scale combining land cover, vegetation state, terrain slope, historical fire areas, EFFIS fire danger forecasts, and IPMA meteorological data — and notifies subscribers by email when alerts are generated in their area.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · June 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. The Problem"
+        },
+        {
+          "type": "paragraph",
+          "text": "Portugal has one of the highest wildfire incidence rates in Europe. The summers of 2017, 2022, 2023, and 2025 each left hundreds of thousands of hectares burned and, in several cases, significant loss of life. The institutional response — ANEPC, ICNF, AGIF, the municipal fire services — is well-organised, but the data that underpins it is fragmented across multiple systems with different update frequencies, formats, and access policies."
+        },
+        {
+          "type": "paragraph",
+          "text": "SAEIF was built to answer a specific question: is it possible to build a meaningful fire detection and risk assessment system using only open data sources, without institutional data-sharing agreements, deployed on a single low-cost VPS, that runs continuously and notifies people when something is happening near them?"
+        },
+        {
+          "type": "paragraph",
+          "text": "The answer is yes — with important caveats about what open data can and cannot provide."
+        },
+        {
+          "type": "heading1",
+          "text": "2. Data Sources"
+        },
+        {
+          "type": "paragraph",
+          "text": "SAEIF integrates six open data sources, each contributing a distinct layer of information."
+        },
+        {
+          "type": "paragraph",
+          "text": "NASA FIRMS (Fire Information for Resource Management System) provides near-real-time thermal anomaly detections from three VIIRS instruments: Suomi-NPP, NOAA-20, and NOAA-21. Each satellite passes over the Iberian Peninsula approximately twice per day, producing point detections with geographic coordinates, Fire Radiative Power (FRP), brightness temperature, and a confidence level (low/nominal/high). FIRMS data is publicly available via API with a free key. The three-satellite combination reduces the revisit interval and provides cross-validation."
+        },
+        {
+          "type": "paragraph",
+          "text": "PROCIV — the Portuguese civil protection operational platform — registers fire occurrences reported by fire brigades in near-real-time. This data is accessed via fogos.pt, which aggregates PROCIV feeds. A FIRMS detection cross-referenced with a PROCIV occurrence within a 40km radius provides strong evidence of an actual fire, as opposed to a false positive from industrial heat sources or sun glint."
+        },
+        {
+          "type": "paragraph",
+          "text": "IPMA (Instituto Português do Mar e da Atmosfera) provides meteorological observations from 222 automatic weather stations across Portugal. The relevant variables for fire risk are temperature, relative humidity, wind speed, wind direction, and the Fire Weather Index (FWI). The IPMA open API is updated hourly."
+        },
+        {
+          "type": "paragraph",
+          "text": "EFFIS (European Forest Fire Information System), operated by the Copernicus Emergency Management Service, provides the Fire Weather Index forecast for the Iberian Peninsula at district level for today, tomorrow, and the day after. Critically, EFFIS also provides a historical ranking — expressing today's FWI as a percentile relative to the past 40 years — and an anomaly expressed in standard deviations. A ranking of 96.7% means today's fire danger is higher than 96.7% of all days in the historical record for that location."
+        },
+        {
+          "type": "paragraph",
+          "text": "ESA WorldCover 2021 provides a 10-metre resolution global land cover classification. For SAEIF, the relevant classes are dense forest (highest structural fire risk), shrubland, grassland/cropland, and urban/water (zero risk). These classes are rasterised and resampled to 2km resolution for the full Iberian Peninsula."
+        },
+        {
+          "type": "paragraph",
+          "text": "The ICNF (Instituto da Conservação da Natureza e das Florestas) publishes annual fire perimeter polygons via an ArcGIS REST API. SAEIF ingested 5,018 polygons covering 2020–2025. Areas burned within the past two years carry significantly elevated risk due to the presence of fast-growing, highly flammable pioneer vegetation — a factor absent from static land cover maps."
+        },
+        {
+          "type": "heading1",
+          "text": "3. The Risk Score"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each FIRMS detection is assigned a risk score from 0 to 100. The score combines five components with fixed weights."
+        },
+        {
+          "type": "paragraph",
+          "text": "Structural risk (35% weight) is a composite of three spatial datasets. WorldCover land cover contributes 50% of the structural risk: dense forest scores 1.0, shrubland 0.85, mixed vegetation 0.20, grassland/cropland 0.15–0.30, urban and water 0.0. NDVI from Sentinel-2 (via Sentinel Hub Process API, Copernicus Data Space) contributes 30%: a low NDVI indicates dry or sparse vegetation, which burns more readily. Terrain slope from the Copernicus DEM GLO-30 contributes 20%: fires on steep slopes propagate three to four times faster than on flat terrain. Historical burned area adds a bonus: a detection within 5km of an area burned in the past two years receives +0.25 to structural risk, reflecting the presence of regenerating vegetation."
+        },
+        {
+          "type": "paragraph",
+          "text": "EFFIS FWI (30% weight) is normalised against the maximum plausible FWI of 80. This component captures the atmospheric conditions that drive fire behaviour — temperature, humidity, wind, and prior drought. The EFFIS historical ranking acts as a multiplier: when the ranking exceeds the 80th percentile, the score is amplified by 1.10."
+        },
+        {
+          "type": "paragraph",
+          "text": "Wind (20% weight) from the nearest IPMA station is converted to a non-linear factor: calm conditions (below 5 km/h) contribute 0.10; strong winds (above 50 km/h) contribute 1.0. Wind is the single most important variable for fire spread rate, though its contribution to ignition risk is lower."
+        },
+        {
+          "type": "paragraph",
+          "text": "PROCIV confirmation (15% weight) is binary: if a PROCIV occurrence exists within 40km of the detection, the component is 1.0; otherwise 0.0. This cross-validation step separates genuine fire events from industrial heat sources, which generate FIRMS detections but have no PROCIV counterpart."
+        },
+        {
+          "type": "paragraph",
+          "text": "Satellite confidence and Fire Radiative Power act as modifiers rather than independent components. A low-confidence detection reduces the score by 30%; a high-confidence detection adds 5%. FRP above 100 MW amplifies the score by 20%; FRP above 50 MW by 10%."
+        },
+        {
+          "type": "heading1",
+          "text": "4. Alert Categories"
+        },
+        {
+          "type": "paragraph",
+          "text": "Scores are translated into four alert categories: BAIXO (Low, 0–25), MÉDIO (Medium, 26–50), ALTO (High, 51–75), and CRÍTICO (Critical, 76–100). Only ALTO and CRÍTICO alerts trigger subscriber email notifications."
+        },
+        {
+          "type": "paragraph",
+          "text": "The category thresholds are intentionally conservative. At the current stage of system maturation, it is more useful to generate some false positives than to miss genuine high-risk events. The score methodology is documented and auditable — every component value is stored in the database alongside the composite score."
+        },
+        {
+          "type": "heading1",
+          "text": "5. Architecture"
+        },
+        {
+          "type": "paragraph",
+          "text": "The system runs on a Hetzner VPS (2 vCPU, 4GB RAM) at 88.198.95.103, deployed with Docker Compose. The stack is intentionally minimal."
+        },
+        {
+          "type": "list",
+          "items": [
+            "FastAPI — asynchronous Python API with WebSocket support for real-time dashboard updates",
+            "PostgreSQL 16 + PostGIS 3.4 — spatial database for alerts, hotspots, weather stations, subscribers, and burned area polygons",
+            "Nginx — reverse proxy and SSL termination",
+            "Leaflet.js — interactive map with layer controls for alerts, hotspots, PROCIV occurrences, structural risk, and EFFIS FWI",
+            "Resend — transactional email for subscriber confirmations and alert notifications"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The ingestion pipeline runs on a five-minute interval: fetch FIRMS detections for the past 24 hours, deduplicate against known hotspots within a 2km radius, fetch the nearest IPMA station data, retrieve EFFIS values for the detection coordinates, compute the structural risk from raster lookups, calculate the composite score, and insert new alerts into the database. Subscribers within the configured radius of ALTO and CRÍTICO alerts receive an email notification within the same cycle."
+        },
+        {
+          "type": "paragraph",
+          "text": "Three additional ingestion processes run on longer schedules. NDVI is refreshed from Sentinel-2 every ten days (on days 1, 11, and 21 of each month) via the Sentinel Hub Process API. The EFFIS FWI rasters for today, tomorrow, and the day after are refreshed every six hours. The Copernicus DEM slope raster is static and updated only when the source changes."
+        },
+        {
+          "type": "heading1",
+          "text": "6. The Propagation Model"
+        },
+        {
+          "type": "paragraph",
+          "text": "For ALTO and CRÍTICO alerts, SAEIF generates estimated fire propagation ellipses at 6 and 12 hours. The ellipse is oriented along the wind direction from the nearest IPMA station and scaled by wind speed. The spread rate uses a simplified empirical model: at calm conditions the fire expands uniformly; at higher wind speeds the downwind axis elongates significantly while the crosswind axis narrows."
+        },
+        {
+          "type": "paragraph",
+          "text": "This is not a full physical simulation — it does not account for terrain channelling, fuel moisture gradients, or spotting. It is a first-order spatial estimate intended to give users a sense of where the fire front might reach in the next half-day, not a precision forecast. The distinction matters and is documented in the system glossary."
+        },
+        {
+          "type": "heading1",
+          "text": "7. Subscriber Notifications and GDPR"
+        },
+        {
+          "type": "paragraph",
+          "text": "Users can subscribe to fire alerts for a geographic area of their choice. The subscription form presents a Leaflet map with a draggable pin — positioned initially at the browser's geolocation — and a circle showing the coverage radius (25, 50, 100, or 200 km). Users can also enter coordinates manually in decimal or degrees-minutes-seconds format, with bidirectional conversion between the two."
+        },
+        {
+          "type": "paragraph",
+          "text": "The subscription workflow follows GDPR double opt-in: the user submits the form, receives a confirmation email with a unique token, and must click the link to activate the subscription. Each notification email includes a cancellation link that immediately deactivates the subscription. No subscriber data is shared with third parties; the sole purpose of data collection is alert delivery."
+        },
+        {
+          "type": "paragraph",
+          "text": "Email delivery uses Resend, with the terradigital.net domain verified via DKIM and SPF. The sender address is alertas@terradigital.net."
+        },
+        {
+          "type": "heading1",
+          "text": "8. What Open Data Cannot Provide"
+        },
+        {
+          "type": "paragraph",
+          "text": "SAEIF is deliberately transparent about its limitations, because understanding what the system cannot do is as important as understanding what it can."
+        },
+        {
+          "type": "paragraph",
+          "text": "The FIRMS revisit interval is approximately 12 hours per satellite. A fire that ignites and is suppressed between passes will not be detected. The system is not a substitute for continuous aerial surveillance."
+        },
+        {
+          "type": "paragraph",
+          "text": "The score does not incorporate real-time operational data from the SMRIP (Sistema de Monitorização e Reporte de Incêndios em Portugal) — the active fire management information system operated by AGIF. This data requires an institutional data-sharing agreement. Without it, SAEIF has no information about suppression resources deployed, lines held, or tactical situation."
+        },
+        {
+          "type": "paragraph",
+          "text": "The NDVI data has a 10-day update frequency. During a prolonged drought, vegetation moisture can change significantly between updates — and moisture is one of the primary determinants of fire behaviour. The structural risk component captures this imperfectly."
+        },
+        {
+          "type": "paragraph",
+          "text": "Despite these limitations, SAEIF provides something that does not currently exist as a public tool in Portugal: a consolidated, scored, mapped view of fire detections that integrates satellite data, weather, vegetation state, terrain, historical burned areas, and institutional fire danger forecasts — updated every five minutes, free, and open."
+        },
+        {
+          "type": "heading1",
+          "text": "9. Artificial Intelligence Usage Statement"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tools used: Claude (Anthropic, 2025–2026), as a programming and documentation assistant.",
+            "Scope: generation of Python, SQL, HTML, and JavaScript code; technical documentation; structuring of this article.",
+            "Responsibility: system architecture, all technical decisions, data source selection, score methodology design, and validation of results are the sole responsibility of the author.",
+            "Data: all data sources are open and publicly accessible. No data was generated or modified by AI.",
+            "EU AI Act classification: minimal risk system. SAEIF presents open institutional data (NASA, IPMA, EFFIS, ICNF, ESA) with full source attribution. The risk score is a documented, deterministic algorithm with no machine learning components.",
+            "Testing and results: all functional testing, pipeline validation, and verification of results were carried out by the author."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "10. Conclusion"
+        },
+        {
+          "type": "paragraph",
+          "text": "SAEIF demonstrates that a technically meaningful fire monitoring system can be built entirely from open data sources, at near-zero infrastructure cost, without institutional partnerships. The system is live at saeif.terradigital.net and has been running continuously since May 2026."
+        },
+        {
+          "type": "paragraph",
+          "text": "The next step is an institutional collaboration with AGIF or ANEPC to incorporate operational suppression data — the missing piece that would transform SAEIF from a detection and risk assessment tool into a genuine decision support system. A technical article documenting the methodology in detail, suitable for submission to an academic or institutional audience, is in preparation."
+        },
+        {
+          "type": "paragraph",
+          "text": "The architecture document is available in the TerraDigital portfolio at saeif.terradigital.net."
+        }
+      ]
     }
   ]
 }
