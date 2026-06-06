@@ -1088,6 +1088,233 @@
           "text": "A lição mais importante deste projecto é que o conhecimento de domínio não é opcional quando se constrói software especializado. O tempo investido em compreender a MTC antes de escrever código não foi overhead — foi o trabalho de design que tornou tudo o resto possível."
         }
       ]
+    },
+    {
+      "id": 6,
+      "title": "SAEIF: Construir um Sistema de Alerta de Incêndios Florestais em Tempo Real com Dados Abertos",
+      "subtitle": "Como satélites NASA, estações meteorológicas IPMA, previsões de perigo EFFIS e dados de cobertura de solo ESA se combinam numa plataforma de monitorização em directo para a Península Ibérica",
+      "category": "Engenharia SIG",
+      "date": "Junho 2026",
+      "readtime": "14 min de leitura",
+      "tags": [
+        "FastAPI",
+        "PostGIS",
+        "Python",
+        "Leaflet.js",
+        "Docker",
+        "NASA FIRMS",
+        "Copernicus",
+        "IPMA",
+        "EFFIS",
+        "Dados Abertos",
+        "SIG"
+      ],
+      "featured": true,
+      "status": "published",
+      "excerpt": "O SAEIF — Sistema de Alerta e Encaminhamento Imediato em Incêndios Florestais — é uma plataforma de monitorização de incêndios florestais em tempo real para a Península Ibérica. Cruza anomalias térmicas NASA FIRMS de três satélites com ocorrências PROCIV da protecção civil, atribui a cada detecção um score de risco de 0 a 100 combinando cobertura de solo, estado da vegetação, declive, áreas ardidas históricas, previsões EFFIS e dados meteorológicos IPMA — e notifica subscritores por email quando são gerados alertas na sua área.",
+      "content": [
+        {
+          "type": "authors",
+          "text": "Pedro M. Pestana · TerraDigital · Torres Vedras, Portugal · Junho 2026"
+        },
+        {
+          "type": "heading1",
+          "text": "1. O Problema"
+        },
+        {
+          "type": "paragraph",
+          "text": "Portugal tem uma das taxas de incidência de fogos florestais mais elevadas da Europa. Os verões de 2017, 2022, 2023 e 2025 deixaram cada um centenas de milhares de hectares queimados e, em vários casos, perdas de vidas significativas. A resposta institucional — ANEPC, ICNF, AGIF, os corpos de bombeiros municipais — está bem organizada, mas os dados que a suportam estão fragmentados por múltiplos sistemas com frequências de actualização, formatos e políticas de acesso diferentes."
+        },
+        {
+          "type": "paragraph",
+          "text": "O SAEIF foi construído para responder a uma pergunta específica: é possível construir um sistema significativo de detecção e avaliação de risco de incêndio usando apenas fontes de dados abertas, sem acordos institucionais de partilha de dados, deployed num único VPS de baixo custo, que corra continuamente e notifique as pessoas quando algo está a acontecer perto delas?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A resposta é sim — com ressalvas importantes sobre o que os dados abertos podem e não podem fornecer."
+        },
+        {
+          "type": "heading1",
+          "text": "2. Fontes de Dados"
+        },
+        {
+          "type": "paragraph",
+          "text": "O SAEIF integra seis fontes de dados abertas, cada uma contribuindo com uma camada distinta de informação."
+        },
+        {
+          "type": "paragraph",
+          "text": "O NASA FIRMS (Fire Information for Resource Management System) fornece detecções de anomalias térmicas em tempo quase real a partir de três instrumentos VIIRS: Suomi-NPP, NOAA-20 e NOAA-21. Cada satélite passa sobre a Península Ibérica aproximadamente duas vezes por dia, produzindo detecções pontuais com coordenadas geográficas, Potência Radiativa do Fogo (FRP), temperatura de brilho e um nível de confiança (baixo/nominal/alto). Os dados FIRMS estão disponíveis publicamente via API com chave gratuita. A combinação de três satélites reduz o intervalo de revisita e fornece validação cruzada."
+        },
+        {
+          "type": "paragraph",
+          "text": "O PROCIV — a plataforma operacional da protecção civil portuguesa — regista ocorrências de incêndios reportadas pelos corpos de bombeiros em tempo quase real. Estes dados são acedidos via fogos.pt, que agrega os feeds PROCIV. Uma detecção FIRMS cruzada com uma ocorrência PROCIV num raio de 40km fornece evidência forte de um incêndio real, em oposição a um falso positivo de fontes de calor industrial ou reflexo solar."
+        },
+        {
+          "type": "paragraph",
+          "text": "O IPMA (Instituto Português do Mar e da Atmosfera) fornece observações meteorológicas de 222 estações automáticas em Portugal. As variáveis relevantes para o risco de incêndio são temperatura, humidade relativa, velocidade e direcção do vento e o Índice de Perigo de Incêndio (FWI). A API aberta do IPMA é actualizada de hora a hora."
+        },
+        {
+          "type": "paragraph",
+          "text": "O EFFIS (European Forest Fire Information System), operado pelo Serviço de Gestão de Emergências Copernicus, fornece a previsão do Índice de Perigo de Incêndio para a Península Ibérica ao nível de distrito para hoje, amanhã e depois de amanhã. Criticamente, o EFFIS fornece também um ranking histórico — que expressa o FWI de hoje como percentil relativamente aos últimos 40 anos — e uma anomalia expressa em desvios-padrão. Um ranking de 96,7% significa que o perigo de incêndio de hoje é superior a 96,7% de todos os dias do registo histórico para aquela localização."
+        },
+        {
+          "type": "paragraph",
+          "text": "O ESA WorldCover 2021 fornece uma classificação global de cobertura de solo com resolução de 10 metros. Para o SAEIF, as classes relevantes são floresta densa (maior risco estrutural de incêndio), arbustivo, pastagem/cultura e urbano/água (risco zero). Estas classes são rasterizadas e reamostradas para resolução de 2km para toda a Península Ibérica."
+        },
+        {
+          "type": "paragraph",
+          "text": "O ICNF (Instituto da Conservação da Natureza e das Florestas) publica polígonos de perímetros de incêndio anuais via API ArcGIS REST. O SAEIF ingeriu 5.018 polígonos cobrindo 2020–2025. As áreas ardidas nos últimos dois anos têm risco significativamente elevado devido à presença de vegetação pioneira de crescimento rápido e altamente inflamável — um factor ausente dos mapas estáticos de cobertura de solo."
+        },
+        {
+          "type": "heading1",
+          "text": "3. O Score de Risco"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cada detecção FIRMS recebe um score de risco de 0 a 100. O score combina cinco componentes com pesos fixos."
+        },
+        {
+          "type": "paragraph",
+          "text": "O risco estrutural (peso de 35%) é um composto de três conjuntos de dados espaciais. A cobertura de solo WorldCover contribui 50% do risco estrutural: floresta densa pontua 1,0, arbustivo 0,85, vegetação mista 0,20, pastagem/cultura 0,15–0,30, urbano e água 0,0. O NDVI do Sentinel-2 (via Sentinel Hub Process API, Copernicus Data Space) contribui 30%: um NDVI baixo indica vegetação seca ou esparsa, que arde com mais facilidade. O declive do terreno do Copernicus DEM GLO-30 contribui 20%: os fogos em encostas íngremes propagam-se três a quatro vezes mais rápido do que em terreno plano. As áreas ardidas históricas acrescentam um bónus: uma detecção a menos de 5km de uma área ardida nos últimos dois anos recebe +0,25 ao risco estrutural, reflectindo a presença de vegetação em regeneração."
+        },
+        {
+          "type": "paragraph",
+          "text": "O FWI EFFIS (peso de 30%) é normalizado relativamente ao FWI máximo plausível de 80. Esta componente captura as condições atmosféricas que determinam o comportamento do fogo — temperatura, humidade, vento e seca prévia. O ranking histórico EFFIS actua como multiplicador: quando o ranking excede o percentil 80, o score é amplificado por 1,10."
+        },
+        {
+          "type": "paragraph",
+          "text": "O vento (peso de 20%) da estação IPMA mais próxima é convertido num factor não linear: condições calmas (abaixo de 5 km/h) contribuem 0,10; ventos fortes (acima de 50 km/h) contribuem 1,0. O vento é a variável mais importante para a taxa de propagação do fogo, embora a sua contribuição para o risco de ignição seja menor."
+        },
+        {
+          "type": "paragraph",
+          "text": "A confirmação PROCIV (peso de 15%) é binária: se existe uma ocorrência PROCIV num raio de 40km da detecção, a componente é 1,0; caso contrário 0,0. Este passo de validação cruzada separa eventos de incêndio genuínos de fontes de calor industrial, que geram detecções FIRMS mas não têm contrapartida PROCIV."
+        },
+        {
+          "type": "paragraph",
+          "text": "A confiança do satélite e a Potência Radiativa do Fogo actuam como modificadores. Uma detecção de baixa confiança reduz o score em 30%; uma detecção de alta confiança acrescenta 5%. FRP acima de 100 MW amplifica o score em 20%; FRP acima de 50 MW em 10%."
+        },
+        {
+          "type": "heading1",
+          "text": "4. Categorias de Alerta"
+        },
+        {
+          "type": "paragraph",
+          "text": "Os scores são traduzidos em quatro categorias de alerta: BAIXO (0–25), MÉDIO (26–50), ALTO (51–75) e CRÍTICO (76–100). Apenas os alertas ALTO e CRÍTICO desencadeiam notificações por email aos subscritores."
+        },
+        {
+          "type": "paragraph",
+          "text": "Os limiares de categoria são intencionalmente conservadores. Na fase actual de maturação do sistema, é mais útil gerar alguns falsos positivos do que deixar passar eventos de alto risco genuínos. A metodologia do score é documentada e auditável — o valor de cada componente é armazenado na base de dados a par do score composto."
+        },
+        {
+          "type": "heading1",
+          "text": "5. Arquitectura"
+        },
+        {
+          "type": "paragraph",
+          "text": "O sistema corre num VPS Hetzner (2 vCPU, 4GB RAM) em 88.198.95.103, deployed com Docker Compose. A stack é intencionalmente mínima."
+        },
+        {
+          "type": "list",
+          "items": [
+            "FastAPI — API Python assíncrona com suporte WebSocket para actualizações do dashboard em tempo real",
+            "PostgreSQL 16 + PostGIS 3.4 — base de dados espacial para alertas, hotspots, estações meteorológicas, subscritores e polígonos de áreas ardidas",
+            "Nginx — reverse proxy e terminação SSL",
+            "Leaflet.js — mapa interactivo com controlos de camadas para alertas, hotspots, ocorrências PROCIV, risco estrutural e FWI EFFIS",
+            "Resend — email transaccional para confirmações de subscritores e notificações de alertas"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "O pipeline de ingestão corre num intervalo de cinco minutos: obter detecções FIRMS das últimas 24 horas, deduplicar contra hotspots conhecidos num raio de 2km, obter os dados da estação IPMA mais próxima, recuperar os valores EFFIS para as coordenadas da detecção, calcular o risco estrutural a partir de lookups de raster, calcular o score composto e inserir novos alertas na base de dados. Os subscritores no raio configurado para alertas ALTO e CRÍTICO recebem uma notificação por email no mesmo ciclo."
+        },
+        {
+          "type": "paragraph",
+          "text": "Três processos adicionais de ingestão correm em intervalos mais longos. O NDVI é refrescado a partir do Sentinel-2 de dez em dez dias (nos dias 1, 11 e 21 de cada mês) via Sentinel Hub Process API. Os rasters FWI EFFIS para hoje, amanhã e depois de amanhã são refrescados de seis em seis horas. O raster de declive do Copernicus DEM é estático e actualizado apenas quando a fonte muda."
+        },
+        {
+          "type": "heading1",
+          "text": "6. O Modelo de Propagação"
+        },
+        {
+          "type": "paragraph",
+          "text": "Para alertas ALTO e CRÍTICO, o SAEIF gera elipses estimadas de propagação do fogo às 6 e 12 horas. A elipse é orientada segundo a direcção do vento da estação IPMA mais próxima e escalada pela velocidade do vento. A taxa de propagação usa um modelo empírico simplificado: em condições calmas o fogo expande-se uniformemente; a velocidades de vento mais elevadas o eixo a favor do vento alonga-se significativamente enquanto o eixo perpendicular ao vento estreita."
+        },
+        {
+          "type": "paragraph",
+          "text": "Este não é um modelo físico completo — não tem em conta a canalização pelo terreno, os gradientes de humidade do combustível ou o spotting. É uma estimativa espacial de primeira ordem destinada a dar aos utilizadores uma noção de onde a frente de fogo poderá chegar no próximo meio dia, não uma previsão de precisão. A distinção é importante e está documentada no glossário do sistema."
+        },
+        {
+          "type": "heading1",
+          "text": "7. Notificações aos Subscritores e RGPD"
+        },
+        {
+          "type": "paragraph",
+          "text": "Os utilizadores podem subscrever alertas de incêndio para uma área geográfica à sua escolha. O formulário de subscrição apresenta um mapa Leaflet com um pin arrastável — posicionado inicialmente na geolocalização do browser — e um círculo que mostra o raio de cobertura (25, 50, 100 ou 200 km). Os utilizadores também podem introduzir coordenadas manualmente em formato decimal ou graus-minutos-segundos, com conversão bidirecional entre os dois."
+        },
+        {
+          "type": "paragraph",
+          "text": "O fluxo de subscrição segue o double opt-in RGPD: o utilizador submete o formulário, recebe um email de confirmação com um token único e tem de clicar no link para activar a subscrição. Cada email de notificação inclui um link de cancelamento que desactiva imediatamente a subscrição. Nenhum dado de subscritores é partilhado com terceiros; o único propósito da recolha de dados é a entrega de alertas."
+        },
+        {
+          "type": "paragraph",
+          "text": "A entrega de email usa o Resend, com o domínio terradigital.net verificado via DKIM e SPF. O endereço de remetente é alertas@terradigital.net."
+        },
+        {
+          "type": "heading1",
+          "text": "8. O Que os Dados Abertos Não Podem Fornecer"
+        },
+        {
+          "type": "paragraph",
+          "text": "O SAEIF é deliberadamente transparente sobre as suas limitações, porque compreender o que o sistema não pode fazer é tão importante como compreender o que pode."
+        },
+        {
+          "type": "paragraph",
+          "text": "O intervalo de revisita do FIRMS é de aproximadamente 12 horas por satélite. Um incêndio que ignite e é suprimido entre passagens não será detectado. O sistema não é substituto de vigilância aérea contínua."
+        },
+        {
+          "type": "paragraph",
+          "text": "O score não incorpora dados operacionais em tempo real do SMRIP (Sistema de Monitorização e Reporte de Incêndios em Portugal) — o sistema de informação de gestão de incêndios activos operado pela AGIF. Estes dados requerem um acordo institucional de partilha de dados. Sem ele, o SAEIF não tem informação sobre os meios de supressão mobilizados, as linhas mantidas ou a situação táctica."
+        },
+        {
+          "type": "paragraph",
+          "text": "Os dados NDVI têm uma frequência de actualização de 10 dias. Durante uma seca prolongada, a humidade da vegetação pode mudar significativamente entre actualizações — e a humidade é um dos principais determinantes do comportamento do fogo. A componente de risco estrutural captura isto de forma imperfeita."
+        },
+        {
+          "type": "paragraph",
+          "text": "Apesar destas limitações, o SAEIF fornece algo que não existe actualmente como ferramenta pública em Portugal: uma visão consolidada, pontuada e mapeada de detecções de incêndio que integra dados de satélite, meteorologia, estado da vegetação, terreno, áreas ardidas históricas e previsões institucionais de perigo de incêndio — actualizada de cinco em cinco minutos, gratuita e aberta."
+        },
+        {
+          "type": "heading1",
+          "text": "9. Declaração de Utilização de Inteligência Artificial"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Ferramentas utilizadas: Claude (Anthropic, 2025–2026), como assistente de programação e documentação.",
+            "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
+            "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas, a selecção de fontes de dados, a concepção da metodologia do score e a validação dos resultados são da exclusiva responsabilidade do autor.",
+            "Dados: todas as fontes de dados são abertas e publicamente acessíveis. Nenhum dado foi gerado ou modificado por IA.",
+            "Classificação EU AI Act: sistema de risco mínimo. O SAEIF apresenta dados institucionais abertos (NASA, IPMA, EFFIS, ICNF, ESA) com atribuição completa da fonte. O score de risco é um algoritmo determinista documentado, sem componentes de machine learning.",
+            "Testes e resultados: todos os testes funcionais, a validação dos pipelines e a verificação dos resultados foram realizados pelo autor."
+          ]
+        },
+        {
+          "type": "heading1",
+          "text": "10. Conclusão"
+        },
+        {
+          "type": "paragraph",
+          "text": "O SAEIF demonstra que um sistema de monitorização de incêndios tecnicamente significativo pode ser construído inteiramente a partir de fontes de dados abertas, com custo de infraestrutura próximo de zero, sem parcerias institucionais. O sistema está em produção em saeif.terradigital.net e tem corrido continuamente desde Maio de 2026."
+        },
+        {
+          "type": "paragraph",
+          "text": "O próximo passo é uma colaboração institucional com a AGIF ou a ANEPC para incorporar dados operacionais de supressão — a peça em falta que transformaria o SAEIF de uma ferramenta de detecção e avaliação de risco num sistema genuíno de apoio à decisão. Está em preparação um artigo técnico que documenta a metodologia em detalhe, adequado para submissão a uma audiência académica ou institucional."
+        },
+        {
+          "type": "paragraph",
+          "text": "O documento de arquitectura está disponível no portfólio TerraDigital em saeif.terradigital.net."
+        }
+      ]
     }
   ]
 }
