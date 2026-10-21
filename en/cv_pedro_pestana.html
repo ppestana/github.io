@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV — Pedro Pestana — Geospatial Systems Engineer · TerraDigital</title>
+    <title>CV — Pedro Pestana — Software Engineer · TerraDigital</title>
     <meta name="description" content="Full curriculum vitae of Pedro Pestana. 40+ years of software engineering. GIS specialist, Django/PostGIS developer, independent consultant.">
     <meta name="author" content="Pedro Pestana">
     <meta name="robots" content="index, follow">
@@ -360,6 +360,8 @@
   }
 
   .exp-item p strong { color: var(--color-primary); font-weight: 600; }
+  .exp-item p a, .highlight-box p a { color: var(--color-primary); text-decoration: none; }
+  .exp-item p a:hover, .highlight-box p a:hover { text-decoration: underline; }
 
   .exp-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
 
@@ -693,7 +695,7 @@
 
     <div class="header-name">
       <h1>Pedro <span>M</span> Pestana</h1>
-      <div class="tagline">Geospatial Systems Architect &nbsp;|&nbsp; Data Engineer &nbsp;|&nbsp; GIS Automation Specialist</div>
+      <div class="tagline">Software Engineer</div>
     </div>
 
     <div class="header-contact">
@@ -712,7 +714,7 @@
   <div class="timeline-wrap">
     <div class="timeline-years">
       <span>1983</span><span>1986</span><span>1990</span><span>1994</span>
-      <span>2000</span><span>2008</span><span>2013</span><span>2020</span><span>Hoje</span>
+      <span>2000</span><span>2008</span><span>2013</span><span>2020</span><span>Present</span>
     </div>
     <div class="timeline-rail">
       <div class="timeline-bar" style="left:0; width:100%; background: linear-gradient(to right, #e2e8f0, #bfdbfe, #2563eb); opacity:0.5;"></div>
@@ -720,7 +722,7 @@
       <div class="timeline-bar" style="left:62.5%; width:12.5%; background: var(--color-secondary);"></div>
       <!-- (6) Seasoft 2013–2020 → violet -->
       <div class="timeline-bar" style="left:75%; width:12.5%; background: var(--color-accent);"></div>
-      <!-- (7) TerraDigital 2020–Hoje → blue -->
+      <!-- (7) TerraDigital 2020–Present → blue -->
       <div class="timeline-bar" style="left:87.5%; width:12.5%; background: var(--color-primary);"></div>
     </div>
 
@@ -744,7 +746,7 @@
       <!-- (7) blue — igual à ficha de detalhe -->
       <div class="t-card" data-n="7">
         <h4>Founder &amp; GIS Architect</h4>
-        <div class="org">Terra Digital</div>
+        <div class="org">TerraDigital</div>
         <div class="period">2020 – Present</div>
       </div>
     </div>
@@ -780,10 +782,10 @@
     <div>
       <div class="exp-item">
         <div class="exp-header">
-          <div><span class="exp-num">7</span><span class="exp-period">2020 – Presente</span></div>
+          <div><span class="exp-num">7</span><span class="exp-period">2020 – Present</span></div>
         </div>
-        <h3>Founder &amp; Geospatial Systems Architect — Terra Digital</h3>
-        <p>Design and development of applied geospatial platforms. Anchor project: <strong>Portal Ecoturismo Portugal</strong> — A national WebGIS platform to support sustainable tourism, with asset mapping, integration of protected areas, and territorial analytics.</p>
+        <h3>Founder &amp; Geospatial Systems Architect — TerraDigital</h3>
+        <p>Design, development and operation of applied geospatial platforms and production software systems. Systems currently in production: <a href="https://saeif.terradigital.net" target="_blank" rel="noopener noreferrer"><strong>SAEIF</strong></a> — forest-fire alert and risk assessment for mainland Portugal; <a href="https://econostats.terradigital.net" target="_blank" rel="noopener noreferrer"><strong>EconoStats Portugal</strong></a> — economic statistics WebGIS; <a href="https://cal.terradigital.net" target="_blank" rel="noopener noreferrer"><strong>CAL</strong></a> — statistical analysis of referee bias in the Primeira Liga; and <strong>NaturalMed Clinic Manager</strong> — clinic management system.</p>
         <div class="exp-tags">
           <span class="tag">PostGIS</span><span class="tag">GeoServer</span><span class="tag">QGIS</span>
           <span class="tag">Python</span><span class="tag">Linux</span><span class="tag">Nginx</span>
@@ -817,8 +819,10 @@
       <div class="highlight-box">
         <h4>Highlight Projects — 2024–2026</h4>
         <p><strong>NaturalMed Clinic Manager</strong> — Full-featured clinic management system for a TCM practice in Wales: Django 5.1 · PostgreSQL · Redis · Celery · Docker · Nginx · Hetzner VPS · Let's Encrypt SSL · 2FA. Covers patient intake, SOAP treatment notes, herbal prescriptions, invoicing and stock control.</p>
-        <p style="margin-top:8px;"><strong>NaturalMed Website</strong> — Bilingual static site (EN/PT): HTML/CSS/JS vanilla · Sveltia CMS · GitHub Pages · Cloudflare Workers OAuth · GitHub Actions CI/CD · zero hosting cost.</p>
-        <p style="margin-top:8px;"><strong>Portal Ecoturismo Portugal</strong> — National WebGIS platform: PostgreSQL/PostGIS · GeoServer · Python spatial pipelines · GeoDjango · Leaflet.js.</p>
+        <p style="margin-top:8px;"><a href="https://saeif.terradigital.net" target="_blank" rel="noopener noreferrer"><strong>SAEIF</strong></a> — Real-time forest-fire alert and risk assessment system for mainland Portugal, integrating six open data sources on a continuous 250 m grid (EPSG:3763): FastAPI · PostgreSQL/PostGIS · GDAL · Docker Compose · Leaflet.js · Hetzner. Ignition index validated against 4,763 real wildfires (AUC 0.86).</p>
+        <p style="margin-top:8px;"><a href="https://econostats.terradigital.net" target="_blank" rel="noopener noreferrer"><strong>EconoStats Portugal</strong></a> — Economic statistics WebGIS combining national and Eurostat time series with company and regional maps: Django + GeoDjango · PostgreSQL/PostGIS · Leaflet.js · D3.js · Chart.js. Automated daily data pipelines.</p>
+        <p style="margin-top:8px;"><a href="https://cal.terradigital.net" target="_blank" rel="noopener noreferrer"><strong>CAL</strong></a> — Statistical detection of referee bias in Portuguese professional football: Python · PostgreSQL · Docker · Streamlit. Poisson models, Benjamini-Hochberg FDR correction and overdispersion testing.</p>
+        <p style="margin-top:8px;"><strong>NaturalMed Website</strong> — Bilingual static site (EN/PT): HTML/CSS/JS vanilla · Sveltia CMS · GitHub Pages · Cloudflare Workers OAuth · zero hosting cost.</p>
       </div>
 
       <!-- Languages (moved from right column) -->
@@ -862,7 +866,7 @@
               <div class="lang-dot fs"></div><div class="lang-dot"></div><div class="lang-dot"></div>
             </div>
           </div>
-          <span class="lang-level">Reasonable</span>
+          <span class="lang-level">Limited working proficiency</span>
         </div>
       </div>
     </div>
@@ -875,8 +879,6 @@
         <div class="legend-item"><div class="l-dot" style="background:var(--dot-advanced)"></div> Advanced</div>
         <div class="legend-item"><div class="l-dot" style="background:var(--dot-intermediate)"></div> Intermediate</div>
         <div class="legend-item"><div class="l-dot" style="background:var(--dot-learning)"></div> Learning</div>
-        <div class="legend-item"><div class="l-dot" style="background:var(--color-secondary)"></div> Secondary</div>
-        <div class="legend-item"><div class="l-dot" style="background:var(--color-accent)"></div> Accent</div>
       </div>
 
       <div class="skills-panel">
@@ -915,8 +917,8 @@
         </div>
         <div class="skill-row">
           <span class="skill-name">Google EE</span>
-          <div class="skill-bar-bg"><div class="skill-bar adv" style="width:72%"></div></div>
-          <span class="skill-level">Advanced</span>
+          <div class="skill-bar-bg"><div class="skill-bar int" style="width:60%"></div></div>
+          <span class="skill-level">Intermediate</span>
         </div>
         <div class="skill-row">
           <span class="skill-name">GeoPandas</span>
@@ -942,8 +944,8 @@
         </div>
         <div class="skill-row">
           <span class="skill-name">R / RStudio</span>
-          <div class="skill-bar-bg"><div class="skill-bar adv" style="width:70%"></div></div>
-          <span class="skill-level">Advanced</span>
+          <div class="skill-bar-bg"><div class="skill-bar int" style="width:60%"></div></div>
+          <span class="skill-level">Intermediate</span>
         </div>
 
         <div class="skill-group-label">Infrastructure &amp; Systems</div>
@@ -980,8 +982,8 @@
         </div>
         <div class="skill-row">
           <span class="skill-name">FastAPI</span>
-          <div class="skill-bar-bg"><div class="skill-bar int" style="width:60%"></div></div>
-          <span class="skill-level">Intermediate</span>
+          <div class="skill-bar-bg"><div class="skill-bar adv" style="width:75%"></div></div>
+          <span class="skill-level">Advanced</span>
         </div>
         <div class="skill-row">
           <span class="skill-name">Redis / Celery</span>
@@ -1010,7 +1012,7 @@
           <span class="skill-level">Intermediate</span>
         </div>
         <div class="skill-row">
-          <span class="skill-name">GitHub Actions</span>
+          <span class="skill-name">GitHub Pages</span>
           <div class="skill-bar-bg"><div class="skill-bar adv" style="width:75%"></div></div>
           <span class="skill-level">Advanced</span>
         </div>
@@ -1042,10 +1044,10 @@
       <div class="section-label" style="margin-top:20px; margin-bottom:12px;"><h2>— Academic Background —</h2></div>
       <div class="skills-panel">
         <div class="edu-item">
-         <!----<div class="edu-icon">🎓</div>-->
+         <!--<div class="edu-icon">🎓</div>-->
           <div>
             <h4>Master of Business in Information Technology</h4>
-            <div class="edu-inst">RMIT University</div>
+            <div class="edu-inst">RMIT University · 1992 – 1994</div>
             <div class="edu-thesis">Thesis: "The Management of End-User Computing"</div>
           </div>
         </div>
@@ -1053,7 +1055,7 @@
           <!--<div class="edu-icon">📐</div>-->
           <div>
             <h4>Graduate Diploma in Systems Management</h4>
-            <div class="edu-inst">Swinburne University of Technology</div>
+            <div class="edu-inst">Swinburne University of Technology · 1989 – 1991</div>
           </div>
         </div>
       </div>
@@ -1065,7 +1067,7 @@
   <!-- FOOTER -->
   <div class="footer">
     <span>© 2026 PEDRO M PESTANA — TORRES VEDRAS, PORTUGAL</span>
-    <span>40+ YEARS OF EXPERIENCE · GEOSPATIAL SYSTEMS ARCHITECT</span>
+    <span>40+ YEARS OF EXPERIENCE · SOFTWARE ENGINEERING</span>
     <span>www.pedropestana.com</span>
   </div>
 
