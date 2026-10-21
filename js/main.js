@@ -31,6 +31,7 @@ const i18n = {
         noProjects: 'No projects available.',
         noSkills: 'No skills data available.',
         noArticles: 'No articles available.',
+        loadError: 'Could not load this content. Please refresh the page.',
         fillAllFields: 'Please fill in all required fields.',
         thankYou: 'Thank you for your message! In a production environment, this would be sent to a backend API. For now, you can send it directly via email.'
     },
@@ -48,6 +49,7 @@ const i18n = {
         noProjects: 'Nenhum projecto disponível.',
         noSkills: 'Dados de competências não disponíveis.',
         noArticles: 'Nenhum artigo disponível.',
+        loadError: 'Não foi possível carregar este conteúdo. Por favor actualize a página.',
         fillAllFields: 'Por favor preencha todos os campos obrigatórios.',
         thankYou: 'Obrigado pela sua mensagem! Num ambiente de produção, seria enviada para um servidor. Por agora, pode enviá-la directamente por email.'
     }
@@ -74,284 +76,6 @@ const CONFIG = {
     },
     featuredProjectCount: 3,
     featuredArticleCount: 1
-};
-
-// Fallback data in case JSON files fail to load
-const FALLBACK_DATA = {
-    projects: [
-        {
-            "id": 1,
-            "title": "Urban Growth Analysis Platform",
-            "description": "A cloud-based platform for analyzing urban expansion patterns using satellite imagery and machine learning.",
-            "details": "Built with Google Earth Engine for processing, PostgreSQL/PostGIS for spatial data storage, and a React frontend for visualization.",
-            "category": "spatial-analysis",
-            "technologies": ["Python", "Google Earth Engine", "PostGIS", "React", "FastAPI"],
-            "year": "2023",
-            "featured": true,
-            "link": "#",
-            "github": "#"
-        },
-        {
-            "id": 2,
-            "title": "Geospatial ETL Pipeline Framework",
-            "description": "A modular framework for building scalable spatial data pipelines with automatic quality assurance.",
-            "details": "Designed to handle diverse geospatial data formats with automated schema detection, transformation, and validation.",
-            "category": "data-pipeline",
-            "technologies": ["Python", "Apache Airflow", "PostGIS", "Docker", "AWS S3"],
-            "year": "2023",
-            "featured": true,
-            "link": "#",
-            "github": "#"
-        },
-        {
-            "id": 3,
-            "title": "Agricultural Monitoring System",
-            "description": "Real-time crop health monitoring using satellite data and custom vegetation indices.",
-            "details": "Integrates Sentinel-2 imagery with ground sensor data to provide farmers with actionable insights.",
-            "category": "web-mapping",
-            "technologies": ["JavaScript", "Leaflet", "Python", "PostGIS", "STAC API"],
-            "year": "2022",
-            "featured": true,
-            "link": "#",
-            "github": "#"
-        },
-        {
-            "id": 4,
-            "title": "QGIS Automation Toolkit",
-            "description": "A collection of Python scripts and plugins for automating repetitive QGIS workflows.",
-            "category": "automation",
-            "technologies": ["Python", "PyQGIS", "QGIS", "PostgreSQL"],
-            "year": "2022",
-            "featured": false,
-            "link": "#",
-            "github": "#"
-        }
-    ],
-    skills: [
-        {
-            "id": "gis",
-            "name": "GIS & Geospatial",
-            "skills": [
-                {
-                    "name": "QGIS",
-                    "proficiency": "expert",
-                    "experience": "8+ years"
-                },
-                {
-                    "name": "Google Earth Engine",
-                    "proficiency": "expert",
-                    "experience": "5+ years"
-                },
-                {
-                    "name": "Remote Sensing",
-                    "proficiency": "advanced",
-                    "experience": "7+ years"
-                },
-                {
-                    "name": "Spatial Analysis",
-                    "proficiency": "expert",
-                    "experience": "8+ years"
-                },
-                {
-                    "name": "Cartography",
-                    "proficiency": "advanced",
-                    "experience": "6+ years"
-                }
-            ]
-        },
-        {
-            "id": "programming",
-            "name": "Programming Languages",
-            "skills": [
-                {
-                    "name": "Python",
-                    "proficiency": "expert",
-                    "experience": "8+ years"
-                },
-                {
-                    "name": "R",
-                    "proficiency": "advanced",
-                    "experience": "5+ years"
-                },
-                {
-                    "name": "JavaScript/TypeScript",
-                    "proficiency": "advanced",
-                    "experience": "6+ years"
-                },
-                {
-                    "name": "SQL",
-                    "proficiency": "expert",
-                    "experience": "8+ years"
-                },
-                {
-                    "name": "Bash/Shell",
-                    "proficiency": "intermediate",
-                    "experience": "4+ years"
-                }
-            ]
-        },
-        {
-            "id": "data",
-            "name": "Data & Databases",
-            "skills": [
-                {
-                    "name": "PostGIS",
-                    "proficiency": "expert",
-                    "experience": "7+ years"
-                },
-                {
-                    "name": "PostgreSQL",
-                    "proficiency": "expert",
-                    "experience": "8+ years"
-                },
-                {
-                    "name": "Spatial Databases",
-                    "proficiency": "expert",
-                    "experience": "7+ years"
-                },
-                {
-                    "name": "Data Modeling",
-                    "proficiency": "advanced",
-                    "experience": "6+ years"
-                },
-                {
-                    "name": "ETL/Data Pipelines",
-                    "proficiency": "advanced",
-                    "experience": "5+ years"
-                }
-            ]
-        },
-        {
-            "id": "systems",
-            "name": "Systems & Architecture",
-            "skills": [
-                {
-                    "name": "Cloud Architecture",
-                    "proficiency": "advanced",
-                    "experience": "5+ years"
-                },
-                {
-                    "name": "SaaS Design",
-                    "proficiency": "advanced",
-                    "experience": "4+ years"
-                },
-                {
-                    "name": "API Design",
-                    "proficiency": "advanced",
-                    "experience": "5+ years"
-                },
-                {
-                    "name": "Microservices",
-                    "proficiency": "intermediate",
-                    "experience": "3+ years"
-                },
-                {
-                    "name": "System Integration",
-                    "proficiency": "advanced",
-                    "experience": "5+ years"
-                }
-            ]
-        },
-        {
-            "id": "tools",
-            "name": "Tools & Platforms",
-            "skills": [
-                {
-                    "name": "Docker",
-                    "proficiency": "advanced",
-                    "experience": "4+ years"
-                },
-                {
-                    "name": "Git",
-                    "proficiency": "expert",
-                    "experience": "8+ years"
-                },
-                {
-                    "name": "AWS",
-                    "proficiency": "intermediate",
-                    "experience": "3+ years"
-                },
-                {
-                    "name": "Linux/Unix",
-                    "proficiency": "advanced",
-                    "experience": "6+ years"
-                },
-                {
-                    "name": "CI/CD",
-                    "proficiency": "intermediate",
-                    "experience": "3+ years"
-                }
-            ]
-        }
-    ],
-    articles: [
-        {
-            "id": 1,
-            "title": "Designing Scalable Geospatial Data Pipelines",
-            "subtitle": "An architectural overview of building robust ETL pipelines for spatial data",
-            "excerpt": "An architectural overview of building robust ETL pipelines for spatial data, covering data ingestion, transformation, quality assurance, and deployment strategies for handling terabyte-scale geospatial datasets.",
-            "category": "spatial-data-engineering",
-            "date": "March 2024",
-            "readtime": "12 min read",
-            "tags": ["PostGIS", "Python", "Data Pipelines", "Cloud Architecture", "Spatial Analysis", "ETL"],
-            "featured": true
-        },
-        {
-            "id": 2,
-            "title": "Automating QGIS Workflows with Python",
-            "subtitle": "A practical guide to scripting repetitive GIS tasks in QGIS using PyQGIS",
-            "excerpt": "A practical guide to scripting repetitive GIS tasks in QGIS using PyQGIS, with examples of batch processing, custom plugin development, and integration with external data sources.",
-            "category": "gis-automation",
-            "date": "January 2024",
-            "readtime": "8 min read",
-            "tags": ["QGIS", "Python", "Automation", "PyQGIS"],
-            "featured": false
-        },
-        {
-            "id": 3,
-            "title": "Urban Growth Analysis with Google Earth Engine",
-            "subtitle": "Leveraging Landsat and Sentinel imagery to analyze urban expansion patterns over time",
-            "excerpt": "Leveraging Landsat and Sentinel imagery to analyze urban expansion patterns over time, with code examples for NDVI calculation, change detection, and visualization of results.",
-            "category": "remote-sensing",
-            "date": "November 2023",
-            "readtime": "10 min read",
-            "tags": ["Google Earth Engine", "JavaScript", "Remote Sensing", "Urban Analysis"],
-            "featured": false
-        },
-        {
-            "id": 4,
-            "title": "Advanced Spatial Queries in PostGIS",
-            "subtitle": "Exploring advanced PostGIS functionality for complex spatial analysis",
-            "excerpt": "Exploring advanced PostGIS functionality for complex spatial analysis, including nearest neighbor searches, network routing, spatial joins at scale, and performance optimization techniques.",
-            "category": "spatial-databases",
-            "date": "September 2023",
-            "readtime": "15 min read",
-            "tags": ["PostGIS", "PostgreSQL", "Spatial SQL", "Performance"],
-            "featured": false
-        },
-        {
-            "id": 5,
-            "title": "Building Interactive Geospatial Dashboards",
-            "subtitle": "Architectural patterns for creating performant web mapping applications with real-time data visualization",
-            "excerpt": "Architectural patterns for creating performant web mapping applications with real-time data visualization, focusing on Leaflet/Mapbox integration, data streaming, and responsive design.",
-            "category": "web-mapping",
-            "date": "July 2023",
-            "readtime": "9 min read",
-            "tags": ["JavaScript", "Leaflet", "Web GIS", "Data Visualization"],
-            "featured": false
-        },
-        {
-            "id": 6,
-            "title": "Real-time Spatial Data Streaming Architecture",
-            "subtitle": "Designing systems for processing and visualizing live geospatial data streams",
-            "excerpt": "Designing systems for processing and visualizing live geospatial data streams from IoT sensors, mobile devices, and satellite feeds with low latency requirements.",
-            "category": "spatial-data-engineering",
-            "date": "May 2023",
-            "readtime": "11 min read",
-            "tags": ["Kafka", "WebSockets", "Real-time", "IoT", "Stream Processing"],
-            "featured": false
-        }
-    ]
 };
 
 // DOM Ready function
@@ -491,11 +215,8 @@ async function loadFeaturedProjects() {
         // Check if we're running on file:// protocol
         if (window.location.protocol === 'file:') {
             console.log('Running on file:// protocol, using inline fallback data');
-            // Use fallback data
-            const featuredProjects = FALLBACK_DATA.projects
-                .filter(p => p.featured)
-                .slice(0, CONFIG.featuredProjectCount);
-            displayProjects(featuredProjects, container, false);
+            // Show an honest message instead of placeholder content
+            container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
             return;
         }
         
@@ -519,18 +240,15 @@ async function loadFeaturedProjects() {
         console.log('Featured projects:', featuredProjects.length);
         
         if (featuredProjects.length === 0) {
-            container.innerHTML = '<p class="no-data">No featured projects available.</p>';
+            container.innerHTML = `<p class="no-data">${t('noProjects')}</p>`;
             return;
         }
         
         displayProjects(featuredProjects, container, false);
     } catch (error) {
         console.error('Error loading featured projects:', error);
-        // Use fallback data
-        const featuredProjects = FALLBACK_DATA.projects
-            .filter(p => p.featured)
-            .slice(0, CONFIG.featuredProjectCount);
-        displayProjects(featuredProjects, container, false);
+        // Show an honest message instead of placeholder content
+        container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
     }
 }
 
@@ -548,8 +266,8 @@ async function loadProjects() {
         // Check if we're running on file:// protocol
         if (window.location.protocol === 'file:') {
             console.log('Running on file:// protocol, using inline fallback data');
-            // Use fallback data
-            displayProjects(FALLBACK_DATA.projects, container, true);
+            // Show an honest message instead of placeholder content
+            container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
             return;
         }
         
@@ -566,15 +284,15 @@ async function loadProjects() {
         console.log('Loaded projects:', projects.length);
         
         if (projects.length === 0) {
-            container.innerHTML = '<p class="no-data">No projects available.</p>';
+            container.innerHTML = `<p class="no-data">${t('noProjects')}</p>`;
             return;
         }
         
         displayProjects(projects, container, true);
     } catch (error) {
         console.error('Error loading projects:', error);
-        // Use fallback data
-        displayProjects(FALLBACK_DATA.projects, container, true);
+        // Show an honest message instead of placeholder content
+        container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
     }
 }
 
@@ -707,8 +425,8 @@ async function loadSkills() {
         // Check if we're running on file:// protocol
         if (window.location.protocol === 'file:') {
             console.log('Running on file:// protocol, using inline fallback data');
-            // Use fallback data
-            displaySkills(FALLBACK_DATA.skills, container);
+            // Show an honest message instead of placeholder content
+            container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
             return;
         }
         
@@ -722,7 +440,7 @@ async function loadSkills() {
         const skillsData = await response.json();
         
         if (!skillsData.categories || skillsData.categories.length === 0) {
-            container.innerHTML = '<p class="no-data">No skills data available.</p>';
+            container.innerHTML = `<p class="no-data">${t('noSkills')}</p>`;
             return;
         }
         
@@ -731,8 +449,8 @@ async function loadSkills() {
         
     } catch (error) {
         console.error('Error loading skills:', error);
-        // Use fallback data
-        displaySkills(FALLBACK_DATA.skills, container);
+        // Show an honest message instead of placeholder content
+        container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
     }
 }
 
@@ -858,8 +576,8 @@ async function loadArticles() {
         // Check if we're running on file:// protocol
         if (window.location.protocol === 'file:') {
             console.log('Running on file:// protocol, using inline fallback data');
-            // Use fallback data
-            displayArticles(FALLBACK_DATA.articles, container);
+            // Show an honest message instead of placeholder content
+            container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
             return;
         }
         
@@ -876,15 +594,15 @@ async function loadArticles() {
         console.log('Loaded articles:', articles.length);
         
         if (articles.length === 0) {
-            container.innerHTML = '<p class="no-data">No articles available.</p>';
+            container.innerHTML = `<p class="no-data">${t('noArticles')}</p>`;
             return;
         }
         
         displayArticles(articles, container);
     } catch (error) {
         console.error('Error loading articles:', error);
-        // Use fallback data
-        displayArticles(FALLBACK_DATA.articles, container);
+        // Show an honest message instead of placeholder content
+        container.innerHTML = `<p class="no-data">${t('loadError')}</p>`;
     }
 }
 
