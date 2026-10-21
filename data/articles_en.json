@@ -19,12 +19,12 @@
       "featured": true,
       "status": "published",
       "note": "Original paper written in Portuguese. This is the English translation.",
-      "excerpt": "Sports refereeing is a domain widely recognised as susceptible to cognitive and social biases, with direct impact on sporting outcomes and the economic values involved in professional football. This paper describes the theoretical foundations, computational implementation and empirical results of the CAL system, developed for the Portuguese Primeira Liga.",
+      "excerpt": "Sports refereeing is a domain widely recognised as susceptible to cognitive and social biases, with direct impact on sporting outcomes and the economic values involved in professional football. This paper describes the theoretical foundations, computational implementation and empirical results of the <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> system, developed for the Portuguese Primeira Liga.",
       "github": "https://github.com/ppestana",
       "content": [
         {
           "type": "authors",
-          "text": "Pedro M. Pestana · CAL — Criticar a Arbitragem Legalmente · Lisbon, Portugal · 2026"
+          "text": "Pedro M. Pestana · <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> — Criticar a Arbitragem Legalmente · Lisbon, Portugal · 2026"
         },
         {
           "type": "heading2",
@@ -32,7 +32,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Sports refereeing is a domain widely recognised as susceptible to cognitive and social biases, with direct impact on sporting outcomes and the economic values involved in professional football. This paper describes the theoretical foundations, computational implementation and empirical results of the CAL system (Criticar a Arbitragem Legalmente — Legally Critiquing Refereeing), developed for the Portuguese Primeira Liga. For each statistical concept, both the mathematical formulation and the corresponding Python implementation are presented. The system covers 2,673 matches across 9 seasons (2017/18–2025/26). Following three rounds of independent critical review, the following corrections were made: (1) the binomial Z-score variance formula [ΣPᵢ(1-Pᵢ) instead of exp·(1-exp/n)]; (2) multiple testing correction now applies Benjamini-Hochberg across all 510 p-values as a single global family. The formal overdispersion test (Cameron & Trivedi, 1990) confirms that variance is only 1.39% above the Poisson expectation — negligible in magnitude despite being statistically significant with n=4,816. After global FDR at 5%, 11 robust statistical deviation patterns were identified in fouls across 8 distinct referees; no yellow card pattern survived correction. The system operates at the level of a solid exploratory analytical tool, not a strong causal inference instrument."
+          "text": "Sports refereeing is a domain widely recognised as susceptible to cognitive and social biases, with direct impact on sporting outcomes and the economic values involved in professional football. This paper describes the theoretical foundations, computational implementation and empirical results of the <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> system (Criticar a Arbitragem Legalmente — Legally Critiquing Refereeing), developed for the Portuguese Primeira Liga. For each statistical concept, both the mathematical formulation and the corresponding Python implementation are presented. The system covers 2,673 matches across 9 seasons (2017/18–2025/26). Following three rounds of independent critical review, the following corrections were made: (1) the binomial Z-score variance formula [ΣPᵢ(1-Pᵢ) instead of exp·(1-exp/n)]; (2) multiple testing correction now applies Benjamini-Hochberg across all 510 p-values as a single global family. The formal overdispersion test (Cameron & Trivedi, 1990) confirms that variance is only 1.39% above the Poisson expectation — negligible in magnitude despite being statistically significant with n=4,816. After global FDR at 5%, 11 robust statistical deviation patterns were identified in fouls across 8 distinct referees; no yellow card pattern survived correction. The system operates at the level of a solid exploratory analytical tool, not a strong causal inference instrument."
         },
         {
           "type": "keywords",
@@ -52,7 +52,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The CAL system aims to address this gap with a rigorous, transparent and reproducible quantitative approach, applying statistical models to 2,673 matches across 9 seasons. This paper documents three rounds of independent critical review and the resulting methodological corrections, following the principle that transparency about corrected errors is a form of scientific rigour, not a weakness."
+          "text": "The <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> system aims to address this gap with a rigorous, transparent and reproducible quantitative approach, applying statistical models to 2,673 matches across 9 seasons. This paper documents three rounds of independent critical review and the resulting methodological corrections, following the principle that transparency about corrected errors is a form of scientific rigour, not a weakness."
         },
         {
           "type": "heading1",
@@ -80,7 +80,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The analytics revolution initiated with Moneyball (Lewis, 2003) reached football through metrics such as expected goals (xG). These metrics share with CAL the principle of comparing observed outcomes against those expected under a neutral model. For the Portuguese context, Leite (2013) found patterns consistent with referee bias, but without sufficient granularity for per-referee analysis."
+          "text": "The analytics revolution initiated with Moneyball (Lewis, 2003) reached football through metrics such as expected goals (xG). These metrics share with <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> the principle of comparing observed outcomes against those expected under a neutral model. For the Portuguese context, Leite (2013) found patterns consistent with referee bias, but without sufficient granularity for per-referee analysis."
         },
         {
           "type": "heading2",
@@ -88,7 +88,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Dixon and Robinson (1998) and Karlis and Ntzoufras (2003) proposed Poisson models for football, an approach that CAL adapts for expected fouls. Leave-one-season-out (LOSO) cross-validation is the recommended practice for temporal data (James et al., 2013). Multiple testing correction, frequently neglected in sports analytics, is mandatory when testing dozens of referees simultaneously (Benjamini & Hochberg, 1995). Gelman and Hill (2007) recommend mixed-effects models for hierarchical data such as that used in this analysis — a recognised limitation of the current system."
+          "text": "Dixon and Robinson (1998) and Karlis and Ntzoufras (2003) proposed Poisson models for football, an approach that <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> adapts for expected fouls. Leave-one-season-out (LOSO) cross-validation is the recommended practice for temporal data (James et al., 2013). Multiple testing correction, frequently neglected in sports analytics, is mandatory when testing dozens of referees simultaneously (Benjamini & Hochberg, 1995). Gelman and Hill (2007) recommend mixed-effects models for hierarchical data such as that used in this analysis — a recognised limitation of the current system."
         },
         {
           "type": "heading1",
@@ -229,7 +229,7 @@
         },
         {
           "type": "paragraph",
-          "text": "CAL segments referee decisions into three half-time scoreline contexts: HOME_WINNING, DRAW and HOME_LOSING. The PressureBiasIndex measures whether the referee treats teams differently depending on context:"
+          "text": "<a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> segments referee decisions into three half-time scoreline contexts: HOME_WINNING, DRAW and HOME_LOSING. The PressureBiasIndex measures whether the referee treats teams differently depending on context:"
         },
         {
           "type": "formula",
@@ -393,7 +393,7 @@
         },
         {
           "type": "paragraph",
-          "text": "CAL runs on Docker with 20 PostgreSQL tables and a Streamlit dashboard with seven analytical views. The execution pipeline is idempotent:"
+          "text": "<a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> runs on Docker with 20 PostgreSQL tables and a Streamlit dashboard with seven analytical views. The execution pipeline is idempotent:"
         },
         {
           "type": "code",
@@ -441,7 +441,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The CAL system is a solid exploratory analytical tool. It identifies statistical deviations consistent with bias — it does not prove causal bias. The absence of strong causal inference results from data and model specification limitations, not from flaws in the overall design. Transparency about these limitations is a form of scientific rigour."
+          "text": "The <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> system is a solid exploratory analytical tool. It identifies statistical deviations consistent with bias — it does not prove causal bias. The absence of strong causal inference results from data and model specification limitations, not from flaws in the overall design. Transparency about these limitations is a form of scientific rigour."
         },
         {
           "type": "heading2",
@@ -449,7 +449,7 @@
         },
         {
           "type": "paragraph",
-          "text": "CAL was designed as a public scrutiny tool, not an accusatory instrument. The terminology used (suspicious, anomaly) is technical, not moral. The results do not prove intent or corruption. Publishing per-referee analyses is comparable to analysing the performance of players or managers — an accepted practice in sports journalism, provided it is accompanied by adequate methodological contextualisation."
+          "text": "<a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> was designed as a public scrutiny tool, not an accusatory instrument. The terminology used (suspicious, anomaly) is technical, not moral. The results do not prove intent or corruption. Publishing per-referee analyses is comparable to analysing the performance of players or managers — an accepted practice in sports journalism, provided it is accompanied by adequate methodological contextualisation."
         },
         {
           "type": "heading1",
@@ -470,7 +470,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The CAL system represents a contribution to the quantitative analysis of refereeing in the Portuguese Primeira Liga. Following three rounds of critical review, version v0.9.1 corrects two identified methodological errors: the binomial variance formula and the application of FDR as a single global family. The formal overdispersion test confirms the adequacy of the Poisson model with negligible magnitude."
+          "text": "The <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> system represents a contribution to the quantitative analysis of refereeing in the Portuguese Primeira Liga. Following three rounds of critical review, version v0.9.1 corrects two identified methodological errors: the binomial variance formula and the application of FDR as a single global family. The formal overdispersion test confirms the adequacy of the Poisson model with negligible magnitude."
         },
         {
           "type": "paragraph",
@@ -545,7 +545,7 @@
       ],
       "featured": true,
       "status": "published",
-      "excerpt": "EconoStats Portugal went from an empty repository to a live Django application with 4,015 economic indicators, a PostGIS-backed GIS layer for industrial clusters, five automated data pipelines, and an AI chatbot — in under two weeks of active development. This article describes what was built, the technical decisions behind it, and why the combination of macroeconomic data with geographic context is rarer and more valuable than it first appears.",
+      "excerpt": "<a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> went from an empty repository to a live Django application with 4,015 economic indicators, a PostGIS-backed GIS layer for industrial clusters, five automated data pipelines, and an AI chatbot — in under two weeks of active development. This article describes what was built, the technical decisions behind it, and why the combination of macroeconomic data with geographic context is rarer and more valuable than it first appears.",
       "content": [
         {
           "type": "authors",
@@ -565,7 +565,7 @@
         },
         {
           "type": "paragraph",
-          "text": "That gap is what EconoStats Portugal was built to fill."
+          "text": "That gap is what <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> was built to fill."
         },
         {
           "type": "heading1",
@@ -573,7 +573,7 @@
         },
         {
           "type": "paragraph",
-          "text": "EconoStats Portugal went online on 9 May 2026. By the end of Phase 2 (24 May 2026), the system had 14 pages in production, 4,015 economic indicators in the database, 33 geocoded companies, five automated data pipelines, a D3.js choropleth for Portugal's NUTS3 regions, and an AI chatbot with page-level context. The full stack:"
+          "text": "<a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> went online on 9 May 2026. By the end of Phase 2 (24 May 2026), the system had 14 pages in production, 4,015 economic indicators in the database, 33 geocoded companies, five automated data pipelines, a D3.js choropleth for Portugal's NUTS3 regions, and an AI chatbot with page-level context. The full stack:"
         },
         {
           "type": "list",
@@ -619,7 +619,7 @@
         },
         {
           "type": "paragraph",
-          "text": "This is where EconoStats differs from every other Portuguese economic data site, and it is worth explaining the design choices carefully."
+          "text": "This is where <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> differs from every other Portuguese economic data site, and it is worth explaining the design choices carefully."
         },
         {
           "type": "paragraph",
@@ -659,11 +659,11 @@
         },
         {
           "type": "paragraph",
-          "text": "EconoStats sits at the intersection of these two traditions by design. The economic data is not decoration on a map, and the map is not decoration on a statistics dashboard. They are two views of the same underlying question: what is happening in the Portuguese productive economy, and where is it happening?"
+          "text": "<a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> sits at the intersection of these two traditions by design. The economic data is not decoration on a map, and the map is not decoration on a statistics dashboard. They are two views of the same underlying question: what is happening in the Portuguese productive economy, and where is it happening?"
         },
         {
           "type": "paragraph",
-          "text": "This intersection matters most for three types of analysis that become straightforward in EconoStats but are difficult or impossible with either a pure statistics portal or a pure GIS platform: understanding regional economic divergence (why is unemployment in the Algarve structurally different from unemployment in the Norte, given their different industrial compositions?), identifying geographic exposure to sector shocks (which municipalities depend heavily on subsectors showing negative indicators?), and contextualising company performance within its regional economic environment."
+          "text": "This intersection matters most for three types of analysis that become straightforward in <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> but are difficult or impossible with either a pure statistics portal or a pure GIS platform: understanding regional economic divergence (why is unemployment in the Algarve structurally different from unemployment in the Norte, given their different industrial compositions?), identifying geographic exposure to sector shocks (which municipalities depend heavily on subsectors showing negative indicators?), and contextualising company performance within its regional economic environment."
         },
         {
           "type": "heading1",
@@ -717,7 +717,7 @@
             "Scope: generation of Python, SQL, HTML, and JavaScript code; technical documentation; structuring of this article.",
             "Responsibility: system architecture, all technical decisions, and validation of outputs are the sole responsibility of the author.",
             "Data: no data was generated or modified by AI. All sources are public and verifiable (GEE, Eurostat, INE, Banco de Portugal).",
-            "EU AI Act classification: minimal risk system. EconoStats presents public institutional data with source attribution. The AI chatbot operates with verified structural knowledge and explicit uncertainty acknowledgement.",
+            "EU AI Act classification: minimal risk system. <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> presents public institutional data with source attribution. The AI chatbot operates with verified structural knowledge and explicit uncertainty acknowledgement.",
             "Testing and results: all functional testing, pipeline validation, and verification of results were carried out by the author."
           ]
         },
@@ -727,11 +727,11 @@
         },
         {
           "type": "paragraph",
-          "text": "EconoStats Portugal is not a finished product. It is a working foundation that demonstrates something specific: that the combination of macroeconomic time-series data with a geographically-aware application layer is both technically straightforward and analytically valuable — and that this combination is rare in the Portuguese information landscape not because it is difficult, but because the two traditions that produce these tools rarely overlap."
+          "text": "<a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> is not a finished product. It is a working foundation that demonstrates something specific: that the combination of macroeconomic time-series data with a geographically-aware application layer is both technically straightforward and analytically valuable — and that this combination is rare in the Portuguese information landscape not because it is difficult, but because the two traditions that produce these tools rarely overlap."
         },
         {
           "type": "paragraph",
-          "text": "The site is live at econostats.terradigital.net. The architecture document is available in the TerraDigital portfolio. Phase 3 is in progress."
+          "text": "The site is live at <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">econostats.terradigital.net</a>. The architecture document is available in the TerraDigital portfolio. Phase 3 is in progress."
         }
       ]
     },
@@ -884,7 +884,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The NaturalMed Wellness website demonstrates that a zero-cost, fully-featured bilingual site with CMS-managed content, automated build pipelines, newsletter generation, and dual-jurisdiction GDPR compliance is achievable with GitHub Pages, Cloudflare Workers, and a disciplined vanilla HTML stack. The most important investment was not in the technology but in understanding the domain well enough to make the right structural decisions before writing any code."
+          "text": "The <a href=\"https://www.naturalmed-wellness.com\" target=\"_blank\" rel=\"noopener noreferrer\">NaturalMed Wellness</a> website demonstrates that a zero-cost, fully-featured bilingual site with CMS-managed content, automated build pipelines, newsletter generation, and dual-jurisdiction GDPR compliance is achievable with GitHub Pages, Cloudflare Workers, and a disciplined vanilla HTML stack. The most important investment was not in the technology but in understanding the domain well enough to make the right structural decisions before writing any code."
         },
         {
           "type": "paragraph",
@@ -1111,7 +1111,7 @@
       ],
       "featured": true,
       "status": "published",
-      "excerpt": "SAEIF — Sistema de Alerta e Encaminhamento Imediato em Incêndios Florestais — is a real-time forest fire monitoring platform for the Iberian Peninsula. It cross-references NASA FIRMS satellite thermal anomalies from three satellites with PROCIV civil protection reports, scores each detection on a 0–100 risk scale combining land cover, vegetation state, terrain slope, historical fire areas, EFFIS fire danger forecasts, and IPMA meteorological data — and notifies subscribers by email when alerts are generated in their area.",
+      "excerpt": "<a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> — Sistema de Alerta e Encaminhamento Imediato em Incêndios Florestais — is a real-time forest fire monitoring platform for the Iberian Peninsula. It cross-references NASA FIRMS satellite thermal anomalies from three satellites with PROCIV civil protection reports, scores each detection on a 0–100 risk scale combining land cover, vegetation state, terrain slope, historical fire areas, EFFIS fire danger forecasts, and IPMA meteorological data — and notifies subscribers by email when alerts are generated in their area.",
       "content": [
         {
           "type": "authors",
@@ -1127,7 +1127,7 @@
         },
         {
           "type": "paragraph",
-          "text": "SAEIF was built to answer a specific question: is it possible to build a meaningful fire detection and risk assessment system using only open data sources, without institutional data-sharing agreements, deployed on a single low-cost VPS, that runs continuously and notifies people when something is happening near them?"
+          "text": "<a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> was built to answer a specific question: is it possible to build a meaningful fire detection and risk assessment system using only open data sources, without institutional data-sharing agreements, deployed on a single low-cost VPS, that runs continuously and notifies people when something is happening near them?"
         },
         {
           "type": "paragraph",
@@ -1139,7 +1139,7 @@
         },
         {
           "type": "paragraph",
-          "text": "SAEIF integrates six open data sources, each contributing a distinct layer of information."
+          "text": "<a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> integrates six open data sources, each contributing a distinct layer of information."
         },
         {
           "type": "paragraph",
@@ -1159,11 +1159,11 @@
         },
         {
           "type": "paragraph",
-          "text": "ESA WorldCover 2021 provides a 10-metre resolution global land cover classification. For SAEIF, the relevant classes are dense forest (highest structural fire risk), shrubland, grassland/cropland, and urban/water (zero risk). These classes are rasterised and resampled to 2km resolution for the full Iberian Peninsula."
+          "text": "ESA WorldCover 2021 provides a 10-metre resolution global land cover classification. For <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a>, the relevant classes are dense forest (highest structural fire risk), shrubland, grassland/cropland, and urban/water (zero risk). These classes are rasterised and resampled to 2km resolution for the full Iberian Peninsula."
         },
         {
           "type": "paragraph",
-          "text": "The ICNF (Instituto da Conservação da Natureza e das Florestas) publishes annual fire perimeter polygons via an ArcGIS REST API. SAEIF ingested 5,018 polygons covering 2020–2025. Areas burned within the past two years carry significantly elevated risk due to the presence of fast-growing, highly flammable pioneer vegetation — a factor absent from static land cover maps."
+          "text": "The ICNF (Instituto da Conservação da Natureza e das Florestas) publishes annual fire perimeter polygons via an ArcGIS REST API. <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> ingested 5,018 polygons covering 2020–2025. Areas burned within the past two years carry significantly elevated risk due to the presence of fast-growing, highly flammable pioneer vegetation — a factor absent from static land cover maps."
         },
         {
           "type": "heading1",
@@ -1237,7 +1237,7 @@
         },
         {
           "type": "paragraph",
-          "text": "For ALTO and CRÍTICO alerts, SAEIF generates estimated fire propagation ellipses at 6 and 12 hours. The ellipse is oriented along the wind direction from the nearest IPMA station and scaled by wind speed. The spread rate uses a simplified empirical model: at calm conditions the fire expands uniformly; at higher wind speeds the downwind axis elongates significantly while the crosswind axis narrows."
+          "text": "For ALTO and CRÍTICO alerts, <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> generates estimated fire propagation ellipses at 6 and 12 hours. The ellipse is oriented along the wind direction from the nearest IPMA station and scaled by wind speed. The spread rate uses a simplified empirical model: at calm conditions the fire expands uniformly; at higher wind speeds the downwind axis elongates significantly while the crosswind axis narrows."
         },
         {
           "type": "paragraph",
@@ -1265,7 +1265,7 @@
         },
         {
           "type": "paragraph",
-          "text": "SAEIF is deliberately transparent about its limitations, because understanding what the system cannot do is as important as understanding what it can."
+          "text": "<a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> is deliberately transparent about its limitations, because understanding what the system cannot do is as important as understanding what it can."
         },
         {
           "type": "paragraph",
@@ -1273,7 +1273,7 @@
         },
         {
           "type": "paragraph",
-          "text": "The score does not incorporate real-time operational data from the SMRIP (Sistema de Monitorização e Reporte de Incêndios em Portugal) — the active fire management information system operated by AGIF. This data requires an institutional data-sharing agreement. Without it, SAEIF has no information about suppression resources deployed, lines held, or tactical situation."
+          "text": "The score does not incorporate real-time operational data from the SMRIP (Sistema de Monitorização e Reporte de Incêndios em Portugal) — the active fire management information system operated by AGIF. This data requires an institutional data-sharing agreement. Without it, <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> has no information about suppression resources deployed, lines held, or tactical situation."
         },
         {
           "type": "paragraph",
@@ -1281,7 +1281,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Despite these limitations, SAEIF provides something that does not currently exist as a public tool in Portugal: a consolidated, scored, mapped view of fire detections that integrates satellite data, weather, vegetation state, terrain, historical burned areas, and institutional fire danger forecasts — updated every five minutes, free, and open."
+          "text": "Despite these limitations, <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> provides something that does not currently exist as a public tool in Portugal: a consolidated, scored, mapped view of fire detections that integrates satellite data, weather, vegetation state, terrain, historical burned areas, and institutional fire danger forecasts — updated every five minutes, free, and open."
         },
         {
           "type": "heading1",
@@ -1294,7 +1294,7 @@
             "Scope: generation of Python, SQL, HTML, and JavaScript code; technical documentation; structuring of this article.",
             "Responsibility: system architecture, all technical decisions, data source selection, score methodology design, and validation of results are the sole responsibility of the author.",
             "Data: all data sources are open and publicly accessible. No data was generated or modified by AI.",
-            "EU AI Act classification: minimal risk system. SAEIF presents open institutional data (NASA, IPMA, EFFIS, ICNF, ESA) with full source attribution. The risk score is a documented, deterministic algorithm with no machine learning components.",
+            "EU AI Act classification: minimal risk system. <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> presents open institutional data (NASA, IPMA, EFFIS, ICNF, ESA) with full source attribution. The risk score is a documented, deterministic algorithm with no machine learning components.",
             "Testing and results: all functional testing, pipeline validation, and verification of results were carried out by the author."
           ]
         },
@@ -1304,15 +1304,15 @@
         },
         {
           "type": "paragraph",
-          "text": "SAEIF demonstrates that a technically meaningful fire monitoring system can be built entirely from open data sources, at near-zero infrastructure cost, without institutional partnerships. The system is live at saeif.terradigital.net and has been running continuously since May 2026."
+          "text": "<a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> demonstrates that a technically meaningful fire monitoring system can be built entirely from open data sources, at near-zero infrastructure cost, without institutional partnerships. The system is live at <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">saeif.terradigital.net</a> and has been running continuously since May 2026."
         },
         {
           "type": "paragraph",
-          "text": "The next step is an institutional collaboration with AGIF or ANEPC to incorporate operational suppression data — the missing piece that would transform SAEIF from a detection and risk assessment tool into a genuine decision support system. A technical article documenting the methodology in detail, suitable for submission to an academic or institutional audience, is in preparation."
+          "text": "The next step is an institutional collaboration with AGIF or ANEPC to incorporate operational suppression data — the missing piece that would transform <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> from a detection and risk assessment tool into a genuine decision support system. A technical article documenting the methodology in detail, suitable for submission to an academic or institutional audience, is in preparation."
         },
         {
           "type": "paragraph",
-          "text": "The architecture document is available in the TerraDigital portfolio at saeif.terradigital.net."
+          "text": "The architecture document is available in the TerraDigital portfolio at <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">saeif.terradigital.net</a>."
         }
       ]
     }

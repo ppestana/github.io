@@ -19,12 +19,12 @@
       "featured": true,
       "status": "published",
       "note": "Paper original escrito em português. Tradução em inglês disponível.",
-      "excerpt": "A arbitragem desportiva é um domínio reconhecido como susceptível a vieses cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. Este paper descreve os fundamentos teóricos, implementação computacional e resultados empíricos do sistema CAL, desenvolvido para a Primeira Liga Portuguesa.",
+      "excerpt": "A arbitragem desportiva é um domínio reconhecido como susceptível a vieses cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. Este paper descreve os fundamentos teóricos, implementação computacional e resultados empíricos do sistema <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a>, desenvolvido para a Primeira Liga Portuguesa.",
       "github": "https://github.com/ppestana",
       "content": [
         {
           "type": "authors",
-          "text": "Pedro M. Pestana · CAL — Criticar a Arbitragem Legalmente · Lisboa, Portugal · 2026"
+          "text": "Pedro M. Pestana · <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> — Criticar a Arbitragem Legalmente · Lisboa, Portugal · 2026"
         },
         {
           "type": "heading2",
@@ -32,7 +32,7 @@
         },
         {
           "type": "paragraph",
-          "text": "A arbitragem desportiva é um domínio reconhecidamente susceptível a enviesamentos cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. O presente artigo descreve os fundamentos teóricos, a implementação computacional e os resultados empíricos do sistema CAL (Criticar a Arbitragem Legalmente), desenvolvido para a Primeira Liga Portuguesa. Para cada conceito estatístico são apresentadas a formulação matemática e a implementação Python correspondente. O sistema cobre 2673 jogos de 9 épocas (2017/18–2025/26). Após três rondas de revisão crítica independente, foram corrigidos: (1) a fórmula de variância do Z-score binomial [ΣPᵢ(1-Pᵢ) em vez de exp·(1-exp/n)]; (2) a correcção de múltiplos testes passou a aplicar Benjamini-Hochberg sobre todos os 510 p-values numa única família global. O teste formal de overdispersion (Cameron & Trivedi, 1990) confirma que a variância é apenas 1.39% acima do esperado pelo Poisson — magnitude negligenciável apesar de estatisticamente significativa com n=4816. Após FDR global a 5%, identificaram-se 11 padrões de desvio em faltas estatisticamente robustos em 8 árbitros distintos; nenhum padrão de cartões amarelos sobreviveu à correcção. O sistema está ao nível de ferramenta analítica exploratória sólida, não de instrumento de inferência causal forte."
+          "text": "A arbitragem desportiva é um domínio reconhecidamente susceptível a enviesamentos cognitivos e sociais, com impacto directo nos resultados desportivos e nos valores económicos envolvidos no futebol profissional. O presente artigo descreve os fundamentos teóricos, a implementação computacional e os resultados empíricos do sistema <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> (Criticar a Arbitragem Legalmente), desenvolvido para a Primeira Liga Portuguesa. Para cada conceito estatístico são apresentadas a formulação matemática e a implementação Python correspondente. O sistema cobre 2673 jogos de 9 épocas (2017/18–2025/26). Após três rondas de revisão crítica independente, foram corrigidos: (1) a fórmula de variância do Z-score binomial [ΣPᵢ(1-Pᵢ) em vez de exp·(1-exp/n)]; (2) a correcção de múltiplos testes passou a aplicar Benjamini-Hochberg sobre todos os 510 p-values numa única família global. O teste formal de overdispersion (Cameron & Trivedi, 1990) confirma que a variância é apenas 1.39% acima do esperado pelo Poisson — magnitude negligenciável apesar de estatisticamente significativa com n=4816. Após FDR global a 5%, identificaram-se 11 padrões de desvio em faltas estatisticamente robustos em 8 árbitros distintos; nenhum padrão de cartões amarelos sobreviveu à correcção. O sistema está ao nível de ferramenta analítica exploratória sólida, não de instrumento de inferência causal forte."
         },
         {
           "type": "keywords",
@@ -52,7 +52,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O sistema CAL propõe-se colmatar esta lacuna com uma abordagem quantitativa rigorosa, transparente e reprodutível, aplicando modelos estatísticos a 2673 jogos de 9 épocas. Este artigo documenta três rondas de revisão crítica independente e as correcções metodológicas dela resultantes, seguindo o princípio de que a transparência sobre erros corrigidos é uma forma de rigor científico, não uma fraqueza."
+          "text": "O sistema <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> propõe-se colmatar esta lacuna com uma abordagem quantitativa rigorosa, transparente e reprodutível, aplicando modelos estatísticos a 2673 jogos de 9 épocas. Este artigo documenta três rondas de revisão crítica independente e as correcções metodológicas dela resultantes, seguindo o princípio de que a transparência sobre erros corrigidos é uma forma de rigor científico, não uma fraqueza."
         },
         {
           "type": "heading1",
@@ -80,7 +80,7 @@
         },
         {
           "type": "paragraph",
-          "text": "A revolução do analytics iniciada com Moneyball (Lewis, 2003) chegou ao futebol com métricas como o expected goals (xG). Estas métricas partilham com o CAL o princípio de comparar observado com esperado segundo um modelo neutro. Para a realidade portuguesa, Leite (2013) encontrou padrões compatíveis com viés arbitral mas sem granularidade suficiente para análise por árbitro."
+          "text": "A revolução do analytics iniciada com Moneyball (Lewis, 2003) chegou ao futebol com métricas como o expected goals (xG). Estas métricas partilham com o <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> o princípio de comparar observado com esperado segundo um modelo neutro. Para a realidade portuguesa, Leite (2013) encontrou padrões compatíveis com viés arbitral mas sem granularidade suficiente para análise por árbitro."
         },
         {
           "type": "heading2",
@@ -88,7 +88,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Dixon e Robinson (1998) e Karlis e Ntzoufras (2003) propuseram modelos Poisson para futebol, abordagem que o CAL adapta para faltas esperadas. A validação cruzada LOSO é a prática recomendada para dados temporais (James et al., 2013). A correcção de múltiplos testes, frequentemente negligenciada em sports analytics, é obrigatória quando se testam dezenas de árbitros em simultâneo (Benjamini & Hochberg, 1995). Gelman e Hill (2007) recomendam modelos de efeitos mistos para dados hierárquicos como os desta análise — limitação reconhecida do sistema actual."
+          "text": "Dixon e Robinson (1998) e Karlis e Ntzoufras (2003) propuseram modelos Poisson para futebol, abordagem que o <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> adapta para faltas esperadas. A validação cruzada LOSO é a prática recomendada para dados temporais (James et al., 2013). A correcção de múltiplos testes, frequentemente negligenciada em sports analytics, é obrigatória quando se testam dezenas de árbitros em simultâneo (Benjamini & Hochberg, 1995). Gelman e Hill (2007) recomendam modelos de efeitos mistos para dados hierárquicos como os desta análise — limitação reconhecida do sistema actual."
         },
         {
           "type": "heading1",
@@ -229,7 +229,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O CAL segmenta as decisões do árbitro em três contextos de marcador ao intervalo: HOME_WINNING, DRAW e HOME_LOSING. O PressureBiasIndex mede se o árbitro trata as equipas de forma diferente conforme o contexto:"
+          "text": "O <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> segmenta as decisões do árbitro em três contextos de marcador ao intervalo: HOME_WINNING, DRAW e HOME_LOSING. O PressureBiasIndex mede se o árbitro trata as equipas de forma diferente conforme o contexto:"
         },
         {
           "type": "formula",
@@ -393,7 +393,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O CAL corre em Docker com 20 tabelas PostgreSQL e dashboard Streamlit com sete vistas analíticas. A pipeline de execução é idempotente:"
+          "text": "O <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> corre em Docker com 20 tabelas PostgreSQL e dashboard Streamlit com sete vistas analíticas. A pipeline de execução é idempotente:"
         },
         {
           "type": "code",
@@ -441,7 +441,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O sistema CAL é uma ferramenta analítica exploratória sólida. Identifica desvios estatísticos consistentes com viés — não prova viés causal. A ausência de inferência causal forte resulta de limitações de dados e de especificação do modelo, não de falhas no design geral. A transparência sobre estas limitações é uma forma de rigor científico."
+          "text": "O sistema <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> é uma ferramenta analítica exploratória sólida. Identifica desvios estatísticos consistentes com viés — não prova viés causal. A ausência de inferência causal forte resulta de limitações de dados e de especificação do modelo, não de falhas no design geral. A transparência sobre estas limitações é uma forma de rigor científico."
         },
         {
           "type": "heading2",
@@ -449,7 +449,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O CAL foi concebido como ferramenta de escrutínio público, não como instrumento acusatório. A terminologia (suspeito, anomalia) é técnica, não moral. Os resultados não provam intenção ou corrupção. A publicação de análises por árbitro é equiparável à análise de desempenho de jogadores ou treinadores — prática aceite no jornalismo desportivo, desde que acompanhada de contextualização metodológica adequada."
+          "text": "O <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> foi concebido como ferramenta de escrutínio público, não como instrumento acusatório. A terminologia (suspeito, anomalia) é técnica, não moral. Os resultados não provam intenção ou corrupção. A publicação de análises por árbitro é equiparável à análise de desempenho de jogadores ou treinadores — prática aceite no jornalismo desportivo, desde que acompanhada de contextualização metodológica adequada."
         },
         {
           "type": "heading1",
@@ -470,7 +470,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O sistema CAL representa uma contribuição para a análise quantitativa da arbitragem na Primeira Liga Portuguesa. Após três rondas de revisão crítica, a versão v0.9.1 corrige dois erros metodológicos identificados: a fórmula de variância binomial e a aplicação do FDR como família única global. O teste formal de overdispersion confirma a adequação do modelo Poisson com magnitude negligenciável."
+          "text": "O sistema <a href=\"https://cal.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">CAL</a> representa uma contribuição para a análise quantitativa da arbitragem na Primeira Liga Portuguesa. Após três rondas de revisão crítica, a versão v0.9.1 corrige dois erros metodológicos identificados: a fórmula de variância binomial e a aplicação do FDR como família única global. O teste formal de overdispersion confirma a adequação do modelo Poisson com magnitude negligenciável."
         },
         {
           "type": "paragraph",
@@ -545,7 +545,7 @@
       ],
       "featured": true,
       "status": "published",
-      "excerpt": "O EconoStats Portugal passou de um repositório vazio para uma aplicação Django em produção com 4.015 indicadores económicos, uma camada GIS sobre PostGIS para polos industriais, cinco pipelines automatizados e um chatbot com IA — em menos de duas semanas de desenvolvimento activo. Este artigo descreve o que foi construído, as decisões técnicas por detrás disso, e porque é que a combinação de dados macroeconómicos com contexto geográfico é mais rara e mais valiosa do que parece à primeira vista.",
+      "excerpt": "O <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> passou de um repositório vazio para uma aplicação Django em produção com 4.015 indicadores económicos, uma camada GIS sobre PostGIS para polos industriais, cinco pipelines automatizados e um chatbot com IA — em menos de duas semanas de desenvolvimento activo. Este artigo descreve o que foi construído, as decisões técnicas por detrás disso, e porque é que a combinação de dados macroeconómicos com contexto geográfico é mais rara e mais valiosa do que parece à primeira vista.",
       "content": [
         {
           "type": "authors",
@@ -565,7 +565,7 @@
         },
         {
           "type": "paragraph",
-          "text": "É esse espaço que o EconoStats Portugal foi construído para preencher."
+          "text": "É esse espaço que o <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> foi construído para preencher."
         },
         {
           "type": "heading1",
@@ -573,7 +573,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O EconoStats Portugal ficou online a 9 de Maio de 2026. No final da Fase 2 (24 de Maio de 2026), o sistema tinha 14 páginas em produção, 4.015 indicadores económicos na base de dados, 33 empresas geocodificadas, cinco pipelines automatizados, uma coropleta D3.js para as regiões NUTS3 de Portugal e um chatbot com IA com contexto por página. A stack completa:"
+          "text": "O <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> ficou online a 9 de Maio de 2026. No final da Fase 2 (24 de Maio de 2026), o sistema tinha 14 páginas em produção, 4.015 indicadores económicos na base de dados, 33 empresas geocodificadas, cinco pipelines automatizados, uma coropleta D3.js para as regiões NUTS3 de Portugal e um chatbot com IA com contexto por página. A stack completa:"
         },
         {
           "type": "list",
@@ -619,7 +619,7 @@
         },
         {
           "type": "paragraph",
-          "text": "É aqui que o EconoStats difere de todos os outros sites de dados económicos portugueses, e vale a pena explicar cuidadosamente as decisões de design."
+          "text": "É aqui que o <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> difere de todos os outros sites de dados económicos portugueses, e vale a pena explicar cuidadosamente as decisões de design."
         },
         {
           "type": "paragraph",
@@ -659,11 +659,11 @@
         },
         {
           "type": "paragraph",
-          "text": "O EconoStats situa-se na intersecção destas duas tradições por design. Os dados económicos não são decoração num mapa, e o mapa não é decoração num dashboard de estatísticas. São duas vistas da mesma questão subjacente: o que está a acontecer na economia produtiva portuguesa, e onde é que está a acontecer?"
+          "text": "O <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> situa-se na intersecção destas duas tradições por design. Os dados económicos não são decoração num mapa, e o mapa não é decoração num dashboard de estatísticas. São duas vistas da mesma questão subjacente: o que está a acontecer na economia produtiva portuguesa, e onde é que está a acontecer?"
         },
         {
           "type": "paragraph",
-          "text": "Esta intersecção importa sobretudo para três tipos de análise que se tornam directas no EconoStats mas são difíceis ou impossíveis com um portal de estatísticas puro ou uma plataforma GIS pura: compreender a divergência económica regional (porque é que o desemprego no Algarve é estruturalmente diferente do desemprego no Norte, dadas as suas composições industriais distintas?), identificar exposição geográfica a choques sectoriais (que municípios dependem fortemente de subsectores com indicadores negativos?), e contextualizar o desempenho empresarial dentro do seu ambiente económico regional."
+          "text": "Esta intersecção importa sobretudo para três tipos de análise que se tornam directas no <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> mas são difíceis ou impossíveis com um portal de estatísticas puro ou uma plataforma GIS pura: compreender a divergência económica regional (porque é que o desemprego no Algarve é estruturalmente diferente do desemprego no Norte, dadas as suas composições industriais distintas?), identificar exposição geográfica a choques sectoriais (que municípios dependem fortemente de subsectores com indicadores negativos?), e contextualizar o desempenho empresarial dentro do seu ambiente económico regional."
         },
         {
           "type": "heading1",
@@ -717,7 +717,7 @@
             "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
             "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas e a validação dos resultados são da exclusiva responsabilidade do autor.",
             "Dados: nenhum dado foi gerado ou modificado por IA. Todas as fontes são públicas e verificáveis (GEE, Eurostat, INE, Banco de Portugal).",
-            "Classificação EU AI Act: sistema de risco mínimo. O EconoStats apresenta dados institucionais públicos com atribuição de fonte. O chatbot com IA opera com conhecimento estrutural verificado e reconhecimento explícito de incerteza.",
+            "Classificação EU AI Act: sistema de risco mínimo. O <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats</a> apresenta dados institucionais públicos com atribuição de fonte. O chatbot com IA opera com conhecimento estrutural verificado e reconhecimento explícito de incerteza.",
             "Testes e resultados: todos os testes funcionais, a validação dos pipelines e a verificação dos resultados foram realizados pelo autor."
           ]
         },
@@ -727,11 +727,11 @@
         },
         {
           "type": "paragraph",
-          "text": "O EconoStats Portugal não é um produto acabado. É uma base funcional que demonstra algo específico: que a combinação de dados macroeconómicos de séries temporais com uma camada de aplicação geograficamente consciente é tanto tecnicamente directa como analiticamente valiosa — e que esta combinação é rara no panorama informativo português não porque seja difícil, mas porque as duas tradições que produzem estas ferramentas raramente se sobrepõem."
+          "text": "O <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">EconoStats Portugal</a> não é um produto acabado. É uma base funcional que demonstra algo específico: que a combinação de dados macroeconómicos de séries temporais com uma camada de aplicação geograficamente consciente é tanto tecnicamente directa como analiticamente valiosa — e que esta combinação é rara no panorama informativo português não porque seja difícil, mas porque as duas tradições que produzem estas ferramentas raramente se sobrepõem."
         },
         {
           "type": "paragraph",
-          "text": "O site está em produção em econostats.terradigital.net. O documento de arquitectura está disponível no portfólio TerraDigital. A Fase 3 está em curso."
+          "text": "O site está em produção em <a href=\"https://econostats.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">econostats.terradigital.net</a>. O documento de arquitectura está disponível no portfólio TerraDigital. A Fase 3 está em curso."
         }
       ]
     },
@@ -884,7 +884,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O site NaturalMed Wellness demonstra que um site bilingue completo com custo zero, gestão de conteúdo por CMS, pipelines de build automatizados, geração de newsletter e conformidade RGPD de dupla jurisdição é alcançável com GitHub Pages, Cloudflare Workers e uma stack HTML vanilla disciplinada. O investimento mais importante não foi na tecnologia mas na compreensão do domínio o suficiente para tomar as decisões estruturais certas antes de escrever qualquer código."
+          "text": "O site <a href=\"https://www.naturalmed-wellness.com\" target=\"_blank\" rel=\"noopener noreferrer\">NaturalMed Wellness</a> demonstra que um site bilingue completo com custo zero, gestão de conteúdo por CMS, pipelines de build automatizados, geração de newsletter e conformidade RGPD de dupla jurisdição é alcançável com GitHub Pages, Cloudflare Workers e uma stack HTML vanilla disciplinada. O investimento mais importante não foi na tecnologia mas na compreensão do domínio o suficiente para tomar as decisões estruturais certas antes de escrever qualquer código."
         },
         {
           "type": "paragraph",
@@ -1111,7 +1111,7 @@
       ],
       "featured": true,
       "status": "published",
-      "excerpt": "O SAEIF — Sistema de Alerta e Encaminhamento Imediato em Incêndios Florestais — é uma plataforma de monitorização de incêndios florestais em tempo real para a Península Ibérica. Cruza anomalias térmicas NASA FIRMS de três satélites com ocorrências PROCIV da protecção civil, atribui a cada detecção um score de risco de 0 a 100 combinando cobertura de solo, estado da vegetação, declive, áreas ardidas históricas, previsões EFFIS e dados meteorológicos IPMA — e notifica subscritores por email quando são gerados alertas na sua área.",
+      "excerpt": "O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> — Sistema de Alerta e Encaminhamento Imediato em Incêndios Florestais — é uma plataforma de monitorização de incêndios florestais em tempo real para a Península Ibérica. Cruza anomalias térmicas NASA FIRMS de três satélites com ocorrências PROCIV da protecção civil, atribui a cada detecção um score de risco de 0 a 100 combinando cobertura de solo, estado da vegetação, declive, áreas ardidas históricas, previsões EFFIS e dados meteorológicos IPMA — e notifica subscritores por email quando são gerados alertas na sua área.",
       "content": [
         {
           "type": "authors",
@@ -1127,7 +1127,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O SAEIF foi construído para responder a uma pergunta específica: é possível construir um sistema significativo de detecção e avaliação de risco de incêndio usando apenas fontes de dados abertas, sem acordos institucionais de partilha de dados, deployed num único VPS de baixo custo, que corra continuamente e notifique as pessoas quando algo está a acontecer perto delas?"
+          "text": "O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> foi construído para responder a uma pergunta específica: é possível construir um sistema significativo de detecção e avaliação de risco de incêndio usando apenas fontes de dados abertas, sem acordos institucionais de partilha de dados, deployed num único VPS de baixo custo, que corra continuamente e notifique as pessoas quando algo está a acontecer perto delas?"
         },
         {
           "type": "paragraph",
@@ -1139,7 +1139,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O SAEIF integra seis fontes de dados abertas, cada uma contribuindo com uma camada distinta de informação."
+          "text": "O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> integra seis fontes de dados abertas, cada uma contribuindo com uma camada distinta de informação."
         },
         {
           "type": "paragraph",
@@ -1159,11 +1159,11 @@
         },
         {
           "type": "paragraph",
-          "text": "O ESA WorldCover 2021 fornece uma classificação global de cobertura de solo com resolução de 10 metros. Para o SAEIF, as classes relevantes são floresta densa (maior risco estrutural de incêndio), arbustivo, pastagem/cultura e urbano/água (risco zero). Estas classes são rasterizadas e reamostradas para resolução de 2km para toda a Península Ibérica."
+          "text": "O ESA WorldCover 2021 fornece uma classificação global de cobertura de solo com resolução de 10 metros. Para o <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a>, as classes relevantes são floresta densa (maior risco estrutural de incêndio), arbustivo, pastagem/cultura e urbano/água (risco zero). Estas classes são rasterizadas e reamostradas para resolução de 2km para toda a Península Ibérica."
         },
         {
           "type": "paragraph",
-          "text": "O ICNF (Instituto da Conservação da Natureza e das Florestas) publica polígonos de perímetros de incêndio anuais via API ArcGIS REST. O SAEIF ingeriu 5.018 polígonos cobrindo 2020–2025. As áreas ardidas nos últimos dois anos têm risco significativamente elevado devido à presença de vegetação pioneira de crescimento rápido e altamente inflamável — um factor ausente dos mapas estáticos de cobertura de solo."
+          "text": "O ICNF (Instituto da Conservação da Natureza e das Florestas) publica polígonos de perímetros de incêndio anuais via API ArcGIS REST. O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> ingeriu 5.018 polígonos cobrindo 2020–2025. As áreas ardidas nos últimos dois anos têm risco significativamente elevado devido à presença de vegetação pioneira de crescimento rápido e altamente inflamável — um factor ausente dos mapas estáticos de cobertura de solo."
         },
         {
           "type": "heading1",
@@ -1237,7 +1237,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Para alertas ALTO e CRÍTICO, o SAEIF gera elipses estimadas de propagação do fogo às 6 e 12 horas. A elipse é orientada segundo a direcção do vento da estação IPMA mais próxima e escalada pela velocidade do vento. A taxa de propagação usa um modelo empírico simplificado: em condições calmas o fogo expande-se uniformemente; a velocidades de vento mais elevadas o eixo a favor do vento alonga-se significativamente enquanto o eixo perpendicular ao vento estreita."
+          "text": "Para alertas ALTO e CRÍTICO, o <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> gera elipses estimadas de propagação do fogo às 6 e 12 horas. A elipse é orientada segundo a direcção do vento da estação IPMA mais próxima e escalada pela velocidade do vento. A taxa de propagação usa um modelo empírico simplificado: em condições calmas o fogo expande-se uniformemente; a velocidades de vento mais elevadas o eixo a favor do vento alonga-se significativamente enquanto o eixo perpendicular ao vento estreita."
         },
         {
           "type": "paragraph",
@@ -1265,7 +1265,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O SAEIF é deliberadamente transparente sobre as suas limitações, porque compreender o que o sistema não pode fazer é tão importante como compreender o que pode."
+          "text": "O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> é deliberadamente transparente sobre as suas limitações, porque compreender o que o sistema não pode fazer é tão importante como compreender o que pode."
         },
         {
           "type": "paragraph",
@@ -1273,7 +1273,7 @@
         },
         {
           "type": "paragraph",
-          "text": "O score não incorpora dados operacionais em tempo real do SMRIP (Sistema de Monitorização e Reporte de Incêndios em Portugal) — o sistema de informação de gestão de incêndios activos operado pela AGIF. Estes dados requerem um acordo institucional de partilha de dados. Sem ele, o SAEIF não tem informação sobre os meios de supressão mobilizados, as linhas mantidas ou a situação táctica."
+          "text": "O score não incorpora dados operacionais em tempo real do SMRIP (Sistema de Monitorização e Reporte de Incêndios em Portugal) — o sistema de informação de gestão de incêndios activos operado pela AGIF. Estes dados requerem um acordo institucional de partilha de dados. Sem ele, o <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> não tem informação sobre os meios de supressão mobilizados, as linhas mantidas ou a situação táctica."
         },
         {
           "type": "paragraph",
@@ -1281,7 +1281,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Apesar destas limitações, o SAEIF fornece algo que não existe actualmente como ferramenta pública em Portugal: uma visão consolidada, pontuada e mapeada de detecções de incêndio que integra dados de satélite, meteorologia, estado da vegetação, terreno, áreas ardidas históricas e previsões institucionais de perigo de incêndio — actualizada de cinco em cinco minutos, gratuita e aberta."
+          "text": "Apesar destas limitações, o <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> fornece algo que não existe actualmente como ferramenta pública em Portugal: uma visão consolidada, pontuada e mapeada de detecções de incêndio que integra dados de satélite, meteorologia, estado da vegetação, terreno, áreas ardidas históricas e previsões institucionais de perigo de incêndio — actualizada de cinco em cinco minutos, gratuita e aberta."
         },
         {
           "type": "heading1",
@@ -1294,7 +1294,7 @@
             "Âmbito: geração de código Python, SQL, HTML e JavaScript; documentação técnica; estruturação deste artigo.",
             "Responsabilidade: a arquitectura do sistema, todas as decisões técnicas, a selecção de fontes de dados, a concepção da metodologia do score e a validação dos resultados são da exclusiva responsabilidade do autor.",
             "Dados: todas as fontes de dados são abertas e publicamente acessíveis. Nenhum dado foi gerado ou modificado por IA.",
-            "Classificação EU AI Act: sistema de risco mínimo. O SAEIF apresenta dados institucionais abertos (NASA, IPMA, EFFIS, ICNF, ESA) com atribuição completa da fonte. O score de risco é um algoritmo determinista documentado, sem componentes de machine learning.",
+            "Classificação EU AI Act: sistema de risco mínimo. O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> apresenta dados institucionais abertos (NASA, IPMA, EFFIS, ICNF, ESA) com atribuição completa da fonte. O score de risco é um algoritmo determinista documentado, sem componentes de machine learning.",
             "Testes e resultados: todos os testes funcionais, a validação dos pipelines e a verificação dos resultados foram realizados pelo autor."
           ]
         },
@@ -1304,15 +1304,15 @@
         },
         {
           "type": "paragraph",
-          "text": "O SAEIF demonstra que um sistema de monitorização de incêndios tecnicamente significativo pode ser construído inteiramente a partir de fontes de dados abertas, com custo de infraestrutura próximo de zero, sem parcerias institucionais. O sistema está em produção em saeif.terradigital.net e tem corrido continuamente desde Maio de 2026."
+          "text": "O <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> demonstra que um sistema de monitorização de incêndios tecnicamente significativo pode ser construído inteiramente a partir de fontes de dados abertas, com custo de infraestrutura próximo de zero, sem parcerias institucionais. O sistema está em produção em <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">saeif.terradigital.net</a> e tem corrido continuamente desde Maio de 2026."
         },
         {
           "type": "paragraph",
-          "text": "O próximo passo é uma colaboração institucional com a AGIF ou a ANEPC para incorporar dados operacionais de supressão — a peça em falta que transformaria o SAEIF de uma ferramenta de detecção e avaliação de risco num sistema genuíno de apoio à decisão. Está em preparação um artigo técnico que documenta a metodologia em detalhe, adequado para submissão a uma audiência académica ou institucional."
+          "text": "O próximo passo é uma colaboração institucional com a AGIF ou a ANEPC para incorporar dados operacionais de supressão — a peça em falta que transformaria o <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">SAEIF</a> de uma ferramenta de detecção e avaliação de risco num sistema genuíno de apoio à decisão. Está em preparação um artigo técnico que documenta a metodologia em detalhe, adequado para submissão a uma audiência académica ou institucional."
         },
         {
           "type": "paragraph",
-          "text": "O documento de arquitectura está disponível no portfólio TerraDigital em saeif.terradigital.net."
+          "text": "O documento de arquitectura está disponível no portfólio TerraDigital em <a href=\"https://saeif.terradigital.net\" target=\"_blank\" rel=\"noopener noreferrer\">saeif.terradigital.net</a>."
         }
       ]
     }
