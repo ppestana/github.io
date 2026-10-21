@@ -755,7 +755,7 @@
       ],
       "featured": false,
       "status": "published",
-      "excerpt": "Building a website for a Traditional Chinese Medicine clinic in Wales meant learning enough about TCM to ask the right questions — and then making every technical decision serve a practitioner who needed to publish articles, manage newsletters, and comply with both UK and EU GDPR, with zero ongoing hosting cost.",
+      "excerpt": "Building a <a href=\"https://www.naturalmed-wellness.com\" target=\"_blank\" rel=\"noopener noreferrer\">website</a> for a Traditional Chinese Medicine clinic in Wales meant learning enough about TCM to ask the right questions — and then making every technical decision serve a practitioner who needed to publish articles, manage newsletters, and comply with both UK and EU GDPR, with zero ongoing hosting cost.",
       "content": [
         {
           "type": "authors",
